@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Raw data dumps (cache, not source) — commit samples/manifest only
+data/raw/*.json
+data/raw/*.xml
+
+# Apache Jena Fuseki runtime
+fuseki/run/
+*.tdb
+
+# Node / web
+node_modules/
+web/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Secrets
+.env
