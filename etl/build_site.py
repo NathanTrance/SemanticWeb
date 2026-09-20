@@ -157,7 +157,11 @@ def build(out: Path) -> None:
         '<a href="onto.ttl">Turtle</a> &middot; <a href="onto.jsonld">JSON-LD</a></p>'
         + render_table(merged, ontology),
     )
-    print(f"wrote {len(subjects)} entity IRIs + ontology to {out.relative_to(ROOT)}")
+    try:
+        shown = out.relative_to(ROOT)
+    except ValueError:
+        shown = out
+    print(f"wrote {len(subjects)} entity IRIs + ontology to {shown}")
 
 
 def main(argv: list[str]) -> int:
@@ -165,7 +169,7 @@ def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", default=str(ROOT / "site"))
     args = parser.parse_args(argv[1:])
-    build(Path(args.out))
+    build(Path(args.out).resolve())
     return 0
 
 
