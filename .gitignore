@@ -4,9 +4,12 @@ __pycache__/
 .venv/
 venv/
 
-# Raw data dumps (cache, not source) — commit samples/manifest only
+# Raw data dumps (cache, not source) — commit the manifest only
+data/raw/**/*.json
+data/raw/**/*.xml
 data/raw/*.json
 data/raw/*.xml
+!data/raw/manifest.json
 
 # Apache Jena Fuseki runtime
 fuseki/run/

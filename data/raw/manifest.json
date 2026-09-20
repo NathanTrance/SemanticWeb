@@ -1,0 +1,18 @@
+[
+  {
+    "file": "data/raw/cocktaildb/drinks.json",
+    "source": "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=<a-z0-9>",
+    "licence": "TheCocktailDB - free for non-commercial use (test key 1)",
+    "fetched_at": "2026-09-20T10:04:02+00:00",
+    "records": 441,
+    "sha256": "1ba6721fc45de68e3765796ec421844215e8b8f51d0ff8b673e3b12665386fae"
+  },
+  {
+    "file": "data/raw/wikidata/distilleries.json",
+    "source": "Wikidata Query Service - items with P31 wd:Q1251750 (distillery)",
+    "licence": "Wikidata - CC0 1.0",
+    "fetched_at": "2026-09-20T10:05:57+00:00",
+    "records": 998,
+    "sha256": "53fb9201943448a6d760b10ea8519d16416255dd7acc052fe87793cf1812805e"
+  }
+]
