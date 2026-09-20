@@ -1,0 +1,142 @@
+# Demo SPARQL queries for the linked-drinks knowledge graph.
+# Each block starts with a "# name:" marker; etl/run_queries.py splits on it.
+# The text before the first marker is the shared PROLOGUE (prefixes), prepended
+# to every query, so each block is runnable on its own too.
+
+PREFIX drink:  <https://nathantrance.github.io/SemanticWeb/onto#>
+PREFIX id:     <https://nathantrance.github.io/SemanticWeb/id/>
+PREFIX c:      <https://nathantrance.github.io/SemanticWeb/id/cocktail/>
+PREFIX ing:    <https://nathantrance.github.io/SemanticWeb/id/ingredient/>
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <https://schema.org/>
+PREFIX geo:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
+
+# name: 01-cocktails-with-glass-and-spirit
+# Basic multi-branch join: every cocktail with its glass and base spirit.
+SELECT ?cocktail ?name ?glass ?spirit WHERE {
+  ?cocktail a drink:Cocktail ; rdfs:label ?name .
+  OPTIONAL { ?cocktail drink:servedIn ?g . ?g rdfs:label ?glass }
+  OPTIONAL { ?cocktail drink:baseSpirit ?s . ?s rdfs:label ?spirit }
+}
+ORDER BY ?name
+LIMIT 30
+
+# name: 02-iba-gin-and-lemon
+# Every IBA cocktail that uses both gin and lemon juice.
+SELECT DISTINCT ?cocktail ?name WHERE {
+  ?cocktail a drink:Cocktail ;
+            rdfs:label ?name ;
+            drink:isIBA true ;
+            drink:usesIngredient ?a1, ?a2 .
+  ?a1 drink:ofIngredient ing:gin .
+  ?a2 drink:ofIngredient ing:lemon-juice .
+}
+ORDER BY ?name
+
+# name: 03-distilleries-near-edinburgh
+# Geospatial query: distilleries within ~250 km of Edinburgh.
+# Pure-arithmetic equirectangular approximation (no trig) so it runs on plain
+# rdflib as well as Fuseki. At 56 N, 1 deg lat ~= 111.3 km and
+# 1 deg lon ~= 111.3*cos(56) ~= 62.3 km (cos^2 ~= 0.31), so we compare
+# squared degrees against (250/111.3)^2 ~= 5.04.
+SELECT ?distillery ?label (ROUND(?deg2) AS ?squared_degrees) WHERE {
+  ?distillery a drink:Distillery ;
+              rdfs:label ?label ;
+              geo:lat ?lat ;
+              geo:long ?long .
+  BIND((55.9533 - ?lat) AS ?dlat)
+  BIND((-3.1883 - ?long) AS ?dlon)
+  BIND(?dlat * ?dlat + 0.31 * ?dlon * ?dlon AS ?deg2)
+  FILTER(?deg2 <= 5.04)
+}
+ORDER BY ?deg2
+LIMIT 30
+
+# name: 04-shares-2-ingredients-with-negroni
+# Ingredient-sharing graph: cocktails sharing >= 2 ingredients with the Negroni.
+SELECT ?cocktail ?name (COUNT(DISTINCT ?ingredient) AS ?shared) WHERE {
+  {
+    SELECT DISTINCT ?ingredient WHERE {
+      c:negroni drink:usesIngredient/drink:ofIngredient ?ingredient .
+    }
+  }
+  ?cocktail a drink:Cocktail ;
+            rdfs:label ?name ;
+            drink:usesIngredient/drink:ofIngredient ?ingredient .
+  FILTER(?cocktail != c:negroni)
+}
+GROUP BY ?cocktail ?name
+HAVING (COUNT(DISTINCT ?ingredient) >= 2)
+ORDER BY DESC(?shared) ?name
+
+# name: 05-five-star-proof-wikidata-and-dbpedia
+# Star-5 evidence: cocktails linked to BOTH Wikidata and DBpedia.
+SELECT ?cocktail ?name ?wikidata ?dbpedia WHERE {
+  ?cocktail a drink:Cocktail ;
+            rdfs:label ?name ;
+            owl:sameAs ?wikidata, ?dbpedia .
+  FILTER(STRSTARTS(STR(?wikidata), "http://www.wikidata.org/entity/"))
+  FILTER(STRSTARTS(STR(?dbpedia), "http://dbpedia.org/resource/"))
+}
+ORDER BY ?name
+LIMIT 25
+
+# name: 06-construct-negroni-subgraph
+# CONSTRUCT: extract the Negroni's triples as a standalone RDF graph.
+CONSTRUCT { ?cocktail ?p ?o } WHERE {
+  BIND(c:negroni AS ?cocktail)
+  ?cocktail ?p ?o .
+}
+
+# name: 07-spirit-taxonomy
+# RDFS reasoning flavour: each cocktail's spirit and the subclass it is an instance of.
+SELECT ?name ?spirit ?spiritClass WHERE {
+  ?cocktail a drink:Cocktail ;
+            rdfs:label ?name ;
+            drink:baseSpirit ?spirit .
+  ?spirit a ?spiritClass .
+  ?spiritClass rdfs:subClassOf drink:Spirit .
+}
+ORDER BY ?name
+LIMIT 30
+
+# name: 08-cocktails-per-spirit-type
+# Aggregation: number of cocktails per spirit type.
+SELECT ?spiritClass (COUNT(?cocktail) AS ?cocktails) WHERE {
+  ?cocktail drink:baseSpirit ?spirit .
+  ?spirit a ?spiritClass .
+  ?spiritClass rdfs:subClassOf drink:Spirit .
+}
+GROUP BY ?spiritClass
+ORDER BY DESC(?cocktails)
+
+# name: 09-ingredient-measures-whiskey-sour
+# Measure query on the IngredientAmount node: every measure in a Whiskey Sour
+# (answers "how much lemon?"), with the parsed numeric value/unit when present.
+SELECT ?ingredient ?measure ?value ?unit WHERE {
+  c:whiskey-sour drink:usesIngredient ?amount .
+  ?amount drink:ofIngredient ?ingredient ;
+          drink:amountText ?measure .
+  OPTIONAL { ?amount drink:amountValue ?value }
+  OPTIONAL { ?amount drink:amountUnit ?unit }
+}
+ORDER BY ?ingredient
+
+# name: 10-most-used-ingredients
+# Aggregation over the property-chain join.
+SELECT ?ingredient (COUNT(DISTINCT ?cocktail) AS ?uses) WHERE {
+  ?cocktail drink:usesIngredient ?amount .
+  ?amount drink:ofIngredient ?ingredient .
+}
+GROUP BY ?ingredient
+ORDER BY DESC(?uses)
+LIMIT 15
+
+# name: 11-negroni-external-links
+# All external links for one cocktail, with their provenance.
+SELECT ?link WHERE {
+  c:negroni owl:sameAs ?link .
+}

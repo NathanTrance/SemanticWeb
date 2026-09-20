@@ -1,0 +1,102 @@
+:root {
+  --bg: #14100e;
+  --panel: #1f1916;
+  --panel-2: #2a221d;
+  --ink: #f3ece4;
+  --muted: #b09a86;
+  --accent: #e0a458;
+  --line: #3a2f28;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.5 ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+header {
+  padding: 24px 32px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+
+header p { margin: 4px 0 0; color: var(--muted); }
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 32px 60px;
+}
+
+.controls { display: flex; flex-direction: column; gap: 12px; }
+
+.row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+
+label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 13px; }
+
+label.inline { flex-direction: row; align-items: center; gap: 6px; }
+
+input[type="text"], input:not([type]), select, textarea {
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 13px;
+}
+
+input:not([type]) { min-width: 260px; }
+
+textarea { width: 100%; resize: vertical; }
+
+button {
+  background: var(--accent);
+  color: #1a1208;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover { filter: brightness(1.08); }
+
+.status { color: var(--muted); font-size: 13px; }
+
+.output { margin-top: 20px; overflow-x: auto; }
+
+.hint { color: var(--muted); }
+
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+
+th, td {
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th { background: var(--panel-2); position: sticky; top: 0; }
+
+tr:nth-child(even) td { background: var(--panel); }
+
+a { color: var(--accent); word-break: break-all; }
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}

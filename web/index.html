@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>linked-drinks &mdash; SPARQL explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>linked-drinks</h1>
+    <p>5&#9733; Linked Open Data for cocktails, spirits &amp; distilleries</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="row">
+        <label>Endpoint
+          <input id="endpoint" value="/sparql" spellcheck="false" />
+        </label>
+        <label>Preset query
+          <select id="presets"><option value="">loading&hellip;</option></select>
+        </label>
+      </div>
+      <textarea id="query" spellcheck="false" rows="12"></textarea>
+      <div class="row">
+        <button id="run">Run query</button>
+        <label class="inline"><input type="checkbox" id="raw" /> show raw response</label>
+        <span id="status" class="status"></span>
+      </div>
+    </section>
+
+    <section id="output" class="output">
+      <p class="hint">Pick a preset or write a SPARQL query, then press <em>Run query</em>.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

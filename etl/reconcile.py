@@ -112,7 +112,33 @@ BLACKLIST = {
     "highway",
     "list article",
     "wikimedia",
+    "number",
+    "natural number",
+    "integer",
+    "http",
+    "status code",
+    "protocol",
+    "operating system",
+    "programming language",
+    "chemical element",
+    "gene",
+    "protein",
+    "singer",
+    "musician",
+    "actor",
+    "actress",
+    "politician",
+    "footballer",
+    "writer",
+    "artist",
+    "poet",
+    "composer",
+    "author",
+    "journalist",
+    "athlete",
 }
+
+MIN_SCORE = {"cocktail": 2.0, "ingredient": 1.0}
 
 
 def session() -> requests.Session:
@@ -170,13 +196,14 @@ def score(candidate: dict, kind: str) -> float:
 
 def best_match(http: "requests.Session", term: str, kind: str) -> dict | None:
     wanted = normalize(term)
+    minimum = MIN_SCORE.get(kind, 1.0)
     best: dict | None = None
     best_score = 0.0
     for candidate in search(http, term):
         if normalize(candidate.get("label", "")) != wanted:
             continue
         value = score(candidate, kind)
-        if value > best_score:
+        if value >= minimum and value > best_score:
             best, best_score = candidate, value
     if best is None:
         return None

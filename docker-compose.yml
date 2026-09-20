@@ -1,0 +1,20 @@
+# Optional "standard" SPARQL endpoint (Apache Jena Fuseki) as an alternative
+# to the zero-install web/server.py. Start it, then load the graphs with
+# etl/load_fuseki.py:
+#
+#   docker compose up -d
+#   python etl/load_fuseki.py
+#
+# The UI in web/ works against either endpoint (set the Endpoint field to
+# http://localhost:3030/ds/sparql).
+
+services:
+  fuseki:
+    image: stain/jena-fuseki:latest
+    container_name: linked-drinks-fuseki
+    ports:
+      - "3030:3030"
+    environment:
+      ADMIN_PASSWORD: admin
+      FUSEKI_DATASET_1: ds
+    restart: unless-stopped

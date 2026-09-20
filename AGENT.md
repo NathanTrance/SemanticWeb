@@ -5,8 +5,12 @@ This is a Linked Open Data (LOD) capstone for a Masters "Semantic Web" course (H
 Read `PLANNING.md` first — it is the source of truth for scope, ontology, pipeline, and grading strategy.
 
 ## Current status
-- Planning phase. Repo scaffold only (README, PLANNING, AGENTS, .gitignore). No data or code yet.
-- Preferred stack: Python 3 + RDFlib, Apache Jena Fuseki, Protégé, OpenRefine (reconciliation), optional Docker/Silk.
+- W1–W3 done. Ontology (`ontology/drinkonto.ttl`), instance data (`data/rdf/data.ttl`),
+  links (`data/links/links.ttl`) and the SPARQL endpoint + UI (`web/`) are in place.
+- 441 cocktails, 299 ingredients, 865 distilleries, 12 brands, ~1,220 `owl:sameAs`.
+- Stack in use: Python 3 + RDFlib, `web/server.py` (rdflib endpoint), Docker + Jena
+  Fuseki as the optional standard endpoint. Protégé/OpenRefine optional.
+- Todo: Docker/Fuseki verification, report/slides/video, dereferenceability artifacts.
 
 ## Conventions
 - **Directories:** `ontology/` (Turtle ontology + Protégé), `data/raw/` (fetched dumps, git-ignored), `data/rdf/` (generated RDF), `data/links/` (sameAs), `etl/` (Python), `queries/` (`.rq` demo queries), `web/` (query UI), `report/` (report/slides/video assets), `docs/` (provenance manifest, licence notes).

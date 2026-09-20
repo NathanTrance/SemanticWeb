@@ -42,106 +42,9 @@
     owl:sameAs <http://dbpedia.org/resource/Viru_Valge>,
         <http://www.wikidata.org/entity/Q3269196> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/110-in-the-shade> dcterms:source <https://www.wikidata.org/wiki/Q2474521> ;
-    owl:sameAs <http://dbpedia.org/resource/110_in_the_Shade>,
-        <http://www.wikidata.org/entity/Q2474521> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/252> dcterms:source <https://www.wikidata.org/wiki/Q537324> ;
-    owl:sameAs <http://dbpedia.org/resource/252_%28number%29>,
-        <http://www.wikidata.org/entity/Q537324> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/410-gone> dcterms:source <https://www.wikidata.org/wiki/Q17630833> ;
-    owl:sameAs <http://dbpedia.org/resource/HTTP_410>,
-        <http://www.wikidata.org/entity/Q17630833> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/50-50> dcterms:source <https://www.wikidata.org/wiki/Q96474802> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q96474802> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/747> dcterms:source <https://www.wikidata.org/wiki/Q835947> ;
-    owl:sameAs <http://dbpedia.org/resource/747_%28number%29>,
-        <http://www.wikidata.org/entity/Q835947> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/a1> dcterms:source <https://www.wikidata.org/wiki/Q97097692> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q97097692> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/abc> dcterms:source <https://www.wikidata.org/wiki/Q1057802> ;
-    owl:sameAs <http://dbpedia.org/resource/ABC_%28programming_language%29>,
-        <http://www.wikidata.org/entity/Q1057802> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/abilene> dcterms:source <https://www.wikidata.org/wiki/Q128295> ;
-    owl:sameAs <http://dbpedia.org/resource/Abilene%2C_Texas>,
-        <http://www.wikidata.org/entity/Q128295> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/acapulco> dcterms:source <https://www.wikidata.org/wiki/Q20129616> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q20129616> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/ace> dcterms:source <https://www.wikidata.org/wiki/Q22703929> ;
-    owl:sameAs <http://dbpedia.org/resource/ACE_%28video_game%29>,
-        <http://www.wikidata.org/entity/Q22703929> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/acid> dcterms:source <https://www.wikidata.org/wiki/Q4674036> ;
-    owl:sameAs <http://dbpedia.org/resource/Acid_%28hip-hop_group%29>,
-        <http://www.wikidata.org/entity/Q4674036> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/adam> dcterms:source <https://www.wikidata.org/wiki/Q70899> ;
-    owl:sameAs <http://dbpedia.org/resource/Adam>,
-        <http://www.wikidata.org/entity/Q70899> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/addington> dcterms:source <https://www.wikidata.org/wiki/Q4681171> ;
-    owl:sameAs <http://dbpedia.org/resource/Addington%2C_Victoria>,
-        <http://www.wikidata.org/entity/Q4681171> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/addison> dcterms:source <https://www.wikidata.org/wiki/Q353095> ;
-    owl:sameAs <http://dbpedia.org/resource/Addison%2C_Vermont>,
-        <http://www.wikidata.org/entity/Q353095> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/affair> dcterms:source <https://www.wikidata.org/wiki/Q12761956> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q12761956> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/affinity> dcterms:source <https://www.wikidata.org/wiki/Q60390499> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q60390499> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/afterglow> dcterms:source <https://www.wikidata.org/wiki/Q1141780> ;
-    owl:sameAs <http://dbpedia.org/resource/Afterglow>,
-        <http://www.wikidata.org/entity/Q1141780> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/alexander> dcterms:source <https://www.wikidata.org/wiki/Q23852288> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q23852288> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/algonquin> dcterms:source <https://www.wikidata.org/wiki/Q4724329> ;
-    owl:sameAs <http://dbpedia.org/resource/Algonquin%2C_Louisville>,
-        <http://www.wikidata.org/entity/Q4724329> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/allegheny> dcterms:source <https://www.wikidata.org/wiki/Q356201> ;
-    owl:sameAs <http://dbpedia.org/resource/Roman_Catholic_Diocese_of_Allegheny>,
-        <http://www.wikidata.org/entity/Q356201> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/almeria> dcterms:source <https://www.wikidata.org/wiki/Q107337923> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q107337923> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/americano> dcterms:source <https://www.wikidata.org/wiki/Q467441> ;
     owl:sameAs <http://dbpedia.org/resource/Americano_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q467441> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/artillery> dcterms:source <https://www.wikidata.org/wiki/Q64418> ;
-    owl:sameAs <http://dbpedia.org/resource/Artillery>,
-        <http://www.wikidata.org/entity/Q64418> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/at-t> dcterms:source <https://www.wikidata.org/wiki/Q35476> ;
-    owl:sameAs <http://dbpedia.org/resource/AT%26T>,
-        <http://www.wikidata.org/entity/Q35476> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/avalanche> dcterms:source <https://www.wikidata.org/wiki/Q110233099> ;
-    owl:sameAs <http://dbpedia.org/resource/Avalanche_%28blockchain_platform%29>,
-        <http://www.wikidata.org/entity/Q110233099> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/avalon> dcterms:source <https://www.wikidata.org/wiki/Q4827531> ;
-    owl:sameAs <http://dbpedia.org/resource/Avalon%2C_Victoria>,
-        <http://www.wikidata.org/entity/Q4827531> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/aviation> dcterms:source <https://www.wikidata.org/wiki/Q765633> ;
-    owl:sameAs <http://dbpedia.org/resource/Aviation>,
-        <http://www.wikidata.org/entity/Q765633> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/b-52> dcterms:source <https://www.wikidata.org/wiki/Q594392> ;
     owl:sameAs <http://dbpedia.org/resource/B-52_%28cocktail%29>,
@@ -150,99 +53,15 @@
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/bahama-mama> dcterms:source <https://www.wikidata.org/wiki/Q41796242> ;
     owl:sameAs <http://www.wikidata.org/entity/Q41796242> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/balmoral> dcterms:source <https://www.wikidata.org/wiki/Q4852373> ;
-    owl:sameAs <http://dbpedia.org/resource/Balmoral%2C_New_Zealand>,
-        <http://www.wikidata.org/entity/Q4852373> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/barracuda> dcterms:source <https://www.wikidata.org/wiki/Q130750355> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q130750355> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bellini> dcterms:source <https://www.wikidata.org/wiki/Q362558> ;
-    owl:sameAs <http://dbpedia.org/resource/Bellini_%28German_group%29>,
-        <http://www.wikidata.org/entity/Q362558> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bible-belt> dcterms:source <https://www.wikidata.org/wiki/Q210181> ;
-    owl:sameAs <http://dbpedia.org/resource/Bible_Belt>,
-        <http://www.wikidata.org/entity/Q210181> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/big-red> dcterms:source <https://www.wikidata.org/wiki/Q2902325> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q2902325> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bijou> dcterms:source <https://www.wikidata.org/wiki/Q2902533> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q2902533> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/blackthorn> dcterms:source <https://www.wikidata.org/wiki/Q2255817> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q2255817> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bluebird> dcterms:source <https://www.wikidata.org/wiki/Q95954235> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q95954235> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/bob-marley> dcterms:source <https://www.wikidata.org/wiki/Q104831432> ;
     owl:sameAs <http://www.wikidata.org/entity/Q104831432> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/boomerang> dcterms:source <https://www.wikidata.org/wiki/Q131536> ;
-    owl:sameAs <http://dbpedia.org/resource/Boomerang>,
-        <http://www.wikidata.org/entity/Q131536> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bora-bora> dcterms:source <https://www.wikidata.org/wiki/Q183113> ;
-    owl:sameAs <http://dbpedia.org/resource/Bora_Bora>,
-        <http://www.wikidata.org/entity/Q183113> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/boston-sour> dcterms:source <https://www.wikidata.org/wiki/Q140198988> ;
     owl:sameAs <http://www.wikidata.org/entity/Q140198988> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/boxcar> dcterms:source <https://www.wikidata.org/wiki/Q17102978> ;
-    owl:sameAs <http://dbpedia.org/resource/Boxcar>,
-        <http://www.wikidata.org/entity/Q17102978> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/brain-fart> dcterms:source <https://www.wikidata.org/wiki/Q4955817> ;
-    owl:sameAs <http://dbpedia.org/resource/Brain_fart>,
-        <http://www.wikidata.org/entity/Q4955817> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bramble> dcterms:source <https://www.wikidata.org/wiki/Q138762706> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q138762706> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/brigadier> dcterms:source <https://www.wikidata.org/wiki/Q107262095> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q107262095> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/broadside> dcterms:source <https://www.wikidata.org/wiki/Q1433985> ;
-    owl:sameAs <http://dbpedia.org/resource/Broadside_%28printing%29>,
-        <http://www.wikidata.org/entity/Q1433985> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/brooklyn> dcterms:source <https://www.wikidata.org/wiki/Q18419> ;
-    owl:sameAs <http://dbpedia.org/resource/Brooklyn>,
-        <http://www.wikidata.org/entity/Q18419> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bubble-gum> dcterms:source <https://www.wikidata.org/wiki/Q64775707> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q64775707> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/buccaneer> dcterms:source <https://www.wikidata.org/wiki/Q850220> ;
-    owl:sameAs <http://dbpedia.org/resource/Buccaneer>,
-        <http://www.wikidata.org/entity/Q850220> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/bumble-bee> dcterms:source <https://www.wikidata.org/wiki/Q2922293> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q2922293> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/cafe-savoy> dcterms:source <https://www.wikidata.org/wiki/Q63095123> ;
-    owl:sameAs <http://dbpedia.org/resource/Caf%C3%A9_Savoy>,
-        <http://www.wikidata.org/entity/Q63095123> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/caipirinha> dcterms:source <https://www.wikidata.org/wiki/Q625152> ;
     owl:sameAs <http://dbpedia.org/resource/Caipirinha>,
         <http://www.wikidata.org/entity/Q625152> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/caipirissima> dcterms:source <https://www.wikidata.org/wiki/Q2246694> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q2246694> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/casa-blanca> dcterms:source <https://www.wikidata.org/wiki/Q50011254> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q50011254> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/casino> dcterms:source <https://www.wikidata.org/wiki/Q133215> ;
-    owl:sameAs <http://dbpedia.org/resource/Casino>,
-        <http://www.wikidata.org/entity/Q133215> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/casino-royale> dcterms:source <https://www.wikidata.org/wiki/Q3661802> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q3661802> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/chocolate-milk> dcterms:source <https://www.wikidata.org/wiki/Q13253> ;
     owl:sameAs <http://dbpedia.org/resource/Chocolate_milk>,
@@ -250,12 +69,6 @@
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/city-slicker> dcterms:source <https://www.wikidata.org/wiki/Q114035067> ;
     owl:sameAs <http://www.wikidata.org/entity/Q114035067> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/clover-club> dcterms:source <https://www.wikidata.org/wiki/Q16625165> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q16625165> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/coffee-liqueur> dcterms:source <https://www.wikidata.org/wiki/Q11303423> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q11303423> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/corpse-reviver> dcterms:source <https://www.wikidata.org/wiki/Q5172602> ;
     owl:sameAs <http://dbpedia.org/resource/Corpse_reviver>,
@@ -277,31 +90,12 @@
     owl:sameAs <http://dbpedia.org/resource/Daiquiri>,
         <http://www.wikidata.org/entity/Q917361> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/damned-if-you-do> dcterms:source <https://www.wikidata.org/wiki/Q132396739> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q132396739> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/death-in-the-afternoon> dcterms:source <https://www.wikidata.org/wiki/Q5247370> ;
     owl:sameAs <http://dbpedia.org/resource/Death_in_the_Afternoon_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q5247370> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/derby> dcterms:source <https://www.wikidata.org/wiki/Q755197> ;
-    owl:sameAs <http://dbpedia.org/resource/Derby%2C_Connecticut>,
-        <http://www.wikidata.org/entity/Q755197> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/diesel> dcterms:source <https://www.wikidata.org/wiki/Q1702311> ;
-    owl:sameAs <http://dbpedia.org/resource/Diesel_%28musician%29>,
-        <http://www.wikidata.org/entity/Q1702311> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/dirty-martini> dcterms:source <https://www.wikidata.org/wiki/Q26879765> ;
     owl:sameAs <http://www.wikidata.org/entity/Q26879765> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/downshift> dcterms:source <https://www.wikidata.org/wiki/Q5303270> ;
-    owl:sameAs <http://dbpedia.org/resource/Downshift_%28Transformers%29>,
-        <http://www.wikidata.org/entity/Q5303270> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/dragonfly> dcterms:source <https://www.wikidata.org/wiki/Q16974541> ;
-    owl:sameAs <http://dbpedia.org/resource/Dragon_2_DragonFly>,
-        <http://www.wikidata.org/entity/Q16974541> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/egg-cream> dcterms:source <https://www.wikidata.org/wiki/Q1297383> ;
     owl:sameAs <http://dbpedia.org/resource/Egg_cream>,
@@ -310,19 +104,6 @@
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/espresso-martini> dcterms:source <https://www.wikidata.org/wiki/Q19904106> ;
     owl:sameAs <http://dbpedia.org/resource/Espresso_martini>,
         <http://www.wikidata.org/entity/Q19904106> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/fahrenheit-5000> dcterms:source <https://www.wikidata.org/wiki/Q104831630> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q104831630> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/flaming-lamborghini> dcterms:source <https://www.wikidata.org/wiki/Q3746359> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q3746359> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/flying-dutchman> dcterms:source <https://www.wikidata.org/wiki/Q39252> ;
-    owl:sameAs <http://dbpedia.org/resource/Flying_Dutchman>,
-        <http://www.wikidata.org/entity/Q39252> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/foxy-lady> dcterms:source <https://www.wikidata.org/wiki/Q66092370> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q66092370> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/french-75> dcterms:source <https://www.wikidata.org/wiki/Q3753012> ;
     owl:sameAs <http://dbpedia.org/resource/French_75_%28cocktail%29>,
@@ -339,12 +120,6 @@
     owl:sameAs <http://dbpedia.org/resource/Fros%C3%A9_%28drink%29>,
         <http://www.wikidata.org/entity/Q104879171> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/gagliardo> dcterms:source <https://www.wikidata.org/wiki/Q108481192> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q108481192> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/gg> dcterms:source <https://www.wikidata.org/wiki/Q111242146> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q111242146> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/gimlet> dcterms:source <https://www.wikidata.org/wiki/Q1524752> ;
     owl:sameAs <http://dbpedia.org/resource/Gimlet_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q1524752> .
@@ -352,44 +127,11 @@
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/gin-daisy> dcterms:source <https://www.wikidata.org/wiki/Q64828392> ;
     owl:sameAs <http://www.wikidata.org/entity/Q64828392> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/gin-fizz> dcterms:source <https://www.wikidata.org/wiki/Q2737608> ;
-    owl:sameAs <http://dbpedia.org/resource/Gin_fizz>,
-        <http://www.wikidata.org/entity/Q2737608> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/gin-lemon> dcterms:source <https://www.wikidata.org/wiki/Q782024> ;
-    owl:sameAs <http://dbpedia.org/resource/Gin_Lemon>,
-        <http://www.wikidata.org/entity/Q782024> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/gin-sour> dcterms:source <https://www.wikidata.org/wiki/Q3764451> ;
     owl:sameAs <http://www.wikidata.org/entity/Q3764451> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/godchild> dcterms:source <https://www.wikidata.org/wiki/Q3744857> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q3744857> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/godfather> dcterms:source <https://www.wikidata.org/wiki/Q28017737> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q28017737> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/godmother> dcterms:source <https://www.wikidata.org/wiki/Q26879480> ;
     owl:sameAs <http://www.wikidata.org/entity/Q26879480> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/grand-blue> dcterms:source <https://www.wikidata.org/wiki/Q134506938> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q134506938> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/grasshopper> dcterms:source <https://www.wikidata.org/wiki/Q7618284> ;
-    owl:sameAs <http://dbpedia.org/resource/Acrididae>,
-        <http://www.wikidata.org/entity/Q7618284> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/greyhound> dcterms:source <https://www.wikidata.org/wiki/Q38571> ;
-    owl:sameAs <http://dbpedia.org/resource/Greyhound>,
-        <http://www.wikidata.org/entity/Q38571> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/grim-reaper> dcterms:source <https://www.wikidata.org/wiki/Q105071318> ;
-    owl:sameAs <http://dbpedia.org/resource/Grim_Reaper>,
-        <http://www.wikidata.org/entity/Q105071318> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/h-d> dcterms:source <https://www.wikidata.org/wiki/Q236469> ;
-    owl:sameAs <http://dbpedia.org/resource/H.D.>,
-        <http://www.wikidata.org/entity/Q236469> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/harvey-wallbanger> dcterms:source <https://www.wikidata.org/wiki/Q1587980> ;
     owl:sameAs <http://dbpedia.org/resource/Harvey_Wallbanger>,
@@ -399,9 +141,6 @@
     owl:sameAs <http://dbpedia.org/resource/Hemingway_special>,
         <http://www.wikidata.org/entity/Q26879521> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/honey-bee> dcterms:source <https://www.wikidata.org/wiki/Q11223525> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q11223525> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/horse-s-neck> dcterms:source <https://www.wikidata.org/wiki/Q3786818> ;
     owl:sameAs <http://dbpedia.org/resource/Horse%27s_neck>,
         <http://www.wikidata.org/entity/Q3786818> .
@@ -409,14 +148,6 @@
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/hot-toddy> dcterms:source <https://www.wikidata.org/wiki/Q1418227> ;
     owl:sameAs <http://dbpedia.org/resource/Hot_toddy>,
         <http://www.wikidata.org/entity/Q1418227> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/hunter-s-moon> dcterms:source <https://www.wikidata.org/wiki/Q3267521> ;
-    owl:sameAs <http://dbpedia.org/resource/Hunter%27s_moon>,
-        <http://www.wikidata.org/entity/Q3267521> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/ice-pick> dcterms:source <https://www.wikidata.org/wiki/Q586319> ;
-    owl:sameAs <http://dbpedia.org/resource/Ice_pick>,
-        <http://www.wikidata.org/entity/Q586319> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/iced-coffee> dcterms:source <https://www.wikidata.org/wiki/Q968554> ;
     owl:sameAs <http://dbpedia.org/resource/Iced_coffee>,
@@ -426,40 +157,9 @@
     owl:sameAs <http://dbpedia.org/resource/Irish_coffee>,
         <http://www.wikidata.org/entity/Q622954> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/irish-cream> dcterms:source <https://www.wikidata.org/wiki/Q2916460> ;
-    owl:sameAs <http://dbpedia.org/resource/Irish_cream>,
-        <http://www.wikidata.org/entity/Q2916460> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/irish-spring> dcterms:source <https://www.wikidata.org/wiki/Q6071238> ;
-    owl:sameAs <http://dbpedia.org/resource/Irish_Spring>,
-        <http://www.wikidata.org/entity/Q6071238> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/jackhammer> dcterms:source <https://www.wikidata.org/wiki/Q19766> ;
-    owl:sameAs <http://dbpedia.org/resource/Jackhammer>,
-        <http://www.wikidata.org/entity/Q19766> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/jelly-bean> dcterms:source <https://www.wikidata.org/wiki/Q1207626> ;
-    owl:sameAs <http://dbpedia.org/resource/Jelly_bean>,
-        <http://www.wikidata.org/entity/Q1207626> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/jitterbug> dcterms:source <https://www.wikidata.org/wiki/Q950354> ;
-    owl:sameAs <http://dbpedia.org/resource/Jitterbug>,
-        <http://www.wikidata.org/entity/Q950354> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/john-collins> dcterms:source <https://www.wikidata.org/wiki/Q720921> ;
-    owl:sameAs <http://dbpedia.org/resource/John_Collins_%28footballer%2C_born_1968%29>,
-        <http://www.wikidata.org/entity/Q720921> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/kamikaze> dcterms:source <https://www.wikidata.org/wiki/Q106300460> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q106300460> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/karsk> dcterms:source <https://www.wikidata.org/wiki/Q70428> ;
     owl:sameAs <http://dbpedia.org/resource/Karsk>,
         <http://www.wikidata.org/entity/Q70428> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/kentucky-colonel> dcterms:source <https://www.wikidata.org/wiki/Q632482> ;
-    owl:sameAs <http://dbpedia.org/resource/Kentucky_Colonel>,
-        <http://www.wikidata.org/entity/Q632482> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/lemon-drop> dcterms:source <https://www.wikidata.org/wiki/Q22084462> ;
     owl:sameAs <http://dbpedia.org/resource/Lemon_drop_%28cocktail%29>,
@@ -469,13 +169,6 @@
     owl:sameAs <http://dbpedia.org/resource/Limeade>,
         <http://www.wikidata.org/entity/Q488482> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/loch-lomond> dcterms:source <https://www.wikidata.org/wiki/Q6664948> ;
-    owl:sameAs <http://dbpedia.org/resource/Loch_Lomond%2C_Nova_Scotia>,
-        <http://www.wikidata.org/entity/Q6664948> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/lone-tree-cocktail> dcterms:source <https://www.wikidata.org/wiki/Q111365278> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q111365278> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/long-island-iced-tea> dcterms:source <https://www.wikidata.org/wiki/Q1052769> ;
     owl:sameAs <http://dbpedia.org/resource/Long_Island_iced_tea>,
         <http://www.wikidata.org/entity/Q1052769> .
@@ -484,17 +177,9 @@
     owl:sameAs <http://dbpedia.org/resource/Long_vodka>,
         <http://www.wikidata.org/entity/Q6673551> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/lunch-box> dcterms:source <https://www.wikidata.org/wiki/Q694311> ;
-    owl:sameAs <http://dbpedia.org/resource/Lunchbox>,
-        <http://www.wikidata.org/entity/Q694311> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/mai-tai> dcterms:source <https://www.wikidata.org/wiki/Q280531> ;
     owl:sameAs <http://dbpedia.org/resource/Mai_Tai>,
         <http://www.wikidata.org/entity/Q280531> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/manhattan> dcterms:source <https://www.wikidata.org/wiki/Q11299> ;
-    owl:sameAs <http://dbpedia.org/resource/Manhattan>,
-        <http://www.wikidata.org/entity/Q11299> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/margarita> dcterms:source <https://www.wikidata.org/wiki/Q657621> ;
     owl:sameAs <http://dbpedia.org/resource/Margarita>,
@@ -519,10 +204,6 @@
     owl:sameAs <http://dbpedia.org/resource/Michelada>,
         <http://www.wikidata.org/entity/Q1382251> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/mimosa> dcterms:source <https://www.wikidata.org/wiki/Q13105> ;
-    owl:sameAs <http://dbpedia.org/resource/Mimosa_%28star%29>,
-        <http://www.wikidata.org/entity/Q13105> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/mint-julep> dcterms:source <https://www.wikidata.org/wiki/Q616477> ;
     owl:sameAs <http://dbpedia.org/resource/Mint_julep>,
         <http://www.wikidata.org/entity/Q616477> .
@@ -535,29 +216,13 @@
     owl:sameAs <http://dbpedia.org/resource/Monkey_gland_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q745306> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/monkey-wrench> dcterms:source <https://www.wikidata.org/wiki/Q356776> ;
-    owl:sameAs <http://dbpedia.org/resource/Monkey_wrench>,
-        <http://www.wikidata.org/entity/Q356776> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/moscow-mule> dcterms:source <https://www.wikidata.org/wiki/Q1507096> ;
     owl:sameAs <http://dbpedia.org/resource/Moscow_mule>,
         <http://www.wikidata.org/entity/Q1507096> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/mulled-wine> dcterms:source <https://www.wikidata.org/wiki/Q6584> ;
-    owl:sameAs <http://dbpedia.org/resource/Mulled_wine>,
-        <http://www.wikidata.org/entity/Q6584> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/national-aquarium> dcterms:source <https://www.wikidata.org/wiki/Q1000257> ;
-    owl:sameAs <http://dbpedia.org/resource/National_Aquarium_%28Baltimore%29>,
-        <http://www.wikidata.org/entity/Q1000257> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/negroni> dcterms:source <https://www.wikidata.org/wiki/Q1401202> ;
     owl:sameAs <http://dbpedia.org/resource/Negroni>,
         <http://www.wikidata.org/entity/Q1401202> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/new-york-sour> dcterms:source <https://www.wikidata.org/wiki/Q96143038> ;
-    owl:sameAs <http://dbpedia.org/resource/New_York_sour>,
-        <http://www.wikidata.org/entity/Q96143038> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/oatmeal-cookie> dcterms:source <https://www.wikidata.org/wiki/Q7074505> ;
     owl:sameAs <http://www.wikidata.org/entity/Q7074505> .
@@ -598,10 +263,6 @@
     owl:sameAs <http://dbpedia.org/resource/Pegu_Club_%28New_York_City%29>,
         <http://www.wikidata.org/entity/Q116371618> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/penicillin> dcterms:source <https://www.wikidata.org/wiki/Q12190> ;
-    owl:sameAs <http://dbpedia.org/resource/Penicillin>,
-        <http://www.wikidata.org/entity/Q12190> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/pina-colada> dcterms:source <https://www.wikidata.org/wiki/Q745886> ;
     owl:sameAs <http://dbpedia.org/resource/Pi%C3%B1a_colada>,
         <http://www.wikidata.org/entity/Q745886> .
@@ -614,9 +275,6 @@
     owl:sameAs <http://dbpedia.org/resource/Pink_lady_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q1039131> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/pink-moon> dcterms:source <https://www.wikidata.org/wiki/Q36865335> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q36865335> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/pisco-sour> dcterms:source <https://www.wikidata.org/wiki/Q673012> ;
     owl:sameAs <http://dbpedia.org/resource/Pisco_sour>,
         <http://www.wikidata.org/entity/Q673012> .
@@ -625,39 +283,9 @@
     owl:sameAs <http://dbpedia.org/resource/Planter%27s_punch>,
         <http://www.wikidata.org/entity/Q2098356> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/poppy-cocktail> dcterms:source <https://www.wikidata.org/wiki/Q104831653> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q104831653> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/pornstar-martini> dcterms:source <https://www.wikidata.org/wiki/Q124386500> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q124386500> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/port-and-starboard> dcterms:source <https://www.wikidata.org/wiki/Q5089489> ;
-    owl:sameAs <http://dbpedia.org/resource/Port_and_starboard>,
-        <http://www.wikidata.org/entity/Q5089489> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/port-wine-cocktail> dcterms:source <https://www.wikidata.org/wiki/Q13164223> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q13164223> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/porto-flip> dcterms:source <https://www.wikidata.org/wiki/Q3909303> ;
     owl:sameAs <http://dbpedia.org/resource/Porto_flip>,
         <http://www.wikidata.org/entity/Q3909303> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/queen-bee> dcterms:source <https://www.wikidata.org/wiki/Q770569> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q770569> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/queen-charlotte> dcterms:source <https://www.wikidata.org/wiki/Q5769662> ;
-    owl:sameAs <http://dbpedia.org/resource/Hired_armed_cutter_Queen_Charlotte>,
-        <http://www.wikidata.org/entity/Q5769662> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/queen-elizabeth> dcterms:source <https://www.wikidata.org/wiki/Q140574632> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q140574632> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/quentin> dcterms:source <https://www.wikidata.org/wiki/Q1185555> ;
-    owl:sameAs <http://dbpedia.org/resource/Quentin%2C_Pennsylvania>,
-        <http://www.wikidata.org/entity/Q1185555> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/radioactive-long-island-iced-tea> dcterms:source <https://www.wikidata.org/wiki/Q104831654> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q104831654> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/radler> dcterms:source <https://www.wikidata.org/wiki/Q260417> ;
     owl:sameAs <http://dbpedia.org/resource/Radler>,
@@ -665,27 +293,6 @@
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/ramos-gin-fizz> dcterms:source <https://www.wikidata.org/wiki/Q26879201> ;
     owl:sameAs <http://www.wikidata.org/entity/Q26879201> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/raspberry-cooler> dcterms:source <https://www.wikidata.org/wiki/Q104856828> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q104856828> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/red-snapper> dcterms:source <https://www.wikidata.org/wiki/Q2168429> ;
-    owl:sameAs <http://dbpedia.org/resource/Red_snapper>,
-        <http://www.wikidata.org/entity/Q2168429> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/rose> dcterms:source <https://www.wikidata.org/wiki/Q431350> ;
-    owl:sameAs <http://dbpedia.org/resource/Rose_%28French_singer%29>,
-        <http://www.wikidata.org/entity/Q431350> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/royal-flush> dcterms:source <https://www.wikidata.org/wiki/Q7374185> ;
-    owl:sameAs <http://dbpedia.org/resource/Royal_Flush_%28rapper%29>,
-        <http://www.wikidata.org/entity/Q7374185> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/ruby-tuesday> dcterms:source <https://www.wikidata.org/wiki/Q104989422> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q104989422> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/rum-punch> dcterms:source <https://www.wikidata.org/wiki/Q126687707> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q126687707> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/rum-runner> dcterms:source <https://www.wikidata.org/wiki/Q61658013> ;
     owl:sameAs <http://www.wikidata.org/entity/Q61658013> .
@@ -702,20 +309,9 @@
     owl:sameAs <http://dbpedia.org/resource/Salty_dog_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q7406255> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/san-francisco> dcterms:source <https://www.wikidata.org/wiki/Q62> ;
-    owl:sameAs <http://dbpedia.org/resource/San_Francisco>,
-        <http://www.wikidata.org/entity/Q62> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/sangria> dcterms:source <https://www.wikidata.org/wiki/Q273296> ;
-    owl:sameAs <http://dbpedia.org/resource/Sangria>,
-        <http://www.wikidata.org/entity/Q273296> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/sazerac> dcterms:source <https://www.wikidata.org/wiki/Q921623> ;
     owl:sameAs <http://dbpedia.org/resource/Sazerac>,
         <http://www.wikidata.org/entity/Q921623> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/scooter> dcterms:source <https://www.wikidata.org/wiki/Q24084366> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q24084366> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/screwdriver> dcterms:source <https://www.wikidata.org/wiki/Q667951> ;
     owl:sameAs <http://dbpedia.org/resource/Screwdriver_%28cocktail%29>,
@@ -725,31 +321,13 @@
     owl:sameAs <http://dbpedia.org/resource/Sea_breeze_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q2915742> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/shark-attack> dcterms:source <https://www.wikidata.org/wiki/Q900214> ;
-    owl:sameAs <http://dbpedia.org/resource/Shark_attack>,
-        <http://www.wikidata.org/entity/Q900214> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/shot-gun> dcterms:source <https://www.wikidata.org/wiki/Q20040680> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q20040680> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/sidecar> dcterms:source <https://www.wikidata.org/wiki/Q1134797> ;
     owl:sameAs <http://dbpedia.org/resource/Sidecar_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q1134797> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/smut> dcterms:source <https://www.wikidata.org/wiki/Q3297002> ;
-    owl:sameAs <http://dbpedia.org/resource/Smut_%28fungus%29>,
-        <http://www.wikidata.org/entity/Q3297002> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/snowball> dcterms:source <https://www.wikidata.org/wiki/Q66566185> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q66566185> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/sol-y-sombra> dcterms:source <https://www.wikidata.org/wiki/Q6131355> ;
     owl:sameAs <http://dbpedia.org/resource/Sol_y_Sombra>,
         <http://www.wikidata.org/entity/Q6131355> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/space-odyssey> dcterms:source <https://www.wikidata.org/wiki/Q1198588> ;
-    owl:sameAs <http://dbpedia.org/resource/Space_Odyssey>,
-        <http://www.wikidata.org/entity/Q1198588> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/spritz> dcterms:source <https://www.wikidata.org/wiki/Q668635> ;
     owl:sameAs <http://dbpedia.org/resource/Spritz_%28cocktail%29>,
@@ -759,10 +337,6 @@
     owl:sameAs <http://dbpedia.org/resource/Stinger_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q3499520> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/sweet-tooth> dcterms:source <https://www.wikidata.org/wiki/Q104762388> ;
-    owl:sameAs <http://dbpedia.org/resource/Sweet_Tooth_%28TV_series%29>,
-        <http://www.wikidata.org/entity/Q104762388> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/tequila-slammer> dcterms:source <https://www.wikidata.org/wiki/Q2433769> ;
     owl:sameAs <http://dbpedia.org/resource/Tequila_slammer>,
         <http://www.wikidata.org/entity/Q2433769> .
@@ -771,53 +345,12 @@
     owl:sameAs <http://dbpedia.org/resource/Tequila_sunrise>,
         <http://www.wikidata.org/entity/Q1163791> .
 
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/the-last-word> dcterms:source <https://www.wikidata.org/wiki/Q11862741> ;
-    owl:sameAs <http://dbpedia.org/resource/The_Last_Word_%28Knight_short_story%29>,
-        <http://www.wikidata.org/entity/Q11862741> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/the-philosopher> dcterms:source <https://www.wikidata.org/wiki/Q97013120> ;
-    owl:sameAs <http://dbpedia.org/resource/Ancient_Philosopher_%28David%29>,
-        <http://www.wikidata.org/entity/Q97013120> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/thriller> dcterms:source <https://www.wikidata.org/wiki/Q182015> ;
-    owl:sameAs <http://dbpedia.org/resource/Thriller_%28genre%29>,
-        <http://www.wikidata.org/entity/Q182015> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/tia-maria> dcterms:source <https://www.wikidata.org/wiki/Q795145> ;
-    owl:sameAs <http://dbpedia.org/resource/Tia_Maria>,
-        <http://www.wikidata.org/entity/Q795145> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/tipperary> dcterms:source <https://www.wikidata.org/wiki/Q680220> ;
-    owl:sameAs <http://dbpedia.org/resource/Tipperary_%28town%29>,
-        <http://www.wikidata.org/entity/Q680220> .
-
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/tom-collins> dcterms:source <https://www.wikidata.org/wiki/Q703541> ;
     owl:sameAs <http://dbpedia.org/resource/Tom_Collins>,
         <http://www.wikidata.org/entity/Q703541> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/valencia-cocktail> dcterms:source <https://www.wikidata.org/wiki/Q99274456> ;
     owl:sameAs <http://www.wikidata.org/entity/Q99274456> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/vampiro> dcterms:source <https://www.wikidata.org/wiki/Q1354240> ;
-    owl:sameAs <http://dbpedia.org/resource/Vampiro>,
-        <http://www.wikidata.org/entity/Q1354240> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/van-vleet> dcterms:source <https://www.wikidata.org/wiki/Q7913737> ;
-    owl:sameAs <http://dbpedia.org/resource/Van_Vleet%2C_Mississippi>,
-        <http://www.wikidata.org/entity/Q7913737> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/vesper> dcterms:source <https://www.wikidata.org/wiki/Q111988411> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q111988411> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/vesuvio> dcterms:source <https://www.wikidata.org/wiki/Q89540231> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q89540231> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/veteran> dcterms:source <https://www.wikidata.org/wiki/Q193891> ;
-    owl:sameAs <http://dbpedia.org/resource/Veteran>,
-        <http://www.wikidata.org/entity/Q193891> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/victor> dcterms:source <https://www.wikidata.org/wiki/Q66481479> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q66481479> .
 
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/vodka-lemon> dcterms:source <https://www.wikidata.org/wiki/Q113160226> ;
     owl:sameAs <http://www.wikidata.org/entity/Q113160226> .
@@ -853,17 +386,6 @@
 <https://nathantrance.github.io/SemanticWeb/id/cocktail/yellow-bird> dcterms:source <https://www.wikidata.org/wiki/Q6543221> ;
     owl:sameAs <http://dbpedia.org/resource/Yellow_bird_%28cocktail%29>,
         <http://www.wikidata.org/entity/Q6543221> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/zizi-coin-coin> dcterms:source <https://www.wikidata.org/wiki/Q3575635> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q3575635> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/zombie> dcterms:source <https://www.wikidata.org/wiki/Q9406> ;
-    owl:sameAs <http://dbpedia.org/resource/Zombie>,
-        <http://www.wikidata.org/entity/Q9406> .
-
-<https://nathantrance.github.io/SemanticWeb/id/cocktail/zorro> dcterms:source <https://www.wikidata.org/wiki/Q4027516> ;
-    owl:sameAs <http://dbpedia.org/resource/Zorro_%28musical%29>,
-        <http://www.wikidata.org/entity/Q4027516> .
 
 <https://nathantrance.github.io/SemanticWeb/id/distillery/14-parkowa-street-in-swierklaniec> dcterms:source <https://www.wikidata.org/wiki/Q106356232> ;
     owl:sameAs <http://www.wikidata.org/entity/Q106356232> .
@@ -3664,10 +3186,6 @@
     owl:sameAs <http://dbpedia.org/resource/Angostura_bitters>,
         <http://www.wikidata.org/entity/Q542594> .
 
-<https://nathantrance.github.io/SemanticWeb/id/ingredient/anis> dcterms:source <https://www.wikidata.org/wiki/Q2850105> ;
-    owl:sameAs <http://dbpedia.org/resource/Anis_Kachohi>,
-        <http://www.wikidata.org/entity/Q2850105> .
-
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/anisette> dcterms:source <https://www.wikidata.org/wiki/Q548940> ;
     owl:sameAs <http://dbpedia.org/resource/Anisette>,
         <http://www.wikidata.org/entity/Q548940> .
@@ -3761,9 +3279,6 @@
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/blue-curacao> dcterms:source <https://www.wikidata.org/wiki/Q9174569> ;
     owl:sameAs <http://dbpedia.org/resource/Blue_Cura%C3%A7ao>,
         <http://www.wikidata.org/entity/Q9174569> .
-
-<https://nathantrance.github.io/SemanticWeb/id/ingredient/bourbon> dcterms:source <https://www.wikidata.org/wiki/Q140675294> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q140675294> .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/brandy> dcterms:source <https://www.wikidata.org/wiki/Q146470> ;
     owl:sameAs <http://dbpedia.org/resource/Brandy>,
@@ -4192,9 +3707,9 @@
     owl:sameAs <http://dbpedia.org/resource/Milk>,
         <http://www.wikidata.org/entity/Q8495> .
 
-<https://nathantrance.github.io/SemanticWeb/id/ingredient/mint> dcterms:source <https://www.wikidata.org/wiki/Q464780> ;
-    owl:sameAs <http://dbpedia.org/resource/Mint_%28facility%29>,
-        <http://www.wikidata.org/entity/Q464780> .
+<https://nathantrance.github.io/SemanticWeb/id/ingredient/mint> dcterms:source <https://www.wikidata.org/wiki/Q2911311> ;
+    owl:sameAs <http://dbpedia.org/resource/Mint_%28band%29>,
+        <http://www.wikidata.org/entity/Q2911311> .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/mint-syrup> dcterms:source <https://www.wikidata.org/wiki/Q16676963> ;
     owl:sameAs <http://www.wikidata.org/entity/Q16676963> .
@@ -4341,12 +3856,8 @@
     owl:sameAs <http://dbpedia.org/resource/Root_beer>,
         <http://www.wikidata.org/entity/Q36275> .
 
-<https://nathantrance.github.io/SemanticWeb/id/ingredient/rose> dcterms:source <https://www.wikidata.org/wiki/Q431350> ;
-    owl:sameAs <http://dbpedia.org/resource/Rose_%28French_singer%29>,
-        <http://www.wikidata.org/entity/Q431350> .
-
-<https://nathantrance.github.io/SemanticWeb/id/ingredient/rosemary> dcterms:source <https://www.wikidata.org/wiki/Q10364616> ;
-    owl:sameAs <http://www.wikidata.org/entity/Q10364616> .
+<https://nathantrance.github.io/SemanticWeb/id/ingredient/rose> dcterms:source <https://www.wikidata.org/wiki/Q102231> ;
+    owl:sameAs <http://www.wikidata.org/entity/Q102231> .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/rosemary-syrup> dcterms:source <https://www.wikidata.org/wiki/Q134967566> ;
     owl:sameAs <http://www.wikidata.org/entity/Q134967566> .
