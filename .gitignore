@@ -15,6 +15,9 @@ data/raw/*.xml
 fuseki/run/
 *.tdb
 
+# Generated alternative serializations (etl/export_formats.py)
+exports/
+
 # Node / web
 node_modules/
 web/dist/

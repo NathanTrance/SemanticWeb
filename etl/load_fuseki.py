@@ -1,4 +1,4 @@
-"""Load the three Turtle graphs into a running Jena Fuseki dataset.
+"""Load the three RDF/XML graphs into a running Jena Fuseki dataset.
 
 Uses the SPARQL 1.1 Graph Store Protocol (one PUT per named graph), so the
 ontology, instance data and links land in separate graphs that can also be
@@ -20,9 +20,9 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://nathantrance.github.io/SemanticWeb/graph"
 GRAPHS = {
-    f"{BASE}/onto": ROOT / "ontology" / "drinkonto.ttl",
-    f"{BASE}/data": ROOT / "data" / "rdf" / "data.ttl",
-    f"{BASE}/links": ROOT / "data" / "links" / "links.ttl",
+    f"{BASE}/onto": ROOT / "ontology" / "drinkonto.owl",
+    f"{BASE}/data": ROOT / "data" / "rdf" / "data.rdf",
+    f"{BASE}/links": ROOT / "data" / "links" / "links.rdf",
 }
 
 
@@ -39,7 +39,7 @@ def main(argv: list[str]) -> int:
             f"{args.endpoint}/data",
             params={"graph": graph},
             data=path.read_bytes(),
-            headers={"Content-Type": "text/turtle"},
+            headers={"Content-Type": "application/rdf+xml"},
             auth=(args.user, args.password),
             timeout=180,
         )

@@ -1,6 +1,6 @@
-"""Transform the cached raw sources into one Turtle instance graph.
+"""Transform the cached raw sources into one RDF/XML instance graph.
 
-Step 3 of the pipeline: raw JSON (data/raw) -> RDF (data/rdf/data.ttl),
+Step 3 of the pipeline: raw JSON (data/raw) -> RDF (data/rdf/data.rdf),
 using the terms defined in ontology/drinkonto.ttl and the IRI scheme
     https://nathantrance.github.io/SemanticWeb/id/<type>/<slug>
 
@@ -26,7 +26,7 @@ from rdflib.namespace import DCTERMS, FOAF, OWL, RDF, RDFS, SKOS, XSD
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
-OUT = ROOT / "data" / "rdf" / "data.ttl"
+OUT = ROOT / "data" / "rdf" / "data.rdf"
 
 DRINK = Namespace("https://nathantrance.github.io/SemanticWeb/onto#")
 ID = Namespace("https://nathantrance.github.io/SemanticWeb/id/")
@@ -349,7 +349,7 @@ def main() -> int:
     getattr(sys.stdout, "reconfigure")(encoding="utf-8")
     graph = build()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    graph.serialize(destination=OUT, format="turtle")
+    graph.serialize(destination=OUT, format="xml")
     generated = datetime.now(timezone.utc).isoformat(timespec="seconds")
     print(f"wrote {OUT.relative_to(ROOT)}  ({len(graph)} triples, {generated})")
     return 0

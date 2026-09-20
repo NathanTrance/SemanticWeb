@@ -3,7 +3,7 @@
 Quality gate #2 from AGENT.md. Merges the ontology, data and links graphs
 (the three named graphs) into one in-memory store, executes every query in
 the demo file, prints a preview and writes the result to
-report/query-results/<name>.csv (SELECT/ASK) or .ttl (CONSTRUCT/DESCRIBE),
+report/query-results/<name>.csv (SELECT/ASK) or .rdf (CONSTRUCT/DESCRIBE),
 so the report and slides can cite verified outputs.
 """
 
@@ -22,9 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 QUERIES = ROOT / "queries" / "demo.rq"
 RESULTS = ROOT / "report" / "query-results"
 GRAPHS = [
-    ROOT / "ontology" / "drinkonto.ttl",
-    ROOT / "data" / "rdf" / "data.ttl",
-    ROOT / "data" / "links" / "links.ttl",
+    ROOT / "ontology" / "drinkonto.owl",
+    ROOT / "data" / "rdf" / "data.rdf",
+    ROOT / "data" / "links" / "links.rdf",
 ]
 NAME_RE = re.compile(r"^#\s*name:\s*(.+?)\s*$", re.MULTILINE)
 
@@ -32,7 +32,7 @@ NAME_RE = re.compile(r"^#\s*name:\s*(.+?)\s*$", re.MULTILINE)
 def load_graph() -> Graph:
     graph = Graph()
     for path in GRAPHS:
-        graph.parse(path, format="turtle")
+        graph.parse(path)
     return graph
 
 
@@ -67,8 +67,8 @@ def main() -> int:
         elapsed = (time.perf_counter() - started) * 1000
 
         if result.type in ("CONSTRUCT", "DESCRIBE"):
-            output = RESULTS / f"{name}.ttl"
-            result.serialize(destination=str(output), format="turtle")
+            output = RESULTS / f"{name}.rdf"
+            result.serialize(destination=str(output), format="xml")
             print(f"OK   {name}  ({len(result)} triples, {elapsed:.0f} ms) -> {output.name}")
         elif result.type == "ASK":
             output = RESULTS / f"{name}.csv"

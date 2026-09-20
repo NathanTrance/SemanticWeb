@@ -2,6 +2,8 @@
 
 Status: DRAFT 0.1 (approve before building) · Course: Semantic Web / Linked Open Data (Masters, HUST) · Type: LOD application (Project 1)
 
+> **Implementation note (format).** The shipped ontology is RDF/XML (`ontology/drinkonto.owl`) and the instance/link data are `.rdf`; `.ttl` mentions below are the original plan. Turtle/JSON-LD/N-Triples equivalents can be generated with `etl/export_formats.py`. See `docs/BUILD-WALKTHROUGH.md` for the as-built guide.
+
 ## 0. TL;DR
 
 Build a 5-star **Linked Open Data** knowledge graph about the world of drinks:

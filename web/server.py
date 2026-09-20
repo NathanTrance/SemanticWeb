@@ -23,9 +23,9 @@ from rdflib import Graph
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 GRAPHS = [
-    ROOT / "ontology" / "drinkonto.ttl",
-    ROOT / "data" / "rdf" / "data.ttl",
-    ROOT / "data" / "links" / "links.ttl",
+    ROOT / "ontology" / "drinkonto.owl",
+    ROOT / "data" / "rdf" / "data.rdf",
+    ROOT / "data" / "links" / "links.rdf",
 ]
 
 STATIC_TYPES = {
@@ -40,7 +40,7 @@ STATIC_TYPES = {
 def load_graph() -> Graph:
     graph = Graph()
     for path in GRAPHS:
-        graph.parse(path, format="turtle")
+        graph.parse(path)
     return graph
 
 

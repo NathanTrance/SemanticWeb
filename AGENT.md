@@ -5,35 +5,35 @@ This is a Linked Open Data (LOD) capstone for a Masters "Semantic Web" course (H
 Read `PLANNING.md` first — it is the source of truth for scope, ontology, pipeline, and grading strategy.
 
 ## Current status
-- W1–W3 done. Ontology (`ontology/drinkonto.ttl`), instance data (`data/rdf/data.ttl`),
-  links (`data/links/links.ttl`) and the SPARQL endpoint + UI (`web/`) are in place.
+- W1–W3 done. Ontology (`ontology/drinkonto.owl`), instance data (`data/rdf/data.rdf`),
+  links (`data/links/links.rdf`) and the SPARQL endpoint + UI (`web/`) are in place.
 - 441 cocktails, 299 ingredients, 865 distilleries, 12 brands, ~1,220 `owl:sameAs`.
 - Stack in use: Python 3 + RDFlib, `web/server.py` (rdflib endpoint), Docker + Jena
   Fuseki as the optional standard endpoint. Protégé/OpenRefine optional.
 - Todo: Docker/Fuseki verification, report/slides/video, dereferenceability artifacts.
 
 ## Conventions
-- **Directories:** `ontology/` (Turtle ontology + Protégé), `data/raw/` (fetched dumps, git-ignored), `data/rdf/` (generated RDF), `data/links/` (sameAs), `etl/` (Python), `queries/` (`.rq` demo queries), `web/` (query UI), `report/` (report/slides/video assets), `docs/` (provenance manifest, licence notes).
-- **Vocabularies:** always reuse schema.org / dcterms / foaf / geo / owl; project-specific terms use the `drink:` namespace defined in `ontology/drinkonto.ttl`. Do not mint IRIs that duplicate existing vocabularies.
-- **RDF output format:** Turtle (`.ttl`). Keep one file per named graph: `onto`, `data`, `links`.
+- **Directories:** `ontology/` (RDF/XML ontology + Protégé), `data/raw/` (fetched dumps, git-ignored), `data/rdf/` (generated RDF), `data/links/` (sameAs), `etl/` (Python), `queries/` (`.rq` demo queries), `web/` (query UI), `report/` (report/slides/video assets), `docs/` (provenance manifest, licence notes).
+- **Vocabularies:** always reuse schema.org / dcterms / foaf / geo / owl; project-specific terms use the `drink:` namespace defined in `ontology/drinkonto.owl`. Do not mint IRIs that duplicate existing vocabularies.
+- **RDF output format:** RDF/XML (`.owl` for the ontology, `.rdf` for data/links). Keep one file per named graph: `onto`, `data`, `links`. Other serializations (Turtle/JSON-LD/N-Triples) are generated on demand into `exports/`.
 - **IRIs:** use the project base IRI from `PLANNING.md`; never put spaces/local IDs in IRIs; encode with percent-encoding where needed.
 - **Code style:** Python 3.11+, minimal deps, type annotations on public functions, no comments unless they explain *why*. Keep scripts idempotent + rerunnable (cache fetches to `data/raw/`).
 - **No scraping of review sites** (ratebeer/untappd etc.) — ToS risk. Only the documented sources in PLANNING §4.
 
 ## Quality gates (run before each commit/PR-size change)
-1. Validate generated RDF: `riot --validate data/rdf data/links` (Apache Jena), or rdflib parse check if riot unavailable.
-2. Load and run the demo queries from `queries/demo.rq` against Fuseki; capture outputs if demo-critical.
+1. Validate generated RDF: `python etl/validate_rdf.py` (rdflib parse check), or `riot --validate` if Jena is installed.
+2. Run the demo queries from `queries/demo.rq`: `python etl/run_queries.py`; capture outputs if demo-critical.
 3. Check links: a random sample of 50 `owl:sameAs` should resolve (≥90% precision target).
 4. `git status` clean of secrets, dumps, venv, `__pycache__/`, Fuseki `run/`.
 
 ## Common commands
 ```bash
 python -m venv .venv && .venv/Scripts/activate     # Windows venv
-pip install rdflib requests pandas
-# start Fuseki (after downloading the standalone distribution)
-java -jar fuseki-server.jar --update --mem /ds
-# local python server for the web UI
-python -m http.server -d web
+pip install -r requirements.txt
+# zero-install endpoint + UI
+.venv/Scripts/python web/server.py
+# or the standard endpoint (Apache Jena Fuseki via Docker)
+docker compose up -d && .venv/Scripts/python etl/load_fuseki.py
 ```
 
 ## Do / don't

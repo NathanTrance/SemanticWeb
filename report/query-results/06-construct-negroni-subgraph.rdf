@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:ns1="https://nathantrance.github.io/SemanticWeb/onto#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:schema="https://schema.org/"
+>
+  <rdf:Description rdf:about="https://nathantrance.github.io/SemanticWeb/id/cocktail/negroni">
+    <rdf:type rdf:resource="https://nathantrance.github.io/SemanticWeb/onto#Cocktail"/>
+    <rdfs:label>Negroni</rdfs:label>
+    <schema:name>Negroni</schema:name>
+    <dcterms:identifier>11003</dcterms:identifier>
+    <dcterms:source rdf:resource="https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11003"/>
+    <dcterms:source rdf:resource="https://www.wikidata.org/wiki/Q1401202"/>
+    <ns1:preparation>Stir into glass over ice, garnish and serve.</ns1:preparation>
+    <schema:description>Stir into glass over ice, garnish and serve.</schema:description>
+    <schema:image rdf:resource="https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"/>
+    <foaf:depiction rdf:resource="https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg"/>
+    <ns1:servedIn rdf:resource="https://nathantrance.github.io/SemanticWeb/id/glass/old-fashioned-glass"/>
+    <ns1:isIBA rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ns1:isIBA>
+    <ns1:hasTag>Unforgettables</ns1:hasTag>
+    <ns1:hasTag>IBA</ns1:hasTag>
+    <ns1:hasTag>Classic</ns1:hasTag>
+    <ns1:usesIngredient rdf:resource="https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/1"/>
+    <ns1:usesIngredient rdf:resource="https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/2"/>
+    <ns1:usesIngredient rdf:resource="https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/3"/>
+    <ns1:baseSpirit rdf:resource="https://nathantrance.github.io/SemanticWeb/id/spirit/gin"/>
+    <owl:sameAs rdf:resource="http://www.wikidata.org/entity/Q1401202"/>
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Negroni"/>
+  </rdf:Description>
+</rdf:RDF>

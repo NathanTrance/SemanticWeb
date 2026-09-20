@@ -9,7 +9,7 @@ free. For every accepted QID we pull the enwiki sitelink to mint the
 matching DBpedia IRI.
 
 Outputs:
-  data/links/links.ttl  -> owl:sameAs + provenance, in the links graph
+  data/links/links.rdf  -> owl:sameAs + provenance, in the links graph
   data/links/sample.csv -> seeded random sample for the report's precision
                            check (fill the `verified` column by hand)
 """
@@ -34,8 +34,8 @@ from rdflib.namespace import DCTERMS, OWL, RDF, RDFS
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw"
-DATA_TTL = ROOT / "data" / "rdf" / "data.ttl"
-LINKS_TTL = ROOT / "data" / "links" / "links.ttl"
+DATA_RDF = ROOT / "data" / "rdf" / "data.rdf"
+LINKS_RDF = ROOT / "data" / "links" / "links.rdf"
 SAMPLE_CSV = ROOT / "data" / "links" / "sample.csv"
 CACHE = RAW / "reconcile"
 
@@ -371,22 +371,22 @@ def main(argv: list[str]) -> int:
     args = parser.parse_args(argv[1:])
 
     graph = Graph()
-    graph.parse(DATA_TTL, format="turtle")
+    graph.parse(DATA_RDF)
     http = session()
     links = collect_links(http, graph)
     if args.limit:
         links = links[: args.limit]
 
     out = build_links_graph(graph, links)
-    LINKS_TTL.parent.mkdir(parents=True, exist_ok=True)
-    out.serialize(destination=LINKS_TTL, format="turtle")
+    LINKS_RDF.parent.mkdir(parents=True, exist_ok=True)
+    out.serialize(destination=LINKS_RDF, format="xml")
     write_sample(links)
 
     by_kind: dict[str, int] = {}
     dbpedia_hits = sum(1 for link in links if link.get("dbpedia"))
     for link in links:
         by_kind[link["kind"]] = by_kind.get(link["kind"], 0) + 1
-    print(f"wrote {LINKS_TTL.relative_to(ROOT)}  ({len(out)} triples)")
+    print(f"wrote {LINKS_RDF.relative_to(ROOT)}  ({len(out)} triples)")
     print(f"links by kind: {by_kind}")
     print(f"DBpedia coverage: {dbpedia_hits}/{len(links)}")
     return 0
