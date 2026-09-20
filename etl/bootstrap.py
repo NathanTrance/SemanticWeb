@@ -34,11 +34,29 @@ COCKTAILDB_SOURCE = f"{COCKTAILDB_API}/search.php?f=<a-z0-9>"
 COCKTAILDB_LICENCE = "TheCocktailDB - free for non-commercial use (test key 1)"
 WIKIDATA_SOURCE = "Wikidata Query Service - items with P31 wd:Q1251750 (distillery)"
 WIKIDATA_LICENCE = "Wikidata - CC0 1.0"
+WIKIDATA_BRAND_SOURCE = (
+    "Wikidata Query Service - spirits (P31/P279* wd:Q56139) with "
+    "manufacturer (P176) a distillery (P31 wd:Q1251750)"
+)
 WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
 USER_AGENT = (
     "linked-drinks-coursework/0.1 "
     "(https://github.com/NathanTrance/SemanticWeb; educational)"
 )
+
+WIKIDATA_BRAND_QUERY = """
+SELECT ?b ?bLabel ?d ?dLabel ?country ?countryLabel ?inception ?website ?image ?article WHERE {
+  ?b wdt:P31/wdt:P279* wd:Q56139 .
+  ?b wdt:P176 ?d .
+  ?d wdt:P31 wd:Q1251750 .
+  OPTIONAL { ?b wdt:P495 ?country . }
+  OPTIONAL { ?b wdt:P571 ?inception . }
+  OPTIONAL { ?b wdt:P856 ?website . }
+  OPTIONAL { ?b wdt:P18 ?image . }
+  OPTIONAL { ?article schema:about ?b ; schema:isPartOf <https://en.wikipedia.org/> . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+"""
 
 WIKIDATA_DISTILLERY_QUERY = """
 SELECT ?d ?dLabel ?coord ?country ?countryLabel ?inception ?website ?image ?article WHERE {
@@ -110,21 +128,49 @@ def fetch_cocktaildb(session: requests.Session, force: bool = False) -> dict:
     )
 
 
-def fetch_wikidata_distilleries(session: requests.Session, force: bool = False) -> dict:
-    """Run the distillery SPARQL query and store the bindings."""
-    out = RAW / "wikidata" / "distilleries.json"
+def _fetch_sparql(
+    session: requests.Session,
+    query: str,
+    out: Path,
+    source: str,
+    licence: str,
+    force: bool = False,
+) -> dict:
+    """Run a Wikidata SPARQL query, caching the JSON bindings on disk."""
     if out.exists() and not force:
         print(f"cache hit  {out.relative_to(ROOT)}")
-        return _entry_from(out, WIKIDATA_SOURCE, WIKIDATA_LICENCE)
+        return _entry_from(out, source, licence)
 
     response = session.get(
-        WIKIDATA_SPARQL,
-        params={"query": WIKIDATA_DISTILLERY_QUERY, "format": "json"},
-        timeout=180,
+        WIKIDATA_SPARQL, params={"query": query, "format": "json"}, timeout=180
     )
     response.raise_for_status()
     bindings = response.json()["results"]["bindings"]
-    return _write(out, bindings, len(bindings), WIKIDATA_SOURCE, WIKIDATA_LICENCE)
+    return _write(out, bindings, len(bindings), source, licence)
+
+
+def fetch_wikidata_distilleries(session: requests.Session, force: bool = False) -> dict:
+    """Run the distillery SPARQL query and store the bindings."""
+    return _fetch_sparql(
+        session,
+        WIKIDATA_DISTILLERY_QUERY,
+        RAW / "wikidata" / "distilleries.json",
+        WIKIDATA_SOURCE,
+        WIKIDATA_LICENCE,
+        force,
+    )
+
+
+def fetch_wikidata_brands(session: requests.Session, force: bool = False) -> dict:
+    """Run the spirit-brand SPARQL query and store the bindings."""
+    return _fetch_sparql(
+        session,
+        WIKIDATA_BRAND_QUERY,
+        RAW / "wikidata" / "brands.json",
+        WIKIDATA_BRAND_SOURCE,
+        WIKIDATA_LICENCE,
+        force,
+    )
 
 
 def _entry_from(path: Path, source: str, licence: str) -> dict:
@@ -161,6 +207,7 @@ def main(argv: list[str]) -> int:
     entries = [
         fetch_cocktaildb(session, args.force),
         fetch_wikidata_distilleries(session, args.force),
+        fetch_wikidata_brands(session, args.force),
     ]
     write_manifest(entries)
     return 0

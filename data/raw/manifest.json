@@ -14,5 +14,13 @@
     "fetched_at": "2026-09-20T10:05:57+00:00",
     "records": 998,
     "sha256": "53fb9201943448a6d760b10ea8519d16416255dd7acc052fe87793cf1812805e"
+  },
+  {
+    "file": "data/raw/wikidata/brands.json",
+    "source": "Wikidata Query Service - spirits (P31/P279* wd:Q56139) with manufacturer (P176) a distillery (P31 wd:Q1251750)",
+    "licence": "Wikidata - CC0 1.0",
+    "fetched_at": "2026-09-20T10:10:02+00:00",
+    "records": 12,
+    "sha256": "e483ee7ee53c7acb44a5bceae0bb83fe1a7861f9dfbffb3963b9db5291846bff"
   }
 ]
