@@ -148,6 +148,7 @@ def load(name: str) -> list[dict]:
 
 
 def _add_cocktails(graph: Graph, drinks: list[dict], used: set[tuple[str, str]]) -> None:
+    seen_ingredients: set[str] = set()
     for drink in drinks:
         name = drink["strDrink"].strip()
         cocktail_slug = unique_slug(used, "cocktail", name)
@@ -188,10 +189,13 @@ def _add_cocktails(graph: Graph, drinks: list[dict], used: set[tuple[str, str]])
             ingredient_names.append(ingredient)
             measures.append(drink.get(f"strMeasure{index}"))
 
-            ingredient_node = ID[f"ingredient/{slugify(ingredient)}"]
-            graph.add((ingredient_node, RDF.type, DRINK.Ingredient))
-            graph.add((ingredient_node, RDFS.label, Literal(ingredient)))
-            graph.add((ingredient_node, SCHEMA.name, Literal(ingredient)))
+            ingredient_slug = slugify(ingredient)
+            ingredient_node = ID[f"ingredient/{ingredient_slug}"]
+            if ingredient_slug not in seen_ingredients:
+                seen_ingredients.add(ingredient_slug)
+                graph.add((ingredient_node, RDF.type, DRINK.Ingredient))
+                graph.add((ingredient_node, RDFS.label, Literal(ingredient)))
+                graph.add((ingredient_node, SCHEMA.name, Literal(ingredient)))
 
             amount_node = ID[f"ingredient-amount/{cocktail_slug}/{index}"]
             graph.add((amount_node, RDF.type, DRINK.IngredientAmount))

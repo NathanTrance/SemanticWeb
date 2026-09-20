@@ -25068,10 +25068,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     rdfs:label "Mason jar" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/apple-brandy> a drink:Ingredient ;
-    rdfs:label "Apple Brandy",
-        "Apple brandy" ;
-    schema:name "Apple Brandy",
-        "Apple brandy" .
+    rdfs:label "Apple brandy" ;
+    schema:name "Apple brandy" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/applejack> a drink:Ingredient ;
     rdfs:label "Applejack" ;
@@ -25106,10 +25104,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Corona" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/creme-de-banane> a drink:Ingredient ;
-    rdfs:label "Creme De Banane",
-        "Creme de Banane" ;
-    schema:name "Creme De Banane",
-        "Creme de Banane" .
+    rdfs:label "Creme de Banane" ;
+    schema:name "Creme de Banane" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/drambuie> a drink:Ingredient ;
     rdfs:label "Drambuie" ;
@@ -25196,10 +25192,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Rosemary Syrup" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/rye-whiskey> a drink:Ingredient ;
-    rdfs:label "Rye Whiskey",
-        "Rye whiskey" ;
-    schema:name "Rye Whiskey",
-        "Rye whiskey" .
+    rdfs:label "Rye Whiskey" ;
+    schema:name "Rye Whiskey" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/schweppes-russchian> a drink:Ingredient ;
     rdfs:label "Schweppes Russchian" ;
@@ -25314,10 +25308,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Cocoa powder" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/coconut-liqueur> a drink:Ingredient ;
-    rdfs:label "Coconut Liqueur",
-        "Coconut liqueur" ;
-    schema:name "Coconut Liqueur",
-        "Coconut liqueur" .
+    rdfs:label "Coconut liqueur" ;
+    schema:name "Coconut liqueur" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/coffee-liqueur> a drink:Ingredient ;
     rdfs:label "Coffee liqueur" ;
@@ -25332,10 +25324,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Condensed milk" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/egg-yolk> a drink:Ingredient ;
-    rdfs:label "Egg Yolk",
-        "Egg yolk" ;
-    schema:name "Egg Yolk",
-        "Egg yolk" .
+    rdfs:label "Egg yolk" ;
+    schema:name "Egg yolk" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/espresso> a drink:Ingredient ;
     rdfs:label "Espresso" ;
@@ -25378,10 +25368,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Orange spiral" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/orgeat-syrup> a drink:Ingredient ;
-    rdfs:label "Orgeat Syrup",
-        "Orgeat syrup" ;
-    schema:name "Orgeat Syrup",
-        "Orgeat syrup" .
+    rdfs:label "Orgeat syrup" ;
+    schema:name "Orgeat syrup" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/pepper> a drink:Ingredient ;
     rdfs:label "Pepper" ;
@@ -25404,10 +25392,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Spiced rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/tomato-juice> a drink:Ingredient ;
-    rdfs:label "Tomato Juice",
-        "Tomato juice" ;
-    schema:name "Tomato Juice",
-        "Tomato juice" .
+    rdfs:label "Tomato Juice" ;
+    schema:name "Tomato Juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/vanilla-ice-cream> a drink:Ingredient ;
     rdfs:label "Vanilla ice-cream" ;
@@ -25521,16 +25507,12 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     rdfs:label "Pitcher" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/7-up> a drink:Ingredient ;
-    rdfs:label "7-Up",
-        "7-up" ;
-    schema:name "7-Up",
-        "7-up" .
+    rdfs:label "7-Up" ;
+    schema:name "7-Up" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/apricot-brandy> a drink:Ingredient ;
-    rdfs:label "Apricot Brandy",
-        "Apricot brandy" ;
-    schema:name "Apricot Brandy",
-        "Apricot brandy" .
+    rdfs:label "Apricot brandy" ;
+    schema:name "Apricot brandy" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/benedictine> a drink:Ingredient ;
     rdfs:label "Benedictine" ;
@@ -25553,16 +25535,12 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Honey" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/irish-whiskey> a drink:Ingredient ;
-    rdfs:label "Irish Whiskey",
-        "Irish whiskey" ;
-    schema:name "Irish Whiskey",
-        "Irish whiskey" .
+    rdfs:label "Irish whiskey" ;
+    schema:name "Irish whiskey" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/jagermeister> a drink:Ingredient ;
-    rdfs:label "Jagermeister",
-        "Jägermeister" ;
-    schema:name "Jagermeister",
-        "Jägermeister" .
+    rdfs:label "Jägermeister" ;
+    schema:name "Jägermeister" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/lemon-lime-soda> a drink:Ingredient ;
     rdfs:label "Lemon-lime soda" ;
@@ -25593,10 +25571,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Whipped cream" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/white-rum> a drink:Ingredient ;
-    rdfs:label "White Rum",
-        "White rum" ;
-    schema:name "White Rum",
-        "White rum" .
+    rdfs:label "White rum" ;
+    schema:name "White rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/brazil> a schema:Place ;
     rdfs:label "Brazil" ;
@@ -25721,16 +25697,12 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Sambuca" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/sweet-and-sour> a drink:Ingredient ;
-    rdfs:label "Sweet and Sour",
-        "Sweet and sour" ;
-    schema:name "Sweet and Sour",
-        "Sweet and sour" .
+    rdfs:label "Sweet and sour" ;
+    schema:name "Sweet and sour" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/tonic-water> a drink:Ingredient ;
-    rdfs:label "Tonic Water",
-        "Tonic water" ;
-    schema:name "Tonic Water",
-        "Tonic water" .
+    rdfs:label "Tonic water" ;
+    schema:name "Tonic water" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/yoghurt> a drink:Ingredient ;
     rdfs:label "Yoghurt" ;
@@ -25741,10 +25713,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     dcterms:identifier "Q33" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/orange-peel> a drink:Ingredient ;
-    rdfs:label "Orange Peel",
-        "Orange peel" ;
-    schema:name "Orange Peel",
-        "Orange peel" .
+    rdfs:label "Orange peel" ;
+    schema:name "Orange peel" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/red-wine> a drink:Ingredient ;
     rdfs:label "Red wine" ;
@@ -25755,20 +25725,16 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     dcterms:identifier "Q38" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/grapefruit-juice> a drink:Ingredient ;
-    rdfs:label "Grapefruit Juice",
-        "Grapefruit juice" ;
-    schema:name "Grapefruit Juice",
-        "Grapefruit juice" .
+    rdfs:label "Grapefruit juice" ;
+    schema:name "Grapefruit juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/nutmeg> a drink:Ingredient ;
     rdfs:label "Nutmeg" ;
     schema:name "Nutmeg" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/orange-bitters> a drink:Ingredient ;
-    rdfs:label "Orange Bitters",
-        "Orange bitters" ;
-    schema:name "Orange Bitters",
-        "Orange bitters" .
+    rdfs:label "Orange bitters" ;
+    schema:name "Orange bitters" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/salt> a drink:Ingredient ;
     rdfs:label "Salt" ;
@@ -25803,12 +25769,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Light cream" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/maraschino-liqueur> a drink:Ingredient ;
-    rdfs:label "Maraschino Liqueur",
-        "Maraschino liqueur",
-        "maraschino liqueur" ;
-    schema:name "Maraschino Liqueur",
-        "Maraschino liqueur",
-        "maraschino liqueur" .
+    rdfs:label "maraschino liqueur" ;
+    schema:name "maraschino liqueur" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/orange> a drink:Ingredient ;
     rdfs:label "Orange" ;
@@ -25819,10 +25781,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Brandy" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/cranberry-juice> a drink:Ingredient ;
-    rdfs:label "Cranberry Juice",
-        "Cranberry juice" ;
-    schema:name "Cranberry Juice",
-        "Cranberry juice" .
+    rdfs:label "Cranberry Juice" ;
+    schema:name "Cranberry Juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/mint> a drink:Ingredient ;
     rdfs:label "Mint" ;
@@ -25836,20 +25796,16 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     rdfs:label "Whiskey sour glass" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/angostura-bitters> a drink:Ingredient ;
-    rdfs:label "Angostura Bitters",
-        "Angostura bitters" ;
-    schema:name "Angostura Bitters",
-        "Angostura bitters" .
+    rdfs:label "Angostura Bitters" ;
+    schema:name "Angostura Bitters" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/bitters> a drink:Ingredient ;
     rdfs:label "Bitters" ;
     schema:name "Bitters" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/maraschino-cherry> a drink:Ingredient ;
-    rdfs:label "Maraschino Cherry",
-        "Maraschino cherry" ;
-    schema:name "Maraschino Cherry",
-        "Maraschino cherry" .
+    rdfs:label "Maraschino cherry" ;
+    schema:name "Maraschino cherry" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/canada> a schema:Place ;
     rdfs:label "Canada" ;
@@ -25865,16 +25821,12 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "151 proof rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/dark-rum> a drink:Ingredient ;
-    rdfs:label "Dark Rum",
-        "Dark rum" ;
-    schema:name "Dark Rum",
-        "Dark rum" .
+    rdfs:label "Dark rum" ;
+    schema:name "Dark rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/egg-white> a drink:Ingredient ;
-    rdfs:label "Egg White",
-        "Egg white" ;
-    schema:name "Egg White",
-        "Egg white" .
+    rdfs:label "Egg white" ;
+    schema:name "Egg white" .
 
 <https://nathantrance.github.io/SemanticWeb/id/glass/coffee-mug> a drink:GlassType ;
     rdfs:label "Coffee Mug",
@@ -25885,10 +25837,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Baileys irish cream" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/sugar-syrup> a drink:Ingredient ;
-    rdfs:label "Sugar Syrup",
-        "Sugar syrup" ;
-    schema:name "Sugar Syrup",
-        "Sugar syrup" .
+    rdfs:label "Sugar syrup" ;
+    schema:name "Sugar syrup" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/amaretto> a drink:Ingredient ;
     rdfs:label "Amaretto" ;
@@ -25903,10 +25853,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/soda-water> a drink:Ingredient ;
-    rdfs:label "Soda Water",
-        "Soda water" ;
-    schema:name "Soda Water",
-        "Soda water" .
+    rdfs:label "Soda Water" ;
+    schema:name "Soda Water" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/sweet-vermouth> a drink:Ingredient ;
     rdfs:label "Sweet Vermouth" ;
@@ -25934,12 +25882,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Dry Vermouth" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/pineapple-juice> a drink:Ingredient ;
-    rdfs:label "Pineapple Juice",
-        "Pineapple juice",
-        "pineapple juice" ;
-    schema:name "Pineapple Juice",
-        "Pineapple juice",
-        "pineapple juice" .
+    rdfs:label "Pineapple juice" ;
+    schema:name "Pineapple juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/ireland> a schema:Place ;
     rdfs:label "Ireland" ;
@@ -25950,20 +25894,16 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Coffee" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/lemon-peel> a drink:Ingredient ;
-    rdfs:label "Lemon Peel",
-        "Lemon peel" ;
-    schema:name "Lemon Peel",
-        "Lemon peel" .
+    rdfs:label "Lemon peel" ;
+    schema:name "Lemon peel" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/milk> a drink:Ingredient ;
     rdfs:label "Milk" ;
     schema:name "Milk" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/triple-sec> a drink:Ingredient ;
-    rdfs:label "Triple Sec",
-        "Triple sec" ;
-    schema:name "Triple Sec",
-        "Triple sec" .
+    rdfs:label "Triple sec" ;
+    schema:name "Triple sec" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/powdered-sugar> a drink:Ingredient ;
     rdfs:label "Powdered sugar" ;
@@ -25990,10 +25930,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Light rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/lime-juice> a drink:Ingredient ;
-    rdfs:label "Lime Juice",
-        "Lime juice" ;
-    schema:name "Lime Juice",
-        "Lime juice" .
+    rdfs:label "Lime juice" ;
+    schema:name "Lime juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/netherlands> a schema:Place ;
     rdfs:label "Netherlands" ;
@@ -26017,10 +25955,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Whisky" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/lemon> a drink:Ingredient ;
-    rdfs:label "Lemon",
-        "lemon" ;
-    schema:name "Lemon",
-        "lemon" .
+    rdfs:label "Lemon" ;
+    schema:name "Lemon" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/germany> a schema:Place ;
     rdfs:label "Germany" ;
@@ -26032,22 +25968,16 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Liqueur" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/orange-juice> a drink:Ingredient ;
-    rdfs:label "Orange Juice",
-        "Orange juice" ;
-    schema:name "Orange Juice",
-        "Orange juice" .
+    rdfs:label "Orange juice" ;
+    schema:name "Orange juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/place/france> a schema:Place ;
     rdfs:label "France" ;
     dcterms:identifier "Q142" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/lemon-juice> a drink:Ingredient ;
-    rdfs:label "Lemon Juice",
-        "Lemon juice",
-        "lemon juice" ;
-    schema:name "Lemon Juice",
-        "Lemon juice",
-        "lemon juice" .
+    rdfs:label "Lemon juice" ;
+    schema:name "Lemon juice" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/sugar> a drink:Ingredient ;
     rdfs:label "Sugar" ;
@@ -26081,10 +26011,8 @@ Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together.""" 
     schema:name "Rum" .
 
 <https://nathantrance.github.io/SemanticWeb/id/ingredient/gin> a drink:Ingredient ;
-    rdfs:label "Gin",
-        "gin" ;
-    schema:name "Gin",
-        "gin" .
+    rdfs:label "Gin" ;
+    schema:name "Gin" .
 
 <https://nathantrance.github.io/SemanticWeb/id/glass/highball-glass> a drink:GlassType ;
     rdfs:label "Highball Glass",
