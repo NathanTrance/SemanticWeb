@@ -24,3 +24,7 @@ Thumbs.db
 
 # Secrets
 .env
+
+# Personal / lecture material (not part of the deliverable)
+Semantic_Web.docx
+*.docx
