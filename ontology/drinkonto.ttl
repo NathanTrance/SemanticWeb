@@ -1,0 +1,261 @@
+@prefix drink:   <https://nathantrance.github.io/SemanticWeb/onto#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema:  <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix geo:     <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+#####################################################################
+# 1. Ontology header
+#####################################################################
+
+<https://nathantrance.github.io/SemanticWeb/onto#>
+    a owl:Ontology ;
+    dcterms:title "drinkonto - an ontology for cocktails, spirits and distilleries"@en ;
+    dcterms:description "A small OWL 2 ontology modelling cocktails, their ingredient usages, the spirits and brands involved, the distilleries that produce them and the places where those distilleries are located. Reuses schema.org, Dublin Core, FOAF, WGS84 geo and SKOS where possible."@en ;
+    dcterms:creator <https://github.com/NathanTrance> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2026-09-20"^^xsd:date ;
+    owl:versionInfo "0.1.0" ;
+    owl:versionIRI <https://nathantrance.github.io/SemanticWeb/ontology/drinkonto.ttl> ;
+    rdfs:seeAlso <https://5stardata.info/en/> .
+
+#####################################################################
+# 2. Classes
+#####################################################################
+
+drink:Beverage
+    a owl:Class ;
+    rdfs:subClassOf schema:Beverage ;
+    rdfs:label "Beverage"@en ;
+    rdfs:comment "Any drinkable preparation in the domain. Local umbrella class so that cocktails and spirits share a common superclass without asserting anything about non-alcoholic drinks."@en .
+
+drink:Cocktail
+    a owl:Class ;
+    rdfs:subClassOf drink:Beverage ;
+    rdfs:label "Cocktail"@en ;
+    rdfs:comment "A mixed drink defined by a recipe: a base spirit plus one or more ingredient usages, served in a glass."@en .
+
+drink:Spirit
+    a owl:Class ;
+    rdfs:subClassOf drink:Beverage ;
+    rdfs:label "Spirit"@en ;
+    rdfs:comment "A distilled alcoholic beverage type (gin, whisky, rum, ...). Instances are categories, not bottles."@en .
+
+drink:Gin        a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Gin"@en        ; rdfs:comment "Juniper-flavoured spirit."@en .
+drink:Whisky     a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Whisky"@en     ; rdfs:comment "Spirit distilled from fermented grain mash."@en .
+drink:Rum        a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Rum"@en       ; rdfs:comment "Spirit distilled from sugar cane products."@en .
+drink:Vodka      a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Vodka"@en     ; rdfs:comment "Rectified spirit, generally neutral in flavour."@en .
+drink:Tequila    a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Tequila"@en   ; rdfs:comment "Mexican spirit distilled from blue agave."@en .
+drink:Brandy     a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Brandy"@en    ; rdfs:comment "Spirit distilled from wine or fruit must."@en .
+drink:Liqueur    a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Liqueur"@en   ; rdfs:comment "Sweetened, flavoured spirit."@en .
+drink:Absinthe   a owl:Class ; rdfs:subClassOf drink:Spirit ; rdfs:label "Absinthe"@en  ; rdfs:comment "Anise-flavoured spirit derived from botanicals."@en .
+
+drink:Ingredient
+    a owl:Class ;
+    rdfs:subClassOf schema:Product ;
+    rdfs:label "Ingredient"@en ;
+    rdfs:comment "A component used in a recipe (juice, syrup, bitters, a specific spirit brand, ...)."@en .
+
+drink:IngredientAmount
+    a owl:Class ;
+    rdfs:label "Ingredient amount"@en ;
+    rdfs:comment "Reification-lite node representing the use of one ingredient in one cocktail, carrying its measure. It is the edge between a cocktail and an ingredient, made addressable so measures can be queried."@en .
+
+drink:Brand
+    a owl:Class ;
+    rdfs:subClassOf schema:Brand ;
+    rdfs:label "Brand"@en ;
+    rdfs:comment "A commercial product line, e.g. Bombay Sapphire, Glenfiddich. Distinct from the abstract spirit type it belongs to."@en .
+
+drink:Distillery
+    a owl:Class ;
+    rdfs:subClassOf schema:Organization ;
+    rdfs:label "Distillery"@en ;
+    rdfs:comment "A physical production site that makes one or more brands."@en .
+
+drink:GlassType
+    a owl:Class ;
+    rdfs:subClassOf schema:Product ;
+    rdfs:label "Glass type"@en ;
+    rdfs:comment "A vessel a cocktail is served in, e.g. coupe, highball, old fashioned."@en .
+
+drink:FlavorProfile
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Flavor profile"@en ;
+    rdfs:comment "A controlled-vocabulary descriptor of taste/style (dry, sweet, herbal, citrusy, ...). Modelled as a SKOS concept so it can be organised into broader/narrower relations."@en .
+
+#####################################################################
+# 3. Object properties
+#####################################################################
+
+drink:usesIngredient
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range drink:IngredientAmount ;
+    rdfs:label "uses ingredient"@en ;
+    rdfs:comment "Links a cocktail to an ingredient-amount node (the recipe edge with a measure)."@en .
+
+drink:ofIngredient
+    a owl:ObjectProperty ;
+    rdfs:domain drink:IngredientAmount ;
+    rdfs:range drink:Ingredient ;
+    rdfs:label "of ingredient"@en ;
+    rdfs:comment "Points from an ingredient-amount node to the ingredient it is about."@en .
+
+drink:hasIngredient
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range drink:Ingredient ;
+    rdfs:label "has ingredient"@en ;
+    rdfs:comment "Direct cocktail-to-ingredient relation. It is NOT asserted in the data: it is derived from usesIngredient/ofIngredient via the OWL 2 property chain below, which is what a reasoner (or a SPARQL property path) exposes."@en ;
+    owl:propertyChainAxiom ( drink:usesIngredient drink:ofIngredient ) .
+
+drink:baseSpirit
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range drink:Spirit ;
+    rdfs:label "base spirit"@en ;
+    rdfs:comment "The dominant spirit of a cocktail."@en .
+
+drink:servedIn
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range drink:GlassType ;
+    rdfs:label "served in"@en ;
+    rdfs:comment "Glass in which a cocktail is served."@en .
+
+drink:hasFlavorProfile
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Beverage ;
+    rdfs:range drink:FlavorProfile ;
+    rdfs:label "has flavour profile"@en ;
+    rdfs:comment "Associates a beverage with taste/style descriptors."@en .
+
+drink:producedBy
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Brand ;
+    rdfs:range drink:Distillery ;
+    rdfs:label "produced by"@en ;
+    rdfs:comment "The distillery that manufactures a brand."@en ;
+    owl:inverseOf drink:produces .
+
+drink:produces
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Distillery ;
+    rdfs:range drink:Brand ;
+    rdfs:label "produces"@en ;
+    rdfs:comment "Inverse of producedBy: a distillery's range of brands."@en .
+
+drink:brandOf
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Brand ;
+    rdfs:range drink:Spirit ;
+    rdfs:label "brand of"@en ;
+    rdfs:comment "The spirit type a brand instantiates (e.g. Bombay Sapphire is a brand of Gin)."@en ;
+    owl:inverseOf drink:hasBrand .
+
+drink:hasBrand
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Spirit ;
+    rdfs:range drink:Brand ;
+    rdfs:label "has brand"@en ;
+    rdfs:comment "Inverse of brandOf: brands classified under a spirit type."@en .
+
+drink:locatedIn
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Distillery ;
+    rdfs:range schema:Place ;
+    rdfs:subPropertyOf dcterms:spatial, schema:location ;
+    rdfs:label "located in"@en ;
+    rdfs:comment "Administrative place a distillery sits in. Sub-property of dcterms:spatial and schema:location so generic spatial queries still match."@en .
+
+drink:countryOfOrigin
+    a owl:ObjectProperty ;
+    rdfs:domain drink:Distillery ;
+    rdfs:range schema:Country ;
+    rdfs:label "country of origin"@en ;
+    rdfs:comment "Country a distillery belongs to; overlaps schema:countryOfOrigin but scoped to our domain."@en .
+
+#####################################################################
+# 4. Datatype properties
+#####################################################################
+
+drink:amountText
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:IngredientAmount ;
+    rdfs:range xsd:string ;
+    rdfs:label "amount (text)"@en ;
+    rdfs:comment "Human-readable measure as the source gives it, e.g. \"30 ml\", \"1 dash\", \"2 cl\"."@en .
+
+drink:amountValue
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:IngredientAmount ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "amount (numeric)"@en ;
+    rdfs:comment "Normalised numeric part of the measure, when it could be parsed. Enables comparisons/aggregation in SPARQL."@en .
+
+drink:amountUnit
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:IngredientAmount ;
+    rdfs:range xsd:string ;
+    rdfs:label "amount unit"@en ;
+    rdfs:comment "Unit of the normalised amount, e.g. ml, cl, oz, dash."@en .
+
+drink:aboutABV
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Spirit ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "about ABV"@en ;
+    rdfs:comment "Typical alcohol by volume in percent for a spirit type."@en .
+
+drink:isIBA
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is IBA"@en ;
+    rdfs:comment "True when the cocktail is on the International Bartenders Association official list."@en .
+
+drink:preparation
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range xsd:string ;
+    rdfs:label "preparation"@en ;
+    rdfs:comment "Free-text preparation instructions."@en .
+
+drink:garnish
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Cocktail ;
+    rdfs:range xsd:string ;
+    rdfs:label "garnish"@en ;
+    rdfs:comment "Garnish suggested for serving."@en .
+
+drink:foundedYear
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Distillery ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "founded year"@en ;
+    rdfs:comment "Year the distillery was established, when known."@en .
+
+drink:hasTag
+    a owl:DatatypeProperty ;
+    rdfs:domain drink:Beverage ;
+    rdfs:range xsd:string ;
+    rdfs:label "has tag"@en ;
+    rdfs:comment "Loose keyword from the source data (e.g. IBA, ContemporaryClassic). Kept as-is for provenance."@en .
+
+#####################################################################
+# 5. Instance IRIs (documentation only)
+#####################################################################
+# Entity IRIs live under  <https://nathantrance.github.io/SemanticWeb/id/>
+# with one path segment per class, slugified:
+#   id/cocktail/<slug>    id/spirit/<slug>    id/ingredient/<slug>
+#   id/brand/<slug>       id/distillery/<slug> id/glass/<slug>
+#   id/flavor/<slug>
+# IngredientAmount nodes are blank nodes (structural, not addressable).
+# Classes/properties live under .../onto# and are NOT instances.
