@@ -279,9 +279,11 @@ Two practical gotchas we hit and fixed (good viva material):
 
 - SPARQL **prefixed names cannot contain `/`**, so we added per-type prefixes
   (`c:negroni`, `ing:gin`) instead of `id:cocktail/negroni`.
-- Plain **rdflib cannot parse/evaluate trig functions** (`SIN`, `SQRT`), unlike
-  Fuseki. To keep the query portable we wrote the Edinburgh radius query with an
-  equirectangular approximation using only arithmetic.
+- **Trigonometry is not portable.** Plain rdflib cannot parse `SIN`/`SQRT` at
+  all, and Jena rejects the bare keywords too (it only exposes trig through the
+  XPath `math:` namespace). So the Edinburgh radius query in `demo.rq` uses an
+  equirectangular approximation with plain arithmetic and runs on both engines;
+  the exact haversine lives in `queries/haversine-fuseki.rq` for Fuseki.
 
 ```bash
 .venv/Scripts/python etl/run_queries.py     # writes report/query-results/*
@@ -300,10 +302,14 @@ Two practical gotchas we hit and fixed (good viva material):
 # open http://localhost:8000
 ```
 
-**Optional standard endpoint.** `docker-compose.yml` + `etl/load_fuseki.py`
-load the three graphs into **Apache Jena Fuseki** as named graphs via the Graph
-Store Protocol. The same UI works against `http://localhost:3030/ds/sparql` —
-mention at the viva that the app is endpoint-agnostic.
+**Standard endpoint (Apache Jena Fuseki).** `docker-compose.yml` starts Fuseki;
+`etl/load_fuseki.py` loads the graphs (merged into the default graph by default,
+or `--named-graphs` to keep onto/data/links separate). We verified the **same 11
+demo queries pass on both engines** with `python etl/run_queries.py --endpoint
+http://127.0.0.1:3030/ds/sparql`. Two practical notes: use `127.0.0.1` rather
+than `localhost` (Windows resolves `localhost` to IPv6 first and Docker only
+publishes IPv4, adding ~20 s per connection), and Jena evaluates trigonometry
+via the XPath `math:` namespace (`queries/haversine-fuseki.rq`).
 
 **IRI dereferencing (★4).** `web/server.py` also answers `GET /id/<type>/<slug>`
 and `GET /onto` with **content negotiation**: the same IRI returns HTML to a

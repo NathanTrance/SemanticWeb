@@ -1,0 +1,35 @@
+# Fuseki-only variant of query 03: precise haversine distance from Edinburgh.
+#
+# The portable version in demo.rq uses an arithmetic approximation because
+# plain rdflib cannot evaluate trigonometric functions at all, and Jena does
+# not accept the bare SPARQL keywords SIN/COS/SQRT/POWER/RADIANS. Jena does
+# expose them through the XPath math namespace (math:pi, math:sin, math:pow,
+# math:sqrt, math:asin, ...), so this exact query runs on Fuseki but not in
+# etl/run_queries.py's in-memory mode.
+#
+#   python etl/run_queries.py --endpoint http://127.0.0.1:3030/ds/sparql  # (demo.rq)
+#   curl --data-urlencode "query@queries/haversine-fuseki.rq" \
+#        -H "Accept: application/sparql-results+json" \
+#        http://127.0.0.1:3030/ds/sparql
+
+PREFIX drink: <https://nathantrance.github.io/SemanticWeb/onto#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX geo:   <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX math:  <http://www.w3.org/2005/xpath-functions/math#>
+
+SELECT ?distillery ?label (ROUND(?distance) AS ?km) WHERE {
+  ?distillery a drink:Distillery ;
+              rdfs:label ?label ;
+              geo:lat ?lat ;
+              geo:long ?long .
+  BIND(?lat * math:pi() / 180 AS ?rlat)
+  BIND((55.9533 - ?lat) * math:pi() / 180 AS ?dlat)
+  BIND((-3.1883 - ?long) * math:pi() / 180 AS ?dlon)
+  BIND(6371 * 2 * math:asin(math:sqrt(
+         math:pow(math:sin(?dlat / 2), 2) +
+         math:cos(?rlat) * math:cos(55.9533 * math:pi() / 180) *
+         math:pow(math:sin(?dlon / 2), 2))) AS ?distance)
+  FILTER(?distance <= 250)
+}
+ORDER BY ?distance
+LIMIT 50

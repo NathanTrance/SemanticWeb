@@ -1,0 +1,29 @@
+PREFIX c:       <https://nathantrance.github.io/SemanticWeb/id/cocktail/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX drink:   <https://nathantrance.github.io/SemanticWeb/onto#>
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+PREFIX geo:     <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX geo1:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX id:      <https://nathantrance.github.io/SemanticWeb/id/>
+PREFIX ing:     <https://nathantrance.github.io/SemanticWeb/id/ingredient/>
+PREFIX owl:     <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema:  <https://schema.org/>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+
+c:negroni  rdf:type           drink:Cocktail;
+        rdfs:label            "Negroni";
+        dcterms:identifier    "11003";
+        dcterms:source        <https://www.wikidata.org/wiki/Q1401202> , <https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11003>;
+        owl:sameAs            <http://dbpedia.org/resource/Negroni> , <http://www.wikidata.org/entity/Q1401202>;
+        foaf:depiction        <https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg>;
+        drink:baseSpirit      <https://nathantrance.github.io/SemanticWeb/id/spirit/gin>;
+        drink:hasTag          "Unforgettables" , "IBA" , "Classic";
+        drink:isIBA           true;
+        drink:preparation     "Stir into glass over ice, garnish and serve.";
+        drink:servedIn        <https://nathantrance.github.io/SemanticWeb/id/glass/old-fashioned-glass>;
+        drink:usesIngredient  <https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/1> , <https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/2> , <https://nathantrance.github.io/SemanticWeb/id/ingredient-amount/negroni/3>;
+        schema:description    "Stir into glass over ice, garnish and serve.";
+        schema:image          <https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg>;
+        schema:name           "Negroni" .

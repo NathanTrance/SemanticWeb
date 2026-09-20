@@ -57,12 +57,19 @@ python web/server.py             # http://localhost:8000  (UI + /sparql + derefe
 curl -H "Accept: text/turtle" http://localhost:8000/id/cocktail/negroni
 ```
 
-Optional "standard" endpoint (Apache Jena Fuseki via Docker):
+Optional "standard" endpoint (Apache Jena Fuseki via Docker). Verified: the
+same 11 demo queries pass against both engines.
 
 ```bash
 docker compose up -d
-python etl/load_fuseki.py        # loads onto/data/links as named graphs
-# UI at web/ -> set Endpoint to http://localhost:3030/ds/sparql
+python etl/load_fuseki.py        # merge into the default graph
+python etl/run_queries.py --endpoint http://127.0.0.1:3030/ds/sparql
+docker compose down              # stop when done
+
+# UI at web/ -> set Endpoint to http://127.0.0.1:3030/ds/sparql
+# Use 127.0.0.1, not localhost (IPv6 fallback adds ~20s/connection on Windows).
+# Add --named-graphs to keep onto/data/links separate; see queries/haversine-fuseki.rq
+# for a Jena-only precise-distance query.
 ```
 
 ## Repo layout

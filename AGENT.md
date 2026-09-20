@@ -8,9 +8,11 @@ Read `PLANNING.md` first — it is the source of truth for scope, ontology, pipe
 - W1–W3 done. Ontology (`ontology/drinkonto.owl`), instance data (`data/rdf/data.rdf`),
   links (`data/links/links.rdf`) and the SPARQL endpoint + UI (`web/`) are in place.
 - 441 cocktails, 299 ingredients, 865 distilleries, 12 brands, ~1,220 `owl:sameAs`.
-- Stack in use: Python 3 + RDFlib, `web/server.py` (rdflib endpoint), Docker + Jena
-  Fuseki as the optional standard endpoint. Protégé/OpenRefine optional.
-- Todo: Docker/Fuseki verification, report/slides/video, dereferenceability artifacts.
+- Stack in use: Python 3 + RDFlib, `web/server.py` (rdflib endpoint + IRI
+  dereferencing), Docker + Jena Fuseki as the standard endpoint (verified: the
+  same 11 demo queries pass on both engines). IRIs dereference locally and on
+  GitHub Pages.
+- Todo: report/slides/video, fill `data/links/sample.csv` for the precision metric.
 
 ## Conventions
 - **Directories:** `ontology/` (RDF/XML ontology + Protégé), `data/raw/` (fetched dumps, git-ignored), `data/rdf/` (generated RDF), `data/links/` (sameAs), `etl/` (Python), `queries/` (`.rq` demo queries), `web/` (query UI), `report/` (report/slides/video assets), `docs/` (provenance manifest, licence notes).
@@ -34,6 +36,8 @@ pip install -r requirements.txt
 .venv/Scripts/python web/server.py
 # or the standard endpoint (Apache Jena Fuseki via Docker)
 docker compose up -d && .venv/Scripts/python etl/load_fuseki.py
+.venv/Scripts/python etl/run_queries.py --endpoint http://127.0.0.1:3030/ds/sparql
+docker compose down
 ```
 
 ## Do / don't
