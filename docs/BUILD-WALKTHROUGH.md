@@ -305,6 +305,12 @@ load the three graphs into **Apache Jena Fuseki** as named graphs via the Graph
 Store Protocol. The same UI works against `http://localhost:3030/ds/sparql` —
 mention at the viva that the app is endpoint-agnostic.
 
+**IRI dereferencing (★4).** `web/server.py` also answers `GET /id/<type>/<slug>`
+and `GET /onto` with **content negotiation**: the same IRI returns HTML to a
+browser and RDF to a machine. `etl/build_site.py` generates a static twin for
+GitHub Pages so the IRIs resolve publicly. Details and the honest caveat
+(static Pages cannot negotiate) are in `docs/dereferencing.md`.
+
 ---
 
 ## 6. Run the whole pipeline from scratch
@@ -367,9 +373,12 @@ Expected numbers: **441 cocktails, 299 ingredients, 865 distilleries, 12 brands,
 - **Link recall:** only ~90/441 cocktails found an exact Wikidata label match
   (precision chosen over recall). A fuzzy matcher (OpenRefine/Silk) would raise
   recall — good "future work" slide.
-- **Dereferenceability (★4 stretch):** IRIs are designed to resolve under
-  `nathantrance.github.io`, but the static per-IRI RDF files are not published
-  yet; enabling GitHub Pages would close this loop.
+- **Dereferenceability (★4):** implemented. `web/server.py` negotiates
+  (HTML/RDF) locally; `etl/build_site.py` + the Pages workflow publish the same
+  descriptions publicly. Only remaining manual step is enabling Pages
+  (Settings → Pages → Source = GitHub Actions). Note that static Pages cannot
+  content-negotiate, so its extensionless RDF downloads rather than displaying as
+  Turtle — the local server is the "correct" demonstration.
 - **Base-spirit heuristic** can misfire on unusual recipes.
 - **12 brands** is thin (Wikidata manufacturer coverage); brands could be
   enriched from another source.

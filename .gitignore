@@ -18,6 +18,9 @@ fuseki/run/
 # Generated alternative serializations (etl/export_formats.py)
 exports/
 
+# Generated GitHub Pages site (etl/build_site.py)
+site/
+
 # Node / web
 node_modules/
 web/dist/
