@@ -1,3 +1,20 @@
 \section{Abstract}
 
-% Content written in the chapter pass.
+This report presents a five-star Linked Open Data (LOD) application about
+cocktails, spirits and distilleries. We design \emph{drinkonto}, an OWL~2
+ontology that models cocktails, their ingredient usages with measures, the
+spirits and brands involved, and the distilleries that produce them. A
+reproducible Python pipeline collects 441 cocktails from TheCocktailDB and
+865 distilleries plus 12 spirit brands from Wikidata, transforms them into an
+RDF instance graph of approximately 22{,}300 triples using reused vocabularies
+(schema.org, Dublin Core, FOAF, WGS84 geo and SKOS), and reconciles the
+entities against Wikidata and DBpedia. The resulting links comprise 1{,}220
+\texttt{owl:sameAs} statements to Wikidata and 390 to DBpedia. The merged graph
+is exposed through a zero-install SPARQL endpoint with a preset query interface
+and dereferenceable IRIs, and the same eleven demonstration queries were
+verified against Apache Jena Fuseki. Link precision measured on the seeded,
+hand-checked sample of 50 links is \textbf{[XX\%]}, and we discuss the
+precision--recall trade-off, limitations and future work.
+
+\noindent\textbf{Keywords:} Linked Open Data; RDF; OWL~2; SPARQL; knowledge
+graph; Wikidata; DBpedia.
