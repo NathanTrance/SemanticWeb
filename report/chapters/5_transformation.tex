@@ -1,3 +1,148 @@
 \section{Transformation to RDF}
+\label{sec:transformation}
 
-% Content written in the chapter pass.
+The transformation step, implemented in \texttt{etl/map.py}, turns the cached
+JSON dumps into one RDF/XML instance graph, \texttt{data/rdf/data.rdf}, using
+the vocabulary designed in the previous section.
+
+\subsection{URI scheme and deterministic identifiers}
+
+Every project entity receives a URI of the form
+
+\begin{center}
+\texttt{https://nathantrance.github.io/SemanticWeb/id/<type>/<slug>}
+\end{center}
+
+with \texttt{<type>} one of \texttt{cocktail}, \texttt{ingredient},
+\texttt{ingredient-amount}, \texttt{spirit}, \texttt{glass},
+\texttt{distillery}, \texttt{brand} or \texttt{place}. Slugs are produced by a
+small normalisation function: accents are removed, the text is lower-cased,
+and every run of non-alphanumeric characters becomes a hyphen, so
+``Old Fashioned'' becomes \texttt{old-fashioned}. Collisions are resolved by
+appending \texttt{-2}, \texttt{-3}, and so on. Because slugs depend only on the
+input labels, re-running the transformation reproduces the file byte for byte;
+git diffs therefore show real changes rather than noise, and the provenance
+manifest of Section~3 remains meaningful.
+
+\subsection{Mapping the source records}
+
+Table~\ref{tab:mapping} summarises how cocktail fields are mapped. Note that
+each label is written twice, once as \texttt{rdfs:label} and once as
+\texttt{schema:name}, and images once as \texttt{schema:image} and once as
+\texttt{foaf:depiction}. The duplication is deliberate: different consumers
+look for different predicates, and publishing both maximises interoperability
+at negligible cost.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lp{9.6cm}@{}}
+    \toprule
+    Source field & RDF mapping \\
+    \midrule
+    \texttt{strDrink} & \texttt{rdfs:label} and \texttt{schema:name} \\
+    \texttt{idDrink} & \texttt{dcterms:identifier} plus a \texttt{dcterms:source} link back to the lookup URL \\
+    \texttt{strInstructions} & \texttt{drink:preparation} and \texttt{schema:description} \\
+    \texttt{strDrinkThumb} & \texttt{schema:image} and \texttt{foaf:depiction} \\
+    \texttt{strGlass} & \texttt{drink:servedIn} to a \texttt{drink:GlassType} node \\
+    \texttt{strIBA}, \texttt{strTags} & \texttt{drink:isIBA} (boolean) and one \texttt{drink:hasTag} literal per tag \\
+    \texttt{strIngredient1..15}, \texttt{strMeasure1..15} & one \texttt{drink:IngredientAmount} node each: \texttt{usesIngredient} from the cocktail, \texttt{ofIngredient} to the ingredient, plus the measure properties \\
+    \bottomrule
+  \end{tabular}
+  \caption{Mapping from TheCocktailDB fields to RDF properties.}
+  \label{tab:mapping}
+\end{table}
+
+Ingredients are shared across recipes through deterministic slugs, so the
+individual \texttt{.../id/ingredient/gin} is written once and referenced by
+every cocktail that uses gin; the same applies to glass types. Wikidata records
+map almost directly: a distillery becomes a \texttt{drink:Distillery}, its QID
+becomes a \texttt{dcterms:identifier}, coordinates become \texttt{geo:long} and
+\texttt{geo:lat}, and countries become \texttt{schema:Place} nodes reachable
+through \texttt{drink:countryOfOrigin}.
+
+\subsection{Measuring amounts}
+
+Source measures are free text, so the transformation keeps the original string
+as \texttt{drink:amountText} and additionally parses a numeric value and unit
+when the text begins with a simple number, mixed number or fraction. Table
+\ref{tab:amounts} gives examples; Unicode fraction characters are normalised
+before parsing.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Source text & Parsed value & Parsed unit \\
+    \midrule
+    \texttt{"1 1/2 oz"} & 1.5 & \texttt{oz} \\
+    \texttt{"1/2 slice"} & 0.5 & \texttt{slice} \\
+    \texttt{"2 cl"} & 2.0 & \texttt{cl} \\
+    \texttt{"1 oz"} & 1.0 & \texttt{oz} \\
+    \texttt{"Juice of 1/2"} & --- & --- (text kept only) \\
+    \bottomrule
+  \end{tabular}
+  \caption{Amount parsing examples. Prose measures keep their text form but no
+  numeric value.}
+  \label{tab:amounts}
+\end{table}
+
+The Whiskey Sour shows both cases at once: its lemon appears twice in the
+source, once as the prose ``Juice of 1/2'' and once as ``1/2 slice'', so the
+graph stores one text-only amount and one numeric amount of 0.5 slice
+(Section~7).
+
+\subsection{Classifying the base spirit}
+
+\label{sec:spirit-heuristic}
+Most recipes do not state a base spirit, so the transformation derives one with
+a deliberately simple and explainable heuristic: the ingredients are scanned in
+order and the first one whose name matches a keyword table wins. The table maps
+synonyms onto the eight spirit types, for example \texttt{whiskey},
+\texttt{scotch}, \texttt{bourbon} and \texttt{rye} to \texttt{whisky}, and
+\texttt{cointreau}, \texttt{campari}, \texttt{amaretto} and \texttt{triple sec}
+to \texttt{liqueur}. Table~\ref{tab:spirits} shows the resulting distribution.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lrlr@{}}
+    \toprule
+    Spirit class & Cocktails & Spirit class & Cocktails \\
+    \midrule
+    Rum & 77 & Brandy & 20 \\
+    Gin & 76 & Tequila & 14 \\
+    Vodka & 62 & Absinthe & 2 \\
+    Liqueur & 45 & & \\
+    Whisky & 40 & & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Cocktails per classified base spirit (query 08). In total 336 of the
+  441 cocktails (76\%) received a base spirit; the remainder had no keyword
+  match and are left without one rather than guessed.}
+  \label{tab:spirits}
+\end{table}
+
+The heuristic is intentionally transparent, but it can misfire on unusual
+recipes; this is discussed as a limitation in Section~8.
+
+\subsection{Distilleries, brands and places}
+
+The distillery query returns 998 rows for 865 distinct items, because items
+with several optional values produce several bindings. The transformation
+therefore groups rows by QID first, mints one URI per distillery, and then adds
+the optional facts. Coordinates arrive as a single \texttt{Point(lon lat)}
+literal and are split into separate \texttt{geo:long} and \texttt{geo:lat}
+values. Each distillery also receives its country as a \texttt{schema:Place}
+node, and spirit brands are linked to their distillery with
+\texttt{drink:producedBy}; where the distillery was missing from the result
+set, a stub node is created from the brand record so that no link is lost.
+
+\subsection{Output and quality gates}
+
+The transformation produces an instance graph with 441 cocktails, 299
+ingredients, 865 distilleries and 12 brands, roughly 22{,}300 triples in total.
+The first of the two project quality gates verifies that every generated file
+still parses as valid RDF before the pipeline is considered healthy; the second
+gate re-runs all demonstration queries (Section~7).
