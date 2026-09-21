@@ -1,3 +1,136 @@
 \section{Data Sources and Collection}
+\label{sec:data}
 
-% Content written in the chapter pass.
+\subsection{Sources and licences}
+
+The project combines one domain-specific API with two general LOD datasets.
+Table~\ref{tab:sources} lists what each source contributes, how it is accessed
+and under which licence. Only the documented API and SPARQL endpoints are used;
+no review sites are scraped.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}p{2.5cm}p{5.6cm}p{2.6cm}p{3.3cm}@{}}
+    \toprule
+    Source & Content used & Access & Licence \\
+    \midrule
+    TheCocktailDB \cite{cocktaildb} & Cocktail names, IBA flag, glass,
+    instructions, images, ingredient lists and measures (441 drinks) & Public
+    JSON API & Free for non-commercial use, attribution \\
+    Wikidata \cite{wikidata} & Distilleries (\texttt{P31 Q1251750}) with
+    coordinates, country, inception, website, image and enwiki sitelink;
+    spirit brands (\texttt{P31/P279* Q56139} with manufacturer a distillery)
+    & SPARQL endpoint and MediaWiki API & CC0 1.0 \\
+    DBpedia \cite{dbpedia} & Resource IRIs used as \texttt{owl:sameAs} targets
+    & Resource IRIs (no bulk download) & CC BY-SA 4.0 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Data sources, content and licences; full details are kept in
+  \texttt{docs/data-licences.md}.}
+  \label{tab:sources}
+\end{table}
+
+\subsection{The collection pipeline}
+
+Figure~\ref{fig:pipeline} shows the end-to-end pipeline. The collection step is
+implemented in \texttt{etl/bootstrap.py}. Because TheCocktailDB offers no ``dump
+everything'' endpoint, the collector queries the per-letter search endpoint for
+\texttt{a}--\texttt{z} and \texttt{0}--\texttt{9} and deduplicates the results by
+the source identifier \texttt{idDrink}, yielding 441 cocktails. Wikidata is
+queried directly in SPARQL: the distillery query selects items whose
+\texttt{P31} is \texttt{Q1251750} with optional coordinates (\texttt{P625}),
+country (\texttt{P17}), inception (\texttt{P571}), website (\texttt{P856}),
+image (\texttt{P18}) and English article, while the brand query uses the
+property path \texttt{P31/P279*} to include spirit subclasses and requires the
+manufacturer (\texttt{P176}) to be a distillery.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+    node distance=4.2mm,
+    box/.style={draw, rounded corners=2pt, fill=blue!5, align=center,
+                font=\small, inner sep=3pt, minimum height=7.5mm},
+    src/.style={draw, rounded corners=2pt, fill=orange!10, align=center,
+                font=\small, inner sep=3pt, minimum height=7.5mm},
+    arr/.style={-{Latex[length=1.8mm]}, thick},
+    lbl/.style={font=\scriptsize\itshape, right=2mm, align=left}
+  ]
+    \node[src] (cdb) {TheCocktailDB JSON API};
+    \node[src, right=6mm of cdb] (wd) {Wikidata SPARQL endpoint};
+    \node[box, below=6mm of $(cdb.east)!0.5!(wd.west)$] (boot)
+      {\texttt{etl/bootstrap.py} --- collect, cache, write manifest};
+    \node[box, below=4.2mm of boot] (raw)
+      {\texttt{data/raw/} JSON dumps $+$ \texttt{manifest.json}};
+    \node[box, below=4.2mm of raw] (map)
+      {\texttt{etl/map.py} --- transform JSON to RDF};
+    \node[box, below=4.2mm of map] (data)
+      {\texttt{data/rdf/data.rdf} (instance graph, ontology terms)};
+    \node[box, below=4.2mm of data] (rec)
+      {\texttt{etl/reconcile.py} --- match against Wikidata and DBpedia};
+    \node[box, below=4.2mm of rec] (links) {\texttt{data/links/links.rdf}};
+    \node[box, below=4.2mm of links] (serve)
+      {\texttt{etl/run\_queries.py} $\cdot$ \texttt{web/server.py} $\cdot$ Fuseki};
+    \draw[arr] (cdb) -- (boot);
+    \draw[arr] (wd) -- (boot);
+    \draw[arr] (boot) -- (raw);
+    \draw[arr] (raw) -- (map);
+    \draw[arr] (map) -- (data);
+    \draw[arr] (data) -- (rec);
+    \draw[arr] (rec) -- (links);
+    \draw[arr] (links) -- (serve);
+  \end{tikzpicture}
+  \caption{The end-to-end pipeline: collection, transformation, interlinking
+  and serving. Earlier stages are cached, so later stages can be re-run
+  without network access.}
+  \label{fig:pipeline}
+\end{figure}
+
+\subsection{Provenance and reproducibility}
+
+Every download is cached under \texttt{data/raw/} and skipped on re-runs unless
+\texttt{--force} is given; the pipeline is therefore idempotent. For each dump,
+the collector writes an entry to \texttt{data/raw/manifest.json} containing the
+source URL, licence, retrieval timestamp, record count and a SHA-256 hash of
+the file. Table~\ref{tab:manifest} summarises the three dumps. The hash makes
+changes detectable: re-downloading a source that has changed produces a
+different fingerprint, which is exactly the kind of provenance evidence the
+first four stars require.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llrl@{}}
+    \toprule
+    Dump & Source & Records & SHA-256 (first 12 hex) \\
+    \midrule
+    \texttt{cocktaildb/drinks.json} & TheCocktailDB per-letter search & 441 & \texttt{1ba6721fc45d} \\
+    \texttt{wikidata/distilleries.json} & Wikidata SPARQL (\texttt{Q1251750}) & 998 & \texttt{53fb92019434} \\
+    \texttt{wikidata/brands.json} & Wikidata SPARQL (spirit brands) & 12 & \texttt{e483ee7ee53c} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Contents of the provenance manifest after collection.}
+  \label{tab:manifest}
+\end{table}
+
+\subsection{Verifying external identifiers}
+
+The project plan initially identified distilleries by \texttt{Q18979992}. Before
+implementing the collector, the identifier was checked against Wikidata and
+turned out to denote \emph{a street in the Netherlands}. The correct class is
+\texttt{Q1251750}. This episode shaped a habit that appears again in
+Section~6: external identifiers are verified against the source, never trusted
+from documentation alone.
+
+\subsection{Characteristics of the raw data}
+
+Several properties of the sources influenced the later design. The distillery
+SPARQL result contains 998 rows but only 865 distinct distilleries, because
+items with several values (for example multiple coordinates) produce multiple
+bindings; the transformation step therefore groups rows by QID first. Optional
+fields are frequently missing: some cocktails have no measure for an
+ingredient, and measures are free text such as ``Juice of 1/2'' rather than
+numbers, which is why Section~5 keeps the original text while parsing a numeric
+value only when possible. Finally, only 12 spirit brands are returned, because
+the requirement that the manufacturer be recorded as a distillery is rarely
+satisfied in Wikidata --- a limitation revisited in Section~8.
