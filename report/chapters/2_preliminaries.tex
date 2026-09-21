@@ -1,0 +1,49 @@
+\section{Preliminaries}
+
+\subsection{Traditional method}
+
+When a Lambertian surface with albedo-scaled surface normal $\mathbf{n} \in \mathbb{R}^3$ is illuminated by a directional light $\mathbf{l} \in \mathbb{R}^{3 \times 1}$, the measurement $m \in \mathbb{R}^+$ can be described as:
+\[ m = \mathbf{l}^\top \mathbf{n}. \]
+
+For a vector of measurements $\mathbf{m} \in \mathbb{R}^f$ observed under $f$ distinct light directions, the above equation can be written as:
+\[ \mathbf{m} = \mathbf{L}^\top \mathbf{n}, \]
+
+where $\mathbf{L} = [\mathbf{l}_1, \ldots, \mathbf{l}_f] \in \mathbb{R}^{3 \times f}$ is the light matrix.
+
+The conventional photometric stereo method determines the surface normal $\mathbf{n}$ using the above image formation model by:
+\[ \mathbf{n}^* = \mathbf{L}^{-1} \mathbf{m}, \]
+when $f = 3$ and $\text{rank}(\mathbf{L}) = 3$. Alternatively, with more than three distinct observations, a least-squares approximate solution $\mathbf{n}^*$ can be obtained using the pseudo-inverse of $\mathbf{L}$:
+\[ \mathbf{n}^* = (\mathbf{L} \mathbf{L}^\top)^{-1} \mathbf{L} \mathbf{m}. \]
+
+Unfortunately, a pure Lambertian surface rarely exists in the real world. Therefore, making photometric stereo work with non-Lambertian surfaces is one of the major interests for its practical use.
+
+With a BRDF function $\rho$, the appearance of a surface under a local illumination model can be described more flexibly. The appearances of a surface observed from a fixed viewing direction $\mathbf{v}$ under varying distant light directions $\mathbf{L}$ can be written as:
+\[ \mathbf{m} = \mathbf{b} \odot (\mathbf{L}^\top \mathbf{n}), \]
+where $\mathbf{b} \in \mathbb{R}^f_+$ is a vector of reflectances sampled from the BRDF function $\rho$ as $\mathbf{b} = \rho(\mathbf{L}, \mathbf{n}, \mathbf{v})$, and the operator $\odot$ represents element-wise multiplication. The term $\mathbf{L}^\top \mathbf{n}$ represents the irradiances at the surface point under the corresponding light directions.
+
+The above equation assumes a shadow-free world, while in the real world, the surface patches facing away from the lighting direction are in attached shadow, and light paths being occluded cause cast shadow. Such shadowing processes can be written as:
+\[ m = \mathbf{s} \odot (\mathbf{b} \odot \max(\mathbf{L}^\top \mathbf{n}, 0)), \]
+where $\mathbf{s} \in \{0, 1\}^f$ is a boolean vector with 0 indicating observations in cast shadows and 1 otherwise. The effect of attached shadow is accounted for by the element-wise max operator.
+
+Consider a non-Lambertian surface whose appearance is described by a general isotropic BRDF $\rho$. Given a surface point with a unit surface normal vector $\mathbf{n} \in S^2$, where $S^2 = \{v \in \mathbb{R}^3 : \|v\|_2 = 1\}$, illuminated by the $j$-th incoming lighting with direction $\mathbf{l}_j \in S^2$ and intensity $e_j \in \mathbb{R}^+$, the image formation model from a fixed viewpoint can be written as:
+\[ m = e_j \rho(\mathbf{n}, \mathbf{l}_j) \max(\mathbf{n}^\top \mathbf{l}_j, 0) + \varepsilon, \]
+where $m$ is the measured intensity, $\max(\cdot, 0)$ accounts for attached shadows, and $\varepsilon$ represents global illumination effects (e.g., cast shadows and inter-reflections) and noise.
+
+\subsection{Learning based Photometric Stereo}
+\textbf{Learning based Photometric Stereo} involves using deep learning methods to estimate surface normals from reflectance observations captured under known lighting conditions. These methods leverage neural networks to map reflectance to surface normals, often utilizing convolutional neural networks (CNNs) and unsupervised learning
+frameworks to improve accuracy and robustness.
+
+\subsection{Calibrated Photometric Stereo}
+\textbf{Calibrated Photometric Stereo} assumes known lighting conditions and uses various
+methods to estimate surface normals for Lambertian and non-Lambertian surfaces.
+Techniques include outlier rejection, analytical reflectance models, and deep learning,
+handling imperfections and complex materials to improve normal estimation.
+
+\subsection{Uncalibrated Photometric Stereo}
+Uncalibrated Photometric Stereo deals with unknown lighting conditions, requiring additional clues or constraints to estimate surface normals. Methods include exemplar- based approaches, radiance change analysis, and deep learning models that estimate lighting parameters before normal estimation, allowing for broader applicability.
+
+\subsection{Learning based lighting estimation }
+Learning-based Lighting Estimation uses deep learning models to infer lighting conditions from images. Methods range from estimating HDR environment lighting in indoor scenes to using sky models for outdoor lighting and spherical harmonics for human faces, aiming for accurate lighting estimation under various scenarios.
+
+\subsection{Universal Photometric Stereo}
+Universal Photometric Stereo (UniPS) aims to recover surface normals from multiple images taken under unknown and varying lighting conditions. UniPS does not assume specific lighting models, making it versatile for different lighting scenarios, including spatially-varying light and inter-reflections, with the goal of practical and scalable photometric stereo solutions.

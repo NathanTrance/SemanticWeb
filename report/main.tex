@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\setcounter{tocdepth}{3}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{adjustbox}
+\usepackage{geometry}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+
+\pagestyle{fancy}
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{18pt}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project 2 Report},
+    pdfpagemode=FullScreen,
+    }
+
+
+\onehalfspacing
+
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%% Title of proposal%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \fancyhead{}
+    \lhead{Semester 2023.2}
+    \rhead{Course: Project 2}
+    \fancyfoot{}
+    \cfoot{\large Ha Noi 2024}
+    \begin{center}
+        \begin{Large}
+        \textbf{HA NOI UNIVERSITY OF SCIENCE AND TECHNOLOGY}
+
+    
+        SCHOOL OF INFORMATION AND COMMUNICATION TECHNOLOGY FACULTY OF COMPUTER SCIENCE 
+        \end{Large}
+        
+        \textbf{--------------------  o0o  ---------------------}
+        
+        \vspace{0.5cm}
+        
+        \includegraphics[width=3cm]{figures/hust-logo.png}
+
+        \vspace{0.4cm}
+        
+        \begin{huge}
+        \textbf{PROJECT REPORT:\\
+Deep Photometric Stereo Methods}  \\ [0.2cm]
+        \end{huge}
+        \rule{\linewidth}{1pt}
+        \begin{flushleft}
+            \begin{large}          
+            \hspace{3cm} \textbf{Mentor: Ngo Thi Thu Huyen, Do Van Hai}
+            
+            \hspace{3cm} \textbf{Member of our group:} \\[0.1cm]
+            \begin{tabular}{lcr}
+               \hspace{3cm} \textbf{[Member 1]} & [ID] & [email] \\
+\hspace{3cm} \textbf{[Member 2]} & [ID] & [email] \\
+\hspace{3cm} \textbf{[Member 3]} & [ID] & [email] \\
+\hspace{3cm} \textbf{[Member 4]} & [ID] & [email] \\
+               
+
+            \end{tabular}
+            \end{large}
+        \end{flushleft}
+        \rule{\linewidth}{1pt}
+
+    \end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% contents page
+\newpage
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+% \noindent \textbf{\Large Abstract}\\
+% \begin{large}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Intro %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% Anh
+\input{chapters/0_abstract}
+\input{chapters/1_introduction}
+\input{chapters/2_preliminaries}
+\input{chapters/3_literature_review}
+\input{chapters/4_results}
+\input{chapters/5_conclusions}
+\input{chapters/6_references}
+
+\end{document}

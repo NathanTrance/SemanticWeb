@@ -1,0 +1,37 @@
+# LaTeX build artifacts and auxiliary files
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.pdf
+*.snm
+*.synctex.gz
+*.toc
+*-blx.bib
+*.run.xml
+*.bcf
+*.synctex(busy)
+texmf.cnf
+
+# Template archive (contents extracted into this folder)
+*.zip
+
+# Editor / OS junk
+*.swp
+*~
+.DS_Store
+Thumbs.db
