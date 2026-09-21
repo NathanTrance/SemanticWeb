@@ -1,3 +1,149 @@
 \section{Query Interface and Results}
+\label{sec:query}
 
-% Content written in the chapter pass.
+\subsection{Architecture}
+
+The query interface is a small Python program, \texttt{web/server.py}, built on
+the standard library's HTTP server and rdflib; it loads the ontology, the
+instance graph and the links graph at start-up and exposes three services:
+
+\begin{itemize}[itemsep=1pt]
+  \item \texttt{POST /sparql} (and \texttt{GET /sparql?query=...}) --- a SPARQL
+        1.1 endpoint with content negotiation: query results are returned as
+        SPARQL JSON or XML, \texttt{CONSTRUCT} results as Turtle, RDF/XML or
+        JSON-LD, and CORS headers are sent so the UI can be hosted separately;
+  \item \texttt{GET /onto} and \texttt{GET /id/<type>/<slug>} ---
+        dereferenceable URIs (described below);
+  \item everything else --- the static query UI, which loads the demonstration
+        queries from \texttt{queries/demo.rq} as presets, submits them to
+        whichever endpoint is configured, and renders the results as a table.
+\end{itemize}
+
+Because it only needs Python and rdflib, the endpoint can be demonstrated on
+any machine without installation. For a ``standard'' endpoint, the repository
+also ships a \texttt{docker-compose.yml} that starts Apache Jena Fuseki
+together with \texttt{etl/load\_fuseki.py}, which loads the three graphs either
+merged into the default graph or, with \texttt{--named-graphs}, as separate
+named graphs for provenance-style queries \cite{jena}.
+
+\subsection{Demonstration queries}
+
+The file \texttt{queries/demo.rq} contains eleven curated queries; each block
+starts with a \texttt{\# name:} marker so that both the batch runner and the
+web UI can split them, and a shared prologue defines the prefixes.
+Table~\ref{tab:queries} lists what each query demonstrates and its verified
+result size.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}clp{7.6cm}r@{}}
+    \toprule
+    \# & Name & Demonstrates & Rows \\
+    \midrule
+    01 & cocktails-with-glass-and-spirit & multi-branch join with \texttt{OPTIONAL} & 30 \\
+    02 & iba-gin-and-lemon & two required ingredient joins & 6 \\
+    03 & distilleries-near-edinburgh & geospatial filter with plain arithmetic & 30 \\
+    04 & shares-2-ingredients-with-negroni & subquery, property path, \texttt{GROUP BY}/\texttt{HAVING} & 8 \\
+    05 & five-star-proof & \texttt{owl:sameAs} to both Wikidata and DBpedia & 25 \\
+    06 & construct-negroni-subgraph & \texttt{CONSTRUCT} round-trip & 21 triples \\
+    07 & spirit-taxonomy & \texttt{rdfs:subClassOf} traversal & 30 \\
+    08 & cocktails-per-spirit-type & aggregation per class & 8 \\
+    09 & ingredient-measures-whiskey-sour & measures on \texttt{IngredientAmount} nodes & 5 \\
+    10 & most-used-ingredients & aggregation over the property chain & 15 \\
+    11 & negroni-external-links & all external links of one entity & 2 \\
+    \bottomrule
+  \end{tabular}
+  \caption{The eleven demonstration queries and what they exercise.}
+  \label{tab:queries}
+\end{table}
+
+Three queries deserve a closer look. Query 04 answers ``which cocktails share
+at least two ingredients with the Negroni?'' by collecting the Negroni's
+ingredients with the property path
+\texttt{drink:usesIngredient/drink:ofIngredient}, replaying the path for every
+other cocktail, and grouping the result; the eight answers include the
+Americano, the Bijou and the French Negroni. Query 06 is a \texttt{CONSTRUCT}
+that extracts the Negroni's complete subgraph --- 21 triples including its
+links --- as a standalone RDF document, demonstrating that SPARQL can produce
+RDF, not only rows. Query 05 is the five-star evidence: it returns only
+cocktails that carry an \texttt{owl:sameAs} to both a Wikidata item and a
+DBpedia resource, and finds 25 of them.
+
+\subsection{Representative results}
+
+Table~\ref{tab:whiskey-sour} shows the result of query 09, which reads the
+measures of a Whiskey Sour from the ingredient-amount nodes. The two lemon rows
+illustrate the raw-data reality discussed in Section~5: one measure is prose
+and therefore has no numeric value, while the other parses to 0.5 slice.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llrr@{}}
+    \toprule
+    Ingredient & Measure text & Value & Unit \\
+    \midrule
+    blended whiskey & 2 oz & 2.0 & oz \\
+    cherry & 1 & 1.0 & --- \\
+    lemon & Juice of 1/2 & --- & --- \\
+    lemon & 1/2 slice & 0.5 & slice \\
+    powdered sugar & 1/2 tsp & 0.5 & tsp \\
+    \bottomrule
+  \end{tabular}
+  \caption{Query 09 output: ingredient measures of a Whiskey Sour.}
+  \label{tab:whiskey-sour}
+\end{table}
+
+\subsection{Dereferenceable URIs}
+
+The ontology and entity URIs are not inert names: fetching one returns a
+description of the thing it identifies, in the format requested by the client
+(Table~\ref{tab:negotiation}). This content negotiation is what makes the URIs
+dereferenceable and is direct evidence for the fourth star. Entity responses
+are \emph{concise bounded descriptions}: the entity's own triples plus one hop
+into project URIs, so a single fetch of a cocktail also returns its
+ingredient-amount nodes with their measures. Unknown URIs return 404 instead of
+a misleading page.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Client \texttt{Accept} header & Response \\
+    \midrule
+    \texttt{text/html} & human-readable HTML page \\
+    \texttt{text/turtle} & Turtle RDF \\
+    \texttt{application/rdf+xml} (default) & RDF/XML \\
+    \texttt{application/ld+json} & JSON-LD \\
+    \bottomrule
+  \end{tabular}
+  \caption{Content negotiation of the dereferencing routes.}
+  \label{tab:negotiation}
+\end{table}
+
+The same descriptions are also published statically: \texttt{etl/build\_site.py}
+writes a file at the exact path of every entity URI and a sibling HTML page,
+and a GitHub Actions workflow deploys the folder to GitHub Pages. The honest
+caveat is that static hosting cannot negotiate content, so the public RDF file
+downloads instead of being served as Turtle; the local server is the correct
+negotiation demonstration. The ontology namespace uses a hash
+(\texttt{.../onto\#Cocktail}), so class URIs dereference through the ontology
+document \texttt{/onto}, which is the conventional arrangement.
+
+\subsection{Cross-engine verification}
+
+All eleven queries were executed twice: in-memory with rdflib and against
+Apache Jena Fuseki loaded through \texttt{etl/load\_fuseki.py}; the captured
+outputs are kept side by side in \texttt{report/query-results/} and
+\texttt{report/query-results-fuseki/}. Three portability lessons emerged. First,
+SPARQL prefixed names cannot contain ``/'', so the demo file defines per-type
+prefixes (\texttt{c:} for cocktails, \texttt{ing:} for ingredients) instead of
+writing \texttt{id:cocktail/...}. Second, rdflib cannot evaluate trigonometric
+functions and Jena rejects the bare SPARQL keywords, so query 03 uses an
+equirectangular approximation built from plain arithmetic, and the exact
+haversine version is kept separately for Fuseki using the XPath
+\texttt{math:} namespace. Third, on Windows the endpoint must be addressed as
+\texttt{127.0.0.1} rather than \texttt{localhost}, because the latter resolves
+to IPv6 first while Docker publishes IPv4.
