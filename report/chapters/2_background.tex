@@ -23,7 +23,7 @@ project.
     $\star$ & Open licence & Public repository; data licences documented per source \\
     $\star\star$ & Structured, machine-readable & Cached JSON dumps plus a provenance manifest \\
     $\star\star\star$ & Non-proprietary format & RDF/XML as the canonical format; Turtle, JSON-LD and N-Triples exports \\
-    $\star\star\star\star$ & W3C open standards & OWL~2 ontology, SPARQL endpoint, global IRIs, dereferenceable identifiers \\
+    $\star\star\star\star$ & W3C open standards & OWL~2 ontology, SPARQL endpoint, global URIs, dereferenceable identifiers \\
     $\star\star\star\star\star$ & Linked to other people's data & \texttt{owl:sameAs} links to Wikidata and DBpedia \\
     \bottomrule
   \end{tabular}
@@ -32,7 +32,7 @@ project.
   \label{tab:five-star}
 \end{table}
 
-\subsection{RDF: triples, IRIs and serialization}
+\subsection{RDF: triples, URIs and serialization}
 
 RDF represents knowledge as \emph{triples}: a subject, a predicate and an
 object \cite{rdf11}. All triples in this report follow the pattern
@@ -42,11 +42,11 @@ object \cite{rdf11}. All triples in this report follow the pattern
 point either to another entity (an object property) or to a literal value (a
 datatype property).
 
-Every entity is named by an \emph{IRI} (Internationalized Resource Identifier)
+Every entity is named by a \emph{URI} (Uniform Resource Identifier)
 --- a global name that looks like a URL but identifies a thing rather than a
 page. This project mints its own identifiers under a single base
 (\texttt{https://nathantrance.github.io/SemanticWeb/}) and adopts foreign
-identifiers --- Wikidata QIDs, DBpedia resource IRIs --- instead of re-minting
+identifiers --- Wikidata QIDs, DBpedia resource URIs --- instead of re-minting
 them. Global naming is what makes later linking (Section~6) possible.
 
 RDF is a data model, not a file format. The same triples can be written in
@@ -80,14 +80,14 @@ chains (\texttt{owl:propertyChainAxiom}) that let a reasoner derive new
 triples. Section~4 explains which axioms are used and why; the ontology itself
 was edited in Prot\'eg\'e \cite{protege}.
 
-\subsection{SPARQL and dereferenceable IRIs}
+\subsection{SPARQL and dereferenceable URIs}
 
 SPARQL is the query language for RDF \cite{sparql11}. A \texttt{SELECT} query
 returns rows, like SQL, and a \texttt{CONSTRUCT} query returns new RDF triples.
 SPARQL 1.1 property paths (for example
 \texttt{drink:usesIngredient/drink:ofIngredient}) traverse a chain of
 properties in one expression; Section~4 shows how this is used to execute the
-ontology's property chain without a separate reasoner. An IRI is
+ontology's property chain without a separate reasoner. A URI is
 \emph{dereferenceable} when fetching it returns a representation of the thing
 it names; serving RDF or HTML depending on the client's \texttt{Accept} header
 is called content negotiation and is the strongest practical evidence for the
