@@ -23,6 +23,9 @@
 \usepackage{amsfonts}
 \usepackage{adjustbox}
 \usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{booktabs}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{HTML}{EEEEEE}
@@ -67,7 +70,7 @@
     linkcolor=blue,
     filecolor=magenta,      
     urlcolor=cyan,
-    pdftitle={Project 2 Report},
+    pdftitle={Linked Open Data for Cocktails, Spirits and Distilleries},
     pdfpagemode=FullScreen,
     }
 
@@ -80,10 +83,10 @@
 %%%%%%%%%%%%%%%%%%%%%%% Title of proposal%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     \fancyhead{}
-    \lhead{Semester 2023.2}
-    \rhead{Course: Project 2}
+    \lhead{Semester 2026.1}
+    \rhead{Course: Semantic Web}
     \fancyfoot{}
-    \cfoot{\large Ha Noi 2024}
+    \cfoot{\large Ha Noi 2026}
     \begin{center}
         \begin{Large}
         \textbf{HA NOI UNIVERSITY OF SCIENCE AND TECHNOLOGY}
@@ -102,14 +105,14 @@
         
         \begin{huge}
         \textbf{PROJECT REPORT:\\
-Deep Photometric Stereo Methods}  \\ [0.2cm]
+Linked Open Data for Cocktails, Spirits and Distilleries}  \\ [0.2cm]
         \end{huge}
         \rule{\linewidth}{1pt}
         \begin{flushleft}
             \begin{large}          
-            \hspace{3cm} \textbf{Mentor: Ngo Thi Thu Huyen, Do Van Hai}
+            \hspace{3cm} \textbf{Mentor: [Mentor name(s)]}
             
-            \hspace{3cm} \textbf{Member of our group:} \\[0.1cm]
+            \hspace{3cm} \textbf{Members of our group:} \\[0.1cm]
             \begin{tabular}{lcr}
                \hspace{3cm} \textbf{[Member 1]} & [ID] & [email] \\
 \hspace{3cm} \textbf{[Member 2]} & [ID] & [email] \\
@@ -139,10 +142,15 @@ Deep Photometric Stereo Methods}  \\ [0.2cm]
 % Anh
 \input{chapters/0_abstract}
 \input{chapters/1_introduction}
-\input{chapters/2_preliminaries}
-\input{chapters/3_literature_review}
-\input{chapters/4_results}
-\input{chapters/5_conclusions}
-\input{chapters/6_references}
+\input{chapters/2_background}
+\input{chapters/3_data_sources}
+\input{chapters/4_ontology}
+\input{chapters/5_transformation}
+\input{chapters/6_interlinking}
+\input{chapters/7_query_interface}
+\input{chapters/8_evaluation}
+\input{chapters/9_conclusion}
+\input{chapters/10_references}
+\input{chapters/11_appendix}
 
 \end{document}
