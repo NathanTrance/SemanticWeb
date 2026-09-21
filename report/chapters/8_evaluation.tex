@@ -1,3 +1,85 @@
 \section{Evaluation and Discussion}
+\label{sec:evaluation}
 
-% Content written in the chapter pass.
+\subsection{Requirements coverage}
+
+Table~\ref{tab:requirements} maps the five course requirements to the artefacts
+that satisfy them and the sections that document them. Every requirement is met
+by a runnable component of the repository rather than by a claim in prose.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}clll@{}}
+    \toprule
+    \# & Requirement & Artefact & Section \\
+    \midrule
+    1 & Define an ontology & \texttt{ontology/drinkonto.owl} (OWL~2, 17 classes, 21 properties) & 4 \\
+    2 & Collect relevant data & \texttt{etl/bootstrap.py}, \texttt{data/raw/manifest.json} & 3 \\
+    3 & Transform to four stars & \texttt{etl/map.py} $\rightarrow$ \texttt{data/rdf/data.rdf}, serialization exports & 5 \\
+    4 & Link for five stars & \texttt{etl/reconcile.py} $\rightarrow$ \texttt{links.rdf} + precision sample & 6 \\
+    5 & Query interface & \texttt{web/server.py}, \texttt{queries/demo.rq}, Jena Fuseki path & 7 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Course requirements mapped to artefacts.}
+  \label{tab:requirements}
+\end{table}
+
+\subsection{Link quality}
+
+Two numbers describe the interlinking. \emph{Precision} is measured by hand on
+the seeded 50-link sample and is \textbf{[XX\%]} at the time of writing, against
+a project target of 90\%; Section~6 explains the procedure and reports the
+false positive found in the sample. \emph{Recall} is deliberately uneven
+(Table~\ref{tab:links}): 100\% for distilleries and brands, whose identifiers
+come from the source; 84.6\% for ingredients; and 20.4\% for cocktails, where
+exact-label matching and the high acceptance threshold reject ambiguous names.
+Overall, 1{,}220 of 1{,}617 entities (75.4\%) carry a Wikidata link, and 32.0\%
+of those also carry a DBpedia link. This is a precision-first trade-off: a
+wrong \texttt{owl:sameAs} assertion pollutes the graph with false facts, while a
+missing one merely limits coverage.
+
+\subsection{Limitations}
+
+\begin{itemize}[itemsep=1pt]
+  \item \textbf{Base-spirit heuristic.} Only 76\% of cocktails received a
+        classified base spirit, and the first-match rule can label a drink by
+        the wrong ingredient when a recipe lists an unusual component first.
+  \item \textbf{Thin brand coverage.} Only 12 Brands were collected, because
+        Wikidata rarely records a manufacturer that is itself a distillery.
+  \item \textbf{Reconciliation recall and false positives.} Exact-label
+        matching cannot handle aliases or qualifiers, and the reward keywords
+        can accept a same-named brand or product as in the Martini case.
+  \item \textbf{Prose measures.} Quantities that are not numeric at the start
+        of the string (``Juice of 1/2'') remain text only.
+  \item \textbf{Static dereferencing.} GitHub Pages cannot perform content
+        negotiation, so the public URI resolves but downloads its RDF; correct
+        negotiation is demonstrated by the local server.
+  \item \textbf{Single cocktail source.} All cocktail facts come from
+        TheCocktailDB; cross-source validation was out of scope.
+\end{itemize}
+
+\subsection{Future work}
+
+The clearest improvement is a fuzzy reconciliation layer --- OpenRefine's
+reconciliation service, Silk or LIMES --- with manual confirmation, which would
+raise cocktail recall without sacrificing precision. A second direction is to
+materialise the inferred \texttt{hasIngredient} triples with an OWL reasoner
+(for example Jena's rule engine) and compare the inferred graph with the
+property-path answers used today. The unused \texttt{FlavorProfile} class could
+be populated from taste vocabularies, and measures could be normalised to a
+single unit to support aggregation. Finally, loading the three graphs as named
+graphs would enable provenance-style queries that separate asserted from
+inferred facts, and a larger hand-checked sample would tighten the precision
+estimate.
+
+\subsection{Lessons learned}
+
+Three lessons stand out. First, \emph{verify external identifiers}: the
+distillery QID taken from the plan denoted a street, and only a check against
+the source caught it. Second, \emph{reproducibility is a feature}: cached
+downloads, a hash manifest and deterministic URIs made every number in this
+report re-derivable, and quality gates caught regressions early. Third,
+\emph{portability deserves testing}: the same SPARQL queries required prefix
+changes and a trigonometry-free rewrite before they ran on both rdflib and
+Jena, a difference that would otherwise have surfaced during the demonstration.
