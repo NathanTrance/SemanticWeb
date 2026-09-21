@@ -1,1 +1,47 @@
-% Appendix is added in the chapter pass.
+\appendix
+
+\section{Reproducing the pipeline}
+
+The complete pipeline can be re-run from a fresh clone with the commands in
+Listing~\ref{lst:commands}. Collection is cached, so the first run downloads
+the sources and later runs reuse \texttt{data/raw/}; the last two commands are
+the project's quality gates.
+
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small,
+    caption={Commands to reproduce the pipeline.},
+    label={lst:commands}]
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python etl/bootstrap.py      # collect + cache + manifest
+.venv/Scripts/python etl/map.py            # JSON -> data/rdf/data.rdf
+.venv/Scripts/python etl/reconcile.py      # links.rdf + sample.csv
+.venv/Scripts/python etl/validate_rdf.py   # quality gate 1: parse check
+.venv/Scripts/python etl/run_queries.py    # quality gate 2: 11 queries
+.venv/Scripts/python web/server.py         # endpoint + UI on port 8000
+\end{lstlisting}
+
+For the standard endpoint, \texttt{docker compose up -d} starts Fuseki,
+\texttt{etl/load\_fuseki.py} loads the three graphs, and
+\texttt{etl/run\_queries.py -{}-endpoint http://127.0.0.1:3030/ds/sparql}
+re-runs the same queries against it.
+
+\section{Demonstration queries and captured outputs}
+
+The eleven queries live in \texttt{queries/demo.rq}, each introduced by a
+\texttt{\# name:} marker. \texttt{etl/run\_queries.py} executes all of them and
+writes one output file per query into \texttt{report/query-results/}
+(\texttt{.csv} for \texttt{SELECT} and \texttt{ASK}, \texttt{.rdf} for
+\texttt{CONSTRUCT}); the Fuseki re-run produces the parallel
+\texttt{report/query-results-fuseki/} folder. The web UI loads the same file as
+presets, so the query catalogue, the report and the demonstration always agree.
+
+\section{Precision sample}
+
+\texttt{data/links/sample.csv} contains 50 links drawn with a fixed random
+seed. Each row records the linked entity, its kind, our label, the candidate
+Wikidata QID, the Wikidata description, the derived DBpedia URI and a
+confidence label; the last column, \texttt{verified\_true\_false}, is left
+empty for the human check. To measure precision, open each QID on Wikidata,
+decide whether it denotes the same real-world entity, write \texttt{true} or
+\texttt{false}, and divide the number of \texttt{true} rows by the number of
+checked rows. Because the seed is fixed, the sample is identical on every run.
