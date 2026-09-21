@@ -1,3 +1,190 @@
 \section{Ontology Design}
+\label{sec:ontology}
 
-% Content written in the chapter pass.
+\subsection{Design principles}
+
+The ontology, \texttt{drinkonto}, was designed with three principles in mind.
+
+\textbf{Reuse before inventing.} Standard vocabularies already cover most of
+what a drinks domain needs --- beverages, organisations, places, geographic
+coordinates, provenance --- so only genuinely domain-specific terms receive the
+project namespace (\texttt{drink:}). This keeps the graph interoperable: a
+query written against schema.org or Dublin Core terms matches our data directly.
+
+\textbf{Separate types from instances.} \texttt{drink:Gin} is a \emph{class};
+the individual \texttt{.../id/spirit/gin} is an instance of that class. Using
+one URI as both a class and an individual (OWL punning) is avoided because
+cocktails point at the individual, not at the class \cite{owl2}.
+
+\textbf{Model the application's questions.} The schema exists to answer
+questions such as ``which IBA cocktails use gin and lemon?'' and ``how much
+lemon is in a Whiskey Sour?''; the second question is what motivated the
+measure model in Section~\ref{sec:ontology}.
+
+\subsection{Reused vocabularies}
+
+Table~\ref{tab:reuse} lists the external vocabularies imported by the ontology
+and the terms actually used.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llp{7.2cm}@{}}
+    \toprule
+    Prefix & Namespace & Terms used in this project \\
+    \midrule
+    \texttt{schema} & schema.org & \texttt{Beverage}, \texttt{Brand},
+      \texttt{Organization}, \texttt{Product}, \texttt{Place},
+      \texttt{name}, \texttt{image}, \texttt{description} \\
+    \texttt{dcterms} & Dublin Core Terms & \texttt{title},
+      \texttt{description}, \texttt{identifier}, \texttt{source},
+      \texttt{license}, \texttt{spatial} \\
+    \texttt{foaf} & FOAF & \texttt{homepage}, \texttt{depiction} \\
+    \texttt{geo} & WGS84 geo & \texttt{lat}, \texttt{long} \\
+    \texttt{skos} & SKOS & \texttt{Concept}, \texttt{altLabel} \\
+    \texttt{owl}, \texttt{rdf}, \texttt{rdfs} & W3C core & typing, labels,
+      \texttt{subClassOf}, \texttt{inverseOf}, \texttt{propertyChainAxiom} \\
+    \bottomrule
+  \end{tabular}
+  \caption{External vocabularies reused by \texttt{drinkonto}.}
+  \label{tab:reuse}
+\end{table}
+
+\subsection{Classes and properties}
+
+Table~\ref{tab:classes} lists the classes. The umbrella class
+\texttt{drink:Beverage} is a subclass of \texttt{schema:Beverage} so that
+cocktails and spirits share a superclass without asserting anything about
+non-alcoholic drinks.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llp{6.6cm}@{}}
+    \toprule
+    Class & Superclass & Role \\
+    \midrule
+    \texttt{Cocktail} & \texttt{Beverage} & a mixed drink defined by a recipe \\
+    \texttt{Spirit} & \texttt{Beverage} & a spirit type; instances are categories, not bottles \\
+    \texttt{Gin}, \texttt{Whisky}, \texttt{Rum}, \texttt{Vodka}, \texttt{Tequila}, \texttt{Brandy}, \texttt{Liqueur}, \texttt{Absinthe} & \texttt{Spirit} & the eight spirit types recognised by the base-spirit classifier (Section~5) \\
+    \texttt{Ingredient} & \texttt{schema:Product} & a component used in a recipe (juice, syrup, bitters, \dots) \\
+    \texttt{IngredientAmount} & --- & one ingredient's use in one cocktail, carrying its measure \\
+    \texttt{Brand} & \texttt{schema:Brand} & a commercial product line, e.g.\ Bombay Sapphire \\
+    \texttt{Distillery} & \texttt{schema:Organization} & a physical production site \\
+    \texttt{GlassType} & \texttt{schema:Product} & a vessel a cocktail is served in \\
+    \texttt{FlavorProfile} & \texttt{skos:Concept} & a taste or style descriptor \\
+    \texttt{Beverage} & \texttt{schema:Beverage} & local umbrella class for cocktails and spirits \\
+    \bottomrule
+  \end{tabular}
+  \caption{Classes defined in \texttt{drinkonto}.}
+  \label{tab:classes}
+\end{table}
+
+Table~\ref{tab:objectprops} lists the object properties. Datatype properties
+attach literal values: \texttt{isIBA} (boolean), \texttt{preparation},
+\texttt{garnish} and \texttt{hasTag} (strings) on cocktails;
+\texttt{amountText} and \texttt{amountUnit} (strings) and \texttt{amountValue}
+(decimal) on ingredient amounts; \texttt{foundedYear} (gYear) on distilleries;
+and \texttt{aboutABV} (decimal) on spirits.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llp{5.6cm}@{}}
+    \toprule
+    Property & Domain $\rightarrow$ Range & Notes \\
+    \midrule
+    \texttt{baseSpirit} & Cocktail $\rightarrow$ Spirit & the dominant spirit \\
+    \texttt{usesIngredient} & Cocktail $\rightarrow$ IngredientAmount & recipe edge carrying a measure \\
+    \texttt{ofIngredient} & IngredientAmount $\rightarrow$ Ingredient & the ingredient a usage refers to \\
+    \texttt{hasIngredient} & Cocktail $\rightarrow$ Ingredient & not asserted: derived by the property chain \\
+    \texttt{servedIn} & Cocktail $\rightarrow$ GlassType & \\
+    \texttt{producedBy} / \texttt{produces} & Brand $\leftrightarrow$ Distillery & inverse pair \\
+    \texttt{brandOf} / \texttt{hasBrand} & Brand $\leftrightarrow$ Spirit & inverse pair \\
+    \texttt{locatedIn} & Distillery $\rightarrow$ \texttt{schema:Place} & sub-property of \texttt{dcterms:spatial} and \texttt{schema:location} \\
+    \texttt{countryOfOrigin} & Distillery $\rightarrow$ \texttt{schema:Country} & \\
+    \texttt{hasFlavorProfile} & Beverage $\rightarrow$ FlavorProfile & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Object properties: domain, range and design notes.}
+  \label{tab:objectprops}
+\end{table}
+
+\subsection{The measure model}
+
+The hardest modelling question was ``how much lemon is in a Whiskey Sour?''. A
+plain \texttt{Cocktail} $\rightarrow$ \texttt{Ingredient} edge cannot carry a
+measure, because an RDF predicate has no fields of its own. The solution is to
+make each ingredient \emph{usage} a first-class node of type
+\texttt{drink:IngredientAmount}. Listing~\ref{lst:amount} shows the pattern for
+the Negroni.
+
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small,
+    caption={Ingredient-amount pattern for the Negroni.},
+    label={lst:amount}]
+id:ingredient-amount/negroni/1  a drink:IngredientAmount ;
+        drink:ofIngredient  id:ingredient/gin ;
+        drink:amountText    "1 oz" ;
+        drink:amountValue   1.0 ;
+        drink:amountUnit    "oz" .
+
+id:cocktail/negroni  drink:usesIngredient  id:ingredient-amount/negroni/1 .
+\end{lstlisting}
+
+The measure is now addressable: every quantity can be queried or compared, and
+the prose form of the source is preserved next to the parsed numeric value.
+Section~5 describes how the numeric value is extracted.
+
+Finally, the ontology declares an OWL~2 property chain so that
+\texttt{hasIngredient} does not have to be stored at all:
+
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small]
+drink:hasIngredient  owl:propertyChainAxiom  ( drink:usesIngredient drink:ofIngredient )
+\end{lstlisting}
+
+A reasoner could use this axiom to derive \texttt{negroni hasIngredient gin}.
+The pipeline does not run a reasoner; instead, the demonstration queries
+traverse the same chain with a SPARQL property path
+(\texttt{drink:usesIngredient/drink:ofIngredient}), which yields identical
+answers without materialising inferred triples.
+
+\subsection{The ontology at a glance}
+
+Figure~\ref{fig:ontology} summarises the design: the recipe path
+\texttt{Cocktail} $\rightarrow$ \texttt{IngredientAmount} $\rightarrow$
+\texttt{Ingredient} in the upper row, the spirit and production chain below it,
+and the inferred shortcut \texttt{hasIngredient} drawn dashed. Inverse
+properties (\texttt{produces}, \texttt{hasBrand}) are omitted to keep the
+diagram readable.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+    cls/.style={draw, rounded corners=2pt, fill=blue!8, align=center,
+                font=\small, inner sep=3.5pt, minimum height=7mm},
+    arrow/.style={-{Latex[length=1.8mm]}, thick},
+    lab/.style={font=\scriptsize\ttfamily, inner sep=1.5pt, fill=white}
+  ]
+    \node[cls] (glass) {GlassType};
+    \node[cls, right=13mm of glass] (cocktail) {Cocktail};
+    \node[cls, right=20mm of cocktail] (amount) {IngredientAmount};
+    \node[cls, right=20mm of amount] (ingredient) {Ingredient};
+    \node[cls, below=11mm of cocktail] (spirit) {Spirit (Gin, Rum, \dots)};
+    \node[cls, below=10mm of spirit] (brand) {Brand};
+    \node[cls, right=14mm of brand] (distillery) {Distillery};
+    \node[cls, right=14mm of distillery] (place) {\texttt{schema:Place}};
+
+    \draw[arrow] (cocktail) -- node[lab, above] {servedIn} (glass);
+    \draw[arrow] (cocktail) -- node[lab, above] {usesIngredient} (amount);
+    \draw[arrow] (amount) -- node[lab, above] {ofIngredient} (ingredient);
+    \draw[arrow] (cocktail) -- node[lab, right] {baseSpirit} (spirit);
+    \draw[arrow] (spirit) -- node[lab, right] {hasBrand} (brand);
+    \draw[arrow] (brand) -- node[lab, above] {producedBy} (distillery);
+    \draw[arrow] (distillery) -- node[lab, above] {countryOfOrigin} (place);
+    \draw[arrow, dashed] (cocktail) to[out=60, in=120]
+      node[lab, above] {hasIngredient (property chain)} (ingredient);
+  \end{tikzpicture}
+  \caption{Summary of \texttt{drinkonto}. Solid arrows are asserted
+  properties, the dashed arrow is inferred through the OWL~2 property chain.}
+  \label{fig:ontology}
+\end{figure}
