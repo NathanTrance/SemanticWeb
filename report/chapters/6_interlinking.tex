@@ -1,3 +1,118 @@
 \section{Interlinking with Wikidata and DBpedia}
+\label{sec:interlinking}
 
-% Content written in the chapter pass.
+The fifth star requires publishing links to other people's data. This project
+produces \texttt{owl:sameAs} statements from its entities to Wikidata items and
+DBpedia resources, implemented in \texttt{etl/reconcile.py}.
+
+\subsection{Two kinds of links}
+
+Distilleries and brands arrive with a Wikidata QID that was collected directly
+from the source (Section~3), so no matching is needed: the QID is simply copied
+as an \texttt{owl:sameAs} target and marked with high confidence. Cocktails and
+ingredients, by contrast, have no external identifier in the source data, so
+they must be \emph{reconciled} against Wikidata.
+
+\subsection{The matching rule}
+
+For each cocktail or ingredient label, the MediaWiki
+\texttt{wbsearchentities} API is queried and the candidates are filtered and
+scored. A candidate is considered at all only if its label matches ours after
+normalisation (accents removed, lower case, punctuation collapsed to spaces),
+so ``Goldschl\"ager'' may match ``Goldschlager'' but ``Martini'' may not match
+``Martini Bianco''. Surviving candidates receive a score:
+
+\[
+\mathrm{score}(c) = 1 + \mathit{reward}(c) - 2 \cdot \mathit{penalty}(c),
+\]
+
+where \emph{reward} is 1 when the Wikidata description contains a
+category keyword and 0 otherwise, and \emph{penalty} is 1 when it contains a
+blacklisted term. Category keywords are \texttt{cocktail}, \texttt{drink} and
+\texttt{beverage} for cocktails, extended with terms such as \texttt{juice},
+\texttt{syrup}, \texttt{bitters}, \texttt{distilled} and \texttt{liqueur} for
+ingredients. The blacklist covers the usual homonyms: \texttt{family name},
+\texttt{song}, \texttt{street}, \texttt{number}, \texttt{programming language},
+\texttt{singer}, and similar terms. Cocktails must reach a score of at least
+2.0 to be linked, ingredients at least 1.0; the strictest candidate wins.
+Entities that fail the test are left unlinked rather than guessed.
+
+Table~\ref{tab:reconcile-examples} shows three real rows from the evaluation
+sample. The third row is a false positive that the rule accepts: the cocktail
+\emph{Martini} matches the vermouth \emph{brand} Martini, because the
+description contains the reward word ``drinks''. This is exactly the failure
+mode the hand-checked sample is meant to catch.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}llllc@{}}
+    \toprule
+    Label & QID & Wikidata description & Score & Outcome \\
+    \midrule
+    Negroni & Q1401202 & cocktail & 2.0 & accepted (high) \\
+    Goldschlager & Q3110126 & Swiss cinnamon schnapps & 1.0 & accepted (low) \\
+    Martini & Q1068671 & Brand of Italian drinks & 2.0 & accepted --- false positive \\
+    \bottomrule
+  \end{tabular}
+  \caption{Worked reconciliation examples taken from
+  \texttt{data/links/sample.csv}.}
+  \label{tab:reconcile-examples}
+\end{table}
+
+\subsection{From QIDs to DBpedia}
+
+For every accepted QID, the pipeline batch-fetches the item's sitelinks (50
+items per call) and asks for the English Wikipedia title. When a title exists,
+the corresponding DBpedia resource URI is minted from it, which gives most
+accepted entities a second \texttt{owl:sameAs} statement. Provenance is
+recorded with \texttt{dcterms:source} pointing at the Wikidata page:
+
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small]
+<https://nathantrance.github.io/SemanticWeb/id/cocktail/negroni>
+    owl:sameAs  <http://www.wikidata.org/entity/Q1401202> ;
+    owl:sameAs  <http://dbpedia.org/resource/Negroni> ;
+    dcterms:source  <https://www.wikidata.org/wiki/Q1401202> .
+\end{lstlisting}
+
+\subsection{Link statistics}
+
+Table~\ref{tab:links} summarises the result. In total, 1{,}220 entities are
+linked to Wikidata and 390 of them also to DBpedia, producing 1{,}610
+\texttt{owl:sameAs} statements. Distilleries and brands link with full recall
+because their QIDs come from the source; cocktail recall is deliberately low
+because exact-label matching and the high threshold reject ambiguous cases, and
+DBpedia coverage depends on the existence of an English Wikipedia article.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lrrrr@{}}
+    \toprule
+    Kind & Entities & Wikidata & DBpedia & Recall \\
+    \midrule
+    Cocktails & 441 & 90 & 75 & 20.4\% \\
+    Ingredients & 299 & 253 & 154 & 84.6\% \\
+    Distilleries & 865 & 865 & 156 & 100\% \\
+    Brands & 12 & 12 & 5 & 100\% \\
+    \midrule
+    Total & 1{,}617 & 1{,}220 & 390 & 75.4\% \\
+    \bottomrule
+  \end{tabular}
+  \caption{Interlinking results: entities, links and recall per kind. The
+  DBpedia column is a subset of the Wikidata column.}
+  \label{tab:links}
+\end{table}
+
+\subsection{Precision evaluation}
+
+Interlinking quality is measured on a reproducible sample rather than on
+anecdotes. The script draws 50 links with a fixed random seed, so the same
+sample is produced on every run, and writes them to
+\texttt{data/links/sample.csv} with the candidate QID, its Wikidata
+description, the DBpedia URI and a confidence label. A human then opens each
+QID and records whether it denotes the same real-world entity. Precision is the
+number of correct links divided by the number checked, with a project target of
+at least 90\%; the measured result is \textbf{[XX\% --- to be filled from the
+verified sample]}. The false positive in Table~\ref{tab:reconcile-examples} is
+part of that sample.
