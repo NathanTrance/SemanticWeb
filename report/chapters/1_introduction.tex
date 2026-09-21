@@ -1,3 +1,98 @@
 \section{Introduction}
+\label{sec:introduction}
 
-% Content written in the chapter pass.
+\subsection{Motivation}
+
+The classic World Wide Web links \emph{documents}: a page about an entity
+points to another page, and a reader follows the links. Machines can follow
+them too, but they cannot interpret them. The Semantic Web addresses this gap
+by publishing data as \emph{entities and relations} rather than pages: facts
+are expressed as RDF triples, so a computer can combine data about the same
+thing across independent sources \cite{rdf11, fivestar}. For example, our graph
+states that the Negroni has base spirit gin; Wikidata carries an item for the
+same cocktail; once the two identifiers are connected with
+\texttt{owl:sameAs}, a single query can use both datasets.
+
+This project applies those ideas to the world of drinks: cocktails, the
+ingredients and measures they use, the spirits and brands behind them, and the
+distilleries that produce those brands. The domain was chosen deliberately. The
+data is available in machine-readable form --- TheCocktailDB exposes a free
+JSON API \cite{cocktaildb} and Wikidata covers distilleries with coordinates
+\cite{wikidata} --- the entities are already present in existing Linked Open
+Data (LOD) datasets, which makes five-star linking realistic \cite{dbpedia},
+and the results are easy to inspect: ingredient lists, measures and maps make
+the application demonstrable rather than abstract.
+
+\subsection{Objectives}
+
+Following the five course requirements, the project delivers:
+
+\begin{enumerate}[label=(\arabic*), itemsep=2pt]
+  \item an OWL~2 ontology (\texttt{drinkonto}) that defines the classes and
+        properties of the domain;
+  \item a collection pipeline that gathers cocktail and distillery data from
+        public sources and records their provenance;
+  \item a transformation that emits the collected data as RDF in a
+        non-proprietary W3C format (four-star);
+  \item an interlinking step that reconciles our entities with Wikidata and
+        DBpedia through \texttt{owl:sameAs} (five-star);
+  \item a query interface: a SPARQL endpoint with a small query UI and eleven
+        curated demonstration queries.
+\end{enumerate}
+
+\subsection{Contributions}
+
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{A measure-aware ontology design.} Each ingredient usage is a
+        first-class \texttt{drink:IngredientAmount} node carrying the text,
+        numeric value and unit of the measure, and an OWL~2 property chain
+        derives \texttt{drink:hasIngredient}. Questions such as ``how much
+        lemon is in a Whiskey Sour?'' are therefore answerable without
+        complicating the schema.
+  \item \textbf{A reproducible pipeline.} Downloads are cached, every source
+        dump is recorded in a manifest with a SHA-256 hash, identifiers are
+        deterministic, and two quality gates (RDF parse check; all demo
+        queries pass) guard the outputs.
+  \item \textbf{Precision-oriented interlinking.} Exact-label matching plus
+        description scoring is evaluated on a seeded, hand-checked sample of
+        50 links, producing 1{,}220 Wikidata and 390 DBpedia links (1{,}610
+        \texttt{owl:sameAs} statements in total).
+  \item \textbf{A portable query interface.} A zero-install SPARQL endpoint
+        with content negotiation and dereferenceable IRIs, whose eleven demo
+        queries were verified unchanged on Apache Jena Fuseki \cite{jena}.
+\end{itemize}
+
+\subsection{Team contributions}
+
+The work was carried out by four members; Table~\ref{tab:contributions}
+summarises the division of responsibilities.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Member & Main responsibilities \\
+    \midrule
+    {[Member 1]} & Ontology design; vocabulary reuse review; report editing \\
+    {[Member 2]} & Data collection and the RDF transformation pipeline \\
+    {[Member 3]} & Interlinking and precision evaluation; sample verification \\
+    {[Member 4]} & Query interface and demo queries; slides and video \\
+    \bottomrule
+  \end{tabular}
+  \caption{Division of work. All members took part in testing the pipeline and
+  reviewing the report.}
+  \label{tab:contributions}
+\end{table}
+
+\subsection{Report structure}
+
+The remainder of the report follows the order in which the application was
+built. Section~2 provides the background concepts used throughout: Linked Open
+Data and the five-star model, RDF, OWL~2 and SPARQL. Section~3 describes the
+data sources, their licences and the collection pipeline. Section~4 presents
+the ontology design, including the measure model. Section~5 explains how the
+raw data is transformed into RDF, and Section~6 how our entities are
+interlinked with Wikidata and DBpedia. Section~7 documents the query interface
+and representative results, Section~8 evaluates the result against the course
+requirements, and Section~9 concludes. The appendix lists the commands needed
+to reproduce the pipeline.
