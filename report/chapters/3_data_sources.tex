@@ -88,6 +88,132 @@ manufacturer (\texttt{P176}) to be a distillery.
   \label{fig:pipeline}
 \end{figure}
 
+\subsection{Designing the Wikidata queries}
+\label{sec:wikidata-queries}
+
+The two queries were derived from the ontology rather than written ad hoc:
+every class and field of Section~\ref{sec:ontology} dictates either a class
+constraint or an optional value to fetch. Class constraints use \texttt{P31}
+(\emph{instance of}): a distillery is an item whose \texttt{P31} is
+\texttt{Q1251750}. Spirit brands need one extra step, because a brand is an
+instance of a \emph{specific} spirit class (gin, whisky, \dots) and those
+classes are \texttt{P279} (\emph{subclass of}) \texttt{Q56139} (liquor). The
+property path \texttt{wdt:P31/wdt:P279*} therefore reads ``instance of liquor
+or of any of its subclasses'', where \texttt{*} allows zero or more subclass
+steps; the path was verified on Wikidata (gin, \texttt{Q170210}, is a subclass
+of \texttt{Q56139}). The manufacturer constraint \texttt{?b wdt:P176 ?d} plus
+\texttt{?d wdt:P31 wd:Q1251750} is what ties a brand to a distillery and makes
+the \texttt{drink:producedBy} edge of Section~\ref{sec:ontology} possible.
+
+All descriptive fields are wrapped in \texttt{OPTIONAL} because Wikidata is
+incomplete: a missing coordinate or website must not remove the entity from the
+result. Readable labels are produced by the standard
+\texttt{SERVICE wikibase:label} block, which turns each \texttt{?x} variable
+into an \texttt{?xLabel} from \texttt{rdfs:label} using a language fallback
+list. The English Wikipedia article is fetched with the \texttt{schema:about}
+plus \texttt{schema:isPartOf} pattern, because sitelinks are not ordinary
+statements; the resulting URL is what Section~\ref{sec:interlinking} converts
+into a DBpedia URI. Listing~\ref{lst:wikidata-queries} shows both queries as
+executed by the collector, and Table~\ref{tab:wikidata-props} summarises the
+properties they use.
+
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\scriptsize, breaklines=true,
+    caption={The two Wikidata collection queries: spirit brands (top) and
+    distilleries (bottom).},
+    label={lst:wikidata-queries}]
+SELECT ?b ?bLabel ?d ?dLabel ?country ?countryLabel ?inception ?website ?image ?article WHERE {
+  ?b wdt:P31/wdt:P279* wd:Q56139 .
+  ?b wdt:P176 ?d .
+  ?d wdt:P31 wd:Q1251750 .
+  OPTIONAL { ?b wdt:P495 ?country . }
+  OPTIONAL { ?b wdt:P571 ?inception . }
+  OPTIONAL { ?b wdt:P856 ?website . }
+  OPTIONAL { ?b wdt:P18 ?image . }
+  OPTIONAL { ?article schema:about ?b ; schema:isPartOf <https://en.wikipedia.org/> . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+SELECT ?d ?dLabel ?coord ?country ?countryLabel ?inception ?website ?image ?article WHERE {
+  ?d wdt:P31 wd:Q1251750 .
+  OPTIONAL { ?d wdt:P625 ?coord . }
+  OPTIONAL { ?d wdt:P17 ?country . }
+  OPTIONAL { ?d wdt:P571 ?inception . }
+  OPTIONAL { ?d wdt:P856 ?website . }
+  OPTIONAL { ?d wdt:P18 ?image . }
+  OPTIONAL { ?article schema:about ?d ; schema:isPartOf <https://en.wikipedia.org/> . }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en,de,fr,es". }
+}
+\end{lstlisting}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Property & Meaning & Used in \\
+    \midrule
+    \texttt{P31} & instance of & both queries \\
+    \texttt{P279} & subclass of & brand query (property path) \\
+    \texttt{P176} & manufacturer & brand query \\
+    \texttt{P625} & coordinate location & distillery query \\
+    \texttt{P17} & country & distillery query \\
+    \texttt{P495} & country of origin & brand query \\
+    \texttt{P571} & inception & both queries \\
+    \texttt{P856} & official website & both queries \\
+    \texttt{P18} & image & both queries \\
+    \bottomrule
+  \end{tabular}
+  \caption{Wikidata properties used by the two queries. The class constraints
+  are \texttt{Q1251750} (distillery) and \texttt{Q56139} (liquor).}
+  \label{tab:wikidata-props}
+\end{table}
+
+\subsection{Sample query results}
+\label{sec:query-samples}
+
+Tables~\ref{tab:sample-distilleries} and \ref{tab:sample-brands} show
+representative rows of the two queries as mapped into the graph: the distillery
+query returned 998 rows for 865 distinct items, and the brand query returned 12
+rows. Optional fields are frequently absent in Wikidata, which is why several
+cells in the tables are empty.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lllr@{}}
+    \toprule
+    Distillery & Coordinates (lat, lon) & Country & Founded \\
+    \midrule
+    Highland Park distillery & 58.969, -2.955 & United Kingdom & 1788 \\
+    Frapin & 45.617, -0.218 & France & 1270 \\
+    John Watling's Distillery & 25.075, -77.348 & The Bahamas & 1789 \\
+    Loch Ewe Distillery & 57.834, -5.574 & United Kingdom & 2004 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Sample rows from the distillery query (\texttt{?dLabel},
+  \texttt{P625}, country label, \texttt{P571}).}
+  \label{tab:sample-distilleries}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Brand & Manufacturer (distillery) & Website (\texttt{P856}) \\
+    \midrule
+    Gentleman Jack & Jack Daniel's & n/a \\
+    Kyr\"o Napue Gin & Kyr\"o Distillery Company & n/a \\
+    Connemara & Cooley Distillery & n/a \\
+    Viru Valge & Liviko & viruvalge.ee \\
+    \bottomrule
+  \end{tabular}
+  \caption{Sample rows from the brand query: the brand label, its manufacturer
+  (the \texttt{?dLabel} that becomes \texttt{drink:producedBy}) and the
+  optional website field, shown as host only.}
+  \label{tab:sample-brands}
+\end{table}
+
 \subsection{Provenance and reproducibility}
 
 Every download is cached under \texttt{data/raw/} and skipped on re-runs unless
