@@ -3,7 +3,7 @@
 
 \subsection{Design principles}
 
-The ontology, \texttt{drinkonto}, was designed with three principles in mind.
+The ontology, \emph{DrinkOnto}, was designed with three principles in mind.
 
 \textbf{Reuse before inventing.} Standard vocabularies already cover most of
 what a drinks domain needs --- beverages, organisations, places, geographic
@@ -46,7 +46,7 @@ and the terms actually used.
       \texttt{subClassOf}, \texttt{inverseOf}, \texttt{propertyChainAxiom} \\
     \bottomrule
   \end{tabular}
-  \caption{External vocabularies reused by \texttt{drinkonto}.}
+  \caption{External vocabularies reused by \emph{DrinkOnto}.}
   \label{tab:reuse}
 \end{table}
 
@@ -76,7 +76,7 @@ non-alcoholic drinks.
     \texttt{Beverage} & \texttt{schema:Beverage} & local umbrella class for cocktails and spirits \\
     \bottomrule
   \end{tabular}
-  \caption{Classes defined in \texttt{drinkonto}.}
+  \caption{Classes defined in \emph{DrinkOnto}.}
   \label{tab:classes}
 \end{table}
 
@@ -184,7 +184,7 @@ diagram readable.
     \draw[arrow, dashed] (cocktail) to[out=60, in=120]
       node[lab, above] {hasIngredient (property chain)} (ingredient);
   \end{tikzpicture}
-  \caption{Summary of \texttt{drinkonto}. Solid arrows are asserted
+  \caption{Summary of \emph{DrinkOnto}. Solid arrows are asserted
   properties, the dashed arrow is inferred through the OWL~2 property chain.}
   \label{fig:ontology}
 \end{figure}
