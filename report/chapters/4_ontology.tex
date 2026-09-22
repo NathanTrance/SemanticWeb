@@ -60,7 +60,7 @@ non-alcoholic drinks.
 \begin{table}[h]
   \centering
   \small
-  \begin{tabular}{@{}llp{6.6cm}@{}}
+  \begin{tabular}{@{}p{4.0cm}p{3.9cm}p{6.6cm}@{}}
     \toprule
     Class & Superclass & Role \\
     \midrule
@@ -138,14 +138,14 @@ Section~\ref{sec:transformation} describes how the numeric value is extracted.
 Finally, the ontology declares an OWL~2 property chain so that
 \texttt{hasIngredient} does not have to be stored at all:
 
-\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small]
+\begin{lstlisting}[frame=single, basicstyle=\ttfamily\small, breaklines=true]
 drink:hasIngredient  owl:propertyChainAxiom  ( drink:usesIngredient drink:ofIngredient )
 \end{lstlisting}
 
 A reasoner could use this axiom to derive \texttt{negroni hasIngredient gin}.
 The pipeline does not run a reasoner; instead, the demonstration queries
 traverse the same chain with a SPARQL property path
-(\texttt{drink:usesIngredient/drink:ofIngredient}), which yields identical
+(\texttt{usesIngredient/ofIngredient}), which yields identical
 answers without materialising inferred triples.
 
 \subsection{The ontology at a glance}

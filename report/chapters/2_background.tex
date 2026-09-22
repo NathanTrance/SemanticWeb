@@ -45,7 +45,7 @@ datatype property).
 Every entity is named by a URI (Uniform Resource Identifier),
 a global name that looks like a URL but identifies a thing rather than a
 page. This project mints its own identifiers under a single base
-(\texttt{https://nathantrance.github.io/SemanticWeb/}) and adopts foreign
+(\texttt{https://\allowbreak nathantrance.github.io/\allowbreak SemanticWeb/}) and adopts foreign
 identifiers (Wikidata QIDs, DBpedia resource URIs) instead of re-minting
 them. Global naming is what makes later linking (Section~\ref{sec:interlinking}) possible.
 
@@ -85,7 +85,7 @@ was edited in Prot\'eg\'e \cite{protege}.
 SPARQL is the query language for RDF \cite{sparql11}. A \texttt{SELECT} query
 returns rows, like SQL, and a \texttt{CONSTRUCT} query returns new RDF triples.
 SPARQL 1.1 property paths (for example
-\texttt{drink:usesIngredient/drink:ofIngredient}) traverse a chain of
+\texttt{usesIngredient/ofIngredient}) traverse a chain of
 properties in one expression; Section~\ref{sec:ontology} shows how this is used to execute the
 ontology's property chain without a separate reasoner. A URI is
 \emph{dereferenceable} when fetching it returns a representation of the thing

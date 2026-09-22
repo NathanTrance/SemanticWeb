@@ -53,9 +53,9 @@ at negligible cost.
   \label{tab:mapping}
 \end{table}
 
-Ingredients are shared across recipes through deterministic slugs, so the
-individual \texttt{.../id/ingredient/gin} is written once and referenced by
-every cocktail that uses gin; the same applies to glass types. Wikidata records
+Ingredients are shared across recipes through deterministic slugs: the URI
+\texttt{.../id/ingredient/gin} is written once and referenced by every
+cocktail that uses gin, and the same applies to glass types. Wikidata records
 map almost directly: a distillery becomes a \texttt{drink:Distillery}, its QID
 becomes a \texttt{dcterms:identifier}, coordinates become \texttt{geo:long} and
 \texttt{geo:lat}, and countries become \texttt{schema:Place} nodes reachable
