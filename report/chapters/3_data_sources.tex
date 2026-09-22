@@ -23,7 +23,7 @@ Wikidata items (Section~\ref{sec:interlinking}).
     Wikidata \cite{wikidata} & Distilleries (\texttt{P31 Q1251750}) with
     coordinates, country, inception, website, image and enwiki sitelink;
     spirit brands (\texttt{P31/P279* Q56139} with manufacturer a distillery)
-    & SPARQL endpoint and MediaWiki API & CC0 1.0 \\
+    & SPARQL endpoint (collection) and MediaWiki API (linking) & CC0 1.0 \\
     DBpedia \cite{dbpedia} & Resource URIs used as \texttt{owl:sameAs} targets
     & Resource URIs (no bulk download) & CC BY-SA 4.0 \\
     \bottomrule
@@ -93,8 +93,8 @@ manufacturer (\texttt{P176}) to be a distillery.
 Every download is cached under \texttt{data/raw/} and skipped on re-runs unless
 \texttt{--force} is given; the pipeline is therefore idempotent. For each dump,
 the collector writes an entry to \texttt{data/raw/manifest.json} containing the
-source URL, licence, retrieval timestamp, record count and a SHA-256 hash of
-the file. Table~\ref{tab:manifest} summarises the three dumps. The hash makes
+source (a URL or a query description), licence, retrieval timestamp, record
+count and a SHA-256 hash of the file. Table~\ref{tab:manifest} summarises the three dumps. The hash makes
 changes detectable: re-downloading a source that has changed produces a
 different fingerprint, which is exactly the kind of provenance evidence the
 first four stars require.
