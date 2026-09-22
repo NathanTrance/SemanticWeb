@@ -30,7 +30,7 @@ Following the five course requirements, the project delivers:
 \begin{enumerate}[label=(\arabic*), itemsep=2pt]
   \item an OWL~2 ontology (\emph{DrinkOnto}) that defines the classes and
         properties of the domain;
-  \item a collection pipeline that gathers cocktail and distillery data from
+  \item a collection pipeline that gathers cocktail data from
         public sources and records their provenance;
   \item a transformation that emits the collected data as RDF in a
         non-proprietary W3C format (four-star);
@@ -42,47 +42,25 @@ Following the five course requirements, the project delivers:
 
 \subsection{Contributions}
 
+The main contributions of the project are the following:
+
 \begin{itemize}[itemsep=2pt]
-  \item \textbf{A measure-aware ontology design.} Each ingredient usage is a
-        first-class \texttt{drink:IngredientAmount} node carrying the text,
-        numeric value and unit of the measure, and an OWL~2 property chain
-        derives \texttt{drink:hasIngredient}. Questions such as ``how much
-        lemon is in a Whiskey Sour?'' are therefore answerable without
-        complicating the schema.
-  \item \textbf{A reproducible pipeline.} Downloads are cached, every source
-        dump is recorded in a manifest with a SHA-256 hash, identifiers are
-        deterministic, and two quality gates (RDF parse check; all demo
-        queries pass) guard the outputs.
-  \item \textbf{Precision-oriented interlinking.} Exact-label matching plus
-        description scoring is evaluated on a seeded, hand-checked sample of
-        50 links, producing 1{,}220 Wikidata and 390 DBpedia links (1{,}610
-        \texttt{owl:sameAs} statements in total).
-  \item \textbf{A portable query interface.} A zero-install SPARQL endpoint
-        with content negotiation and dereferenceable URIs, whose eleven demo
-        queries were verified unchanged on Apache Jena Fuseki \cite{jena}.
+  \item a compact OWL~2 ontology, DrinkOnto, that keeps measures queryable by
+        reifying each ingredient usage as an \texttt{IngredientAmount} node,
+        and derives \texttt{hasIngredient} through a property chain, showing
+        OWL constructs beyond plain subclassing;
+  \item a reproducible pipeline for collecting, transforming and interlinking
+        the data, with cached downloads, a SHA-256 provenance manifest,
+        deterministic URIs and two quality gates, so that every reported result
+        can be regenerated from the repository;
+  \item a precision-oriented interlinking workflow with an explicit evaluation
+        protocol: exact-label matching, description scoring, and a seeded
+        hand-checked sample of links whose failure modes are reported rather
+        than hidden;
+  \item a portable query interface with dereferenceable URIs and eleven
+        curated queries, verified unchanged on both rdflib and Apache Jena
+        Fuseki \cite{jena}.
 \end{itemize}
-
-\subsection{Team contributions}
-
-The work was carried out by four members; Table~\ref{tab:contributions}
-summarises the division of responsibilities.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{@{}ll@{}}
-    \toprule
-    Member & Main responsibilities \\
-    \midrule
-    {[Member 1]} & Ontology design; vocabulary reuse review; report editing \\
-    {[Member 2]} & Data collection and the RDF transformation pipeline \\
-    {[Member 3]} & Interlinking and precision evaluation; sample verification \\
-    {[Member 4]} & Query interface and demo queries; slides and video \\
-    \bottomrule
-  \end{tabular}
-  \caption{Division of work. All members took part in testing the pipeline and
-  reviewing the report.}
-  \label{tab:contributions}
-\end{table}
 
 \subsection{Report structure}
 
@@ -97,4 +75,5 @@ entities are linked to Wikidata and DBpedia. Section~\ref{sec:query} documents
 the query interface and representative results,
 Section~\ref{sec:evaluation} evaluates the result against the course
 requirements, and Section~\ref{sec:conclusion} concludes. The appendix lists
-the commands needed to reproduce the pipeline.
+the commands needed to reproduce the pipeline and the division of work among
+the team members.
