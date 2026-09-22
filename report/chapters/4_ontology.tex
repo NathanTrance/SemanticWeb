@@ -6,8 +6,8 @@
 The ontology, \emph{DrinkOnto}, was designed with three principles in mind.
 
 \textbf{Reuse before inventing.} Standard vocabularies already cover most of
-what a drinks domain needs --- beverages, organisations, places, geographic
-coordinates, provenance --- so only genuinely domain-specific terms receive the
+what a drinks domain needs (beverages, organisations, places, geographic
+coordinates, provenance), so only genuinely domain-specific terms receive the
 project namespace (\texttt{drink:}). This keeps the graph interoperable: a
 query written against schema.org or Dublin Core terms matches our data directly.
 
@@ -68,7 +68,7 @@ non-alcoholic drinks.
     \texttt{Spirit} & \texttt{Beverage} & a spirit type; instances are categories, not bottles \\
     \texttt{Gin}, \texttt{Whisky}, \texttt{Rum}, \texttt{Vodka}, \texttt{Tequila}, \texttt{Brandy}, \texttt{Liqueur}, \texttt{Absinthe} & \texttt{Spirit} & the eight spirit types recognised by the base-spirit classifier (Section~\ref{sec:transformation}) \\
     \texttt{Ingredient} & \texttt{schema:Product} & a component used in a recipe (juice, syrup, bitters, \dots) \\
-    \texttt{IngredientAmount} & --- & one ingredient's use in one cocktail, carrying its measure \\
+    \texttt{IngredientAmount} & n/a & one ingredient's use in one cocktail, carrying its measure \\
     \texttt{Brand} & \texttt{schema:Brand} & a commercial product line, e.g.\ Bombay Sapphire \\
     \texttt{Distillery} & \texttt{schema:Organization} & a physical production site \\
     \texttt{GlassType} & \texttt{schema:Product} & a vessel a cocktail is served in \\

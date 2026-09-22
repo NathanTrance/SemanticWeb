@@ -59,15 +59,15 @@ manufacturer (\texttt{P176}) to be a distillery.
     \node[src] (cdb) {TheCocktailDB JSON API};
     \node[src, right=6mm of cdb] (wd) {Wikidata SPARQL endpoint};
     \node[box, below=6mm of $(cdb.east)!0.5!(wd.west)$] (boot)
-      {\texttt{etl/bootstrap.py} --- collect, cache, write manifest};
+      {\texttt{etl/bootstrap.py}: collect, cache, write manifest};
     \node[box, below=4.2mm of boot] (raw)
       {\texttt{data/raw/} JSON dumps $+$ \texttt{manifest.json}};
     \node[box, below=4.2mm of raw] (map)
-      {\texttt{etl/map.py} --- transform JSON to RDF};
+      {\texttt{etl/map.py}: transform JSON to RDF};
     \node[box, below=4.2mm of map] (data)
       {\texttt{data/rdf/data.rdf} (instance graph, ontology terms)};
     \node[box, below=4.2mm of data] (rec)
-      {\texttt{etl/reconcile.py} --- match against Wikidata and DBpedia};
+      {\texttt{etl/reconcile.py}: match against Wikidata and DBpedia};
     \node[box, below=4.2mm of rec] (links) {\texttt{data/links/links.rdf}};
     \node[box, below=4.2mm of links] (serve)
       {\texttt{etl/run\_queries.py} $\cdot$ \texttt{web/server.py} $\cdot$ Fuseki};
@@ -133,4 +133,4 @@ ingredient, and measures are free text such as ``Juice of 1/2'' rather than
 numbers, which is why Section~\ref{sec:transformation} keeps the original text while parsing a numeric
 value only when possible. Finally, only 12 spirit brands are returned, because
 the requirement that the manufacturer be recorded as a distillery is rarely
-satisfied in Wikidata --- a limitation revisited in Section~\ref{sec:evaluation}.
+satisfied in Wikidata; this limitation is revisited in Section~\ref{sec:evaluation}.

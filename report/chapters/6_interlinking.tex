@@ -52,7 +52,7 @@ mode the hand-checked sample is meant to catch.
     \midrule
     Negroni & Q1401202 & cocktail & 2.0 & accepted (high) \\
     Goldschlager & Q3110126 & Swiss cinnamon schnapps & 1.0 & accepted (low) \\
-    Martini & Q1068671 & Brand of Italian drinks & 2.0 & accepted --- false positive \\
+    Martini & Q1068671 & Brand of Italian drinks & 2.0 & accepted (false positive) \\
     \bottomrule
   \end{tabular}
   \caption{Worked reconciliation examples taken from
@@ -113,6 +113,6 @@ sample is produced on every run, and writes them to
 description, the DBpedia URI and a confidence label. A human then opens each
 QID and records whether it denotes the same real-world entity. Precision is the
 number of correct links divided by the number checked, with a project target of
-at least 90\%; the measured result is \textbf{[XX\% --- to be filled from the
+at least 90\%; the measured result is \textbf{[XX\%, to be filled from the
 verified sample]}. The false positive in Table~\ref{tab:reconcile-examples} is
 part of that sample.

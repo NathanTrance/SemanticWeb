@@ -8,13 +8,13 @@ the standard library's HTTP server and rdflib; it loads the ontology, the
 instance graph and the links graph at start-up and exposes three services:
 
 \begin{itemize}[itemsep=1pt]
-  \item \texttt{POST /sparql} (and \texttt{GET /sparql?query=...}) --- a SPARQL
+  \item \texttt{POST /sparql} (and \texttt{GET /sparql?query=...}): a SPARQL
         1.1 endpoint with content negotiation: query results are returned as
         SPARQL JSON or XML, \texttt{CONSTRUCT} results as Turtle, RDF/XML or
         JSON-LD, and CORS headers are sent so the UI can be hosted separately;
-  \item \texttt{GET /onto} and \texttt{GET /id/<type>/<slug>} ---
+  \item \texttt{GET /onto} and \texttt{GET /id/<type>/<slug>}:
         dereferenceable URIs (described below);
-  \item everything else --- the static query UI, which loads the demonstration
+  \item everything else: the static query UI, which loads the demonstration
         queries from \texttt{queries/demo.rq} as presets, submits them to
         whichever endpoint is configured, and renders the results as a table.
 \end{itemize}
@@ -64,8 +64,8 @@ ingredients with the property path
 \texttt{drink:usesIngredient/drink:ofIngredient}, replaying the path for every
 other cocktail, and grouping the result; the eight answers include the
 Americano, the Bijou and the French Negroni. Query 06 is a \texttt{CONSTRUCT}
-that extracts the Negroni's complete subgraph --- 21 triples including its
-links --- as a standalone RDF document, demonstrating that SPARQL can produce
+that extracts the Negroni's complete subgraph (21 triples including its
+links) as a standalone RDF document, demonstrating that SPARQL can produce
 RDF, not only rows. Query 05 is the five-star evidence: it returns only
 cocktails that carry an \texttt{owl:sameAs} to both a Wikidata item and a
 DBpedia resource, and finds 25 of them.
@@ -85,8 +85,8 @@ and therefore has no numeric value, while the other parses to 0.5 slice.
     Ingredient & Measure text & Value & Unit \\
     \midrule
     blended whiskey & 2 oz & 2.0 & oz \\
-    cherry & 1 & 1.0 & --- \\
-    lemon & Juice of 1/2 & --- & --- \\
+    cherry & 1 & 1.0 & n/a \\
+    lemon & Juice of 1/2 & n/a & n/a \\
     lemon & 1/2 slice & 0.5 & slice \\
     powdered sugar & 1/2 tsp & 0.5 & tsp \\
     \bottomrule

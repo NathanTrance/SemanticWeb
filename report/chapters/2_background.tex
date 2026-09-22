@@ -16,6 +16,7 @@ project.
 
 \begin{table}[h]
   \centering
+  \renewcommand{\arraystretch}{1.35}
   \begin{tabular}{@{}clp{7.4cm}@{}}
     \toprule
     Stars & Principle & How this project satisfies it \\
@@ -34,7 +35,7 @@ project.
 
 \subsection{RDF: triples, URIs and serialization}
 
-RDF represents knowledge as \emph{triples}: a subject, a predicate and an
+RDF represents knowledge as triples: a subject, a predicate and an
 object \cite{rdf11}. All triples in this report follow the pattern
 \texttt{subject predicate object}; for example, the Negroni
 (\texttt{.../id/cocktail/negroni}) \texttt{drink:baseSpirit}
@@ -42,11 +43,11 @@ object \cite{rdf11}. All triples in this report follow the pattern
 point either to another entity (an object property) or to a literal value (a
 datatype property).
 
-Every entity is named by a \emph{URI} (Uniform Resource Identifier)
---- a global name that looks like a URL but identifies a thing rather than a
+Every entity is named by a URI (Uniform Resource Identifier),
+a global name that looks like a URL but identifies a thing rather than a
 page. This project mints its own identifiers under a single base
 (\texttt{https://nathantrance.github.io/SemanticWeb/}) and adopts foreign
-identifiers --- Wikidata QIDs, DBpedia resource URIs --- instead of re-minting
+identifiers (Wikidata QIDs, DBpedia resource URIs) instead of re-minting
 them. Global naming is what makes later linking (Section~\ref{sec:interlinking}) possible.
 
 RDF is a data model, not a file format. The same triples can be written in
