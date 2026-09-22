@@ -6,7 +6,9 @@
 The project combines one domain-specific API with two general LOD datasets.
 Table~\ref{tab:sources} lists what each source contributes, how it is accessed
 and under which licence. Only the documented API and SPARQL endpoints are used;
-no review sites are scraped.
+no review sites are scraped. DBpedia is not queried during collection: its
+resource URIs are derived later from the English Wikipedia sitelinks of matched
+Wikidata items (Section~\ref{sec:interlinking}).
 
 \begin{table}[h]
   \centering
