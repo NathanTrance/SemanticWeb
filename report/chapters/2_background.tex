@@ -47,7 +47,7 @@ Every entity is named by a \emph{URI} (Uniform Resource Identifier)
 page. This project mints its own identifiers under a single base
 (\texttt{https://nathantrance.github.io/SemanticWeb/}) and adopts foreign
 identifiers --- Wikidata QIDs, DBpedia resource URIs --- instead of re-minting
-them. Global naming is what makes later linking (Section~6) possible.
+them. Global naming is what makes later linking (Section~\ref{sec:interlinking}) possible.
 
 RDF is a data model, not a file format. The same triples can be written in
 several syntaxes; converting between them changes nothing semantically. The
@@ -77,7 +77,7 @@ RDF alone describes data; a schema for a domain is usually written in RDFS or
 OWL. We use OWL~2 \cite{owl2}, which adds logical axioms beyond subclassing:
 inverse properties (\texttt{owl:inverseOf}), sub-properties, and property
 chains (\texttt{owl:propertyChainAxiom}) that let a reasoner derive new
-triples. Section~4 explains which axioms are used and why; the ontology itself
+triples. Section~\ref{sec:ontology} explains which axioms are used and why; the ontology itself
 was edited in Prot\'eg\'e \cite{protege}.
 
 \subsection{SPARQL and dereferenceable URIs}
@@ -86,12 +86,12 @@ SPARQL is the query language for RDF \cite{sparql11}. A \texttt{SELECT} query
 returns rows, like SQL, and a \texttt{CONSTRUCT} query returns new RDF triples.
 SPARQL 1.1 property paths (for example
 \texttt{drink:usesIngredient/drink:ofIngredient}) traverse a chain of
-properties in one expression; Section~4 shows how this is used to execute the
+properties in one expression; Section~\ref{sec:ontology} shows how this is used to execute the
 ontology's property chain without a separate reasoner. A URI is
 \emph{dereferenceable} when fetching it returns a representation of the thing
 it names; serving RDF or HTML depending on the client's \texttt{Accept} header
 is called content negotiation and is the strongest practical evidence for the
-fourth star (Section~7).
+fourth star (Section~\ref{sec:query}).
 
 \subsection{Source datasets}
 

@@ -22,7 +22,7 @@ and every run of non-alphanumeric characters becomes a hyphen, so
 appending \texttt{-2}, \texttt{-3}, and so on. Because slugs depend only on the
 input labels, re-running the transformation reproduces the file byte for byte;
 git diffs therefore show real changes rather than noise, and the provenance
-manifest of Section~3 remains meaningful.
+manifest of Section~\ref{sec:data} remains meaningful.
 
 \subsection{Mapping the source records}
 
@@ -91,7 +91,7 @@ before parsing.
 The Whiskey Sour shows both cases at once: its lemon appears twice in the
 source, once as the prose ``Juice of 1/2'' and once as ``1/2 slice'', so the
 graph stores one text-only amount and one numeric amount of 0.5 slice
-(Section~7).
+(Section~\ref{sec:query}).
 
 \subsection{Classifying the base spirit}
 
@@ -125,7 +125,7 @@ to \texttt{liqueur}. Table~\ref{tab:spirits} shows the resulting distribution.
 \end{table}
 
 The heuristic is intentionally transparent, but it can misfire on unusual
-recipes; this is discussed as a limitation in Section~8.
+recipes; this is discussed as a limitation in Section~\ref{sec:evaluation}.
 
 \subsection{Distilleries, brands and places}
 
@@ -145,4 +145,4 @@ The transformation produces an instance graph with 441 cocktails, 299
 ingredients, 865 distilleries and 12 brands, roughly 22{,}300 triples in total.
 The first of the two project quality gates verifies that every generated file
 still parses as valid RDF before the pipeline is considered healthy; the second
-gate re-runs all demonstration queries (Section~7).
+gate re-runs all demonstration queries (Section~\ref{sec:query}).

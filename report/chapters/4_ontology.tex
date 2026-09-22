@@ -19,7 +19,7 @@ cocktails point at the individual, not at the class \cite{owl2}.
 \textbf{Model the application's questions.} The schema exists to answer
 questions such as ``which IBA cocktails use gin and lemon?'' and ``how much
 lemon is in a Whiskey Sour?''; the second question is what motivated the
-measure model in Section~\ref{sec:ontology}.
+measure model described below.
 
 \subsection{Reused vocabularies}
 
@@ -66,7 +66,7 @@ non-alcoholic drinks.
     \midrule
     \texttt{Cocktail} & \texttt{Beverage} & a mixed drink defined by a recipe \\
     \texttt{Spirit} & \texttt{Beverage} & a spirit type; instances are categories, not bottles \\
-    \texttt{Gin}, \texttt{Whisky}, \texttt{Rum}, \texttt{Vodka}, \texttt{Tequila}, \texttt{Brandy}, \texttt{Liqueur}, \texttt{Absinthe} & \texttt{Spirit} & the eight spirit types recognised by the base-spirit classifier (Section~5) \\
+    \texttt{Gin}, \texttt{Whisky}, \texttt{Rum}, \texttt{Vodka}, \texttt{Tequila}, \texttt{Brandy}, \texttt{Liqueur}, \texttt{Absinthe} & \texttt{Spirit} & the eight spirit types recognised by the base-spirit classifier (Section~\ref{sec:transformation}) \\
     \texttt{Ingredient} & \texttt{schema:Product} & a component used in a recipe (juice, syrup, bitters, \dots) \\
     \texttt{IngredientAmount} & --- & one ingredient's use in one cocktail, carrying its measure \\
     \texttt{Brand} & \texttt{schema:Brand} & a commercial product line, e.g.\ Bombay Sapphire \\
@@ -133,7 +133,7 @@ id:cocktail/negroni  drink:usesIngredient  id:ingredient-amount/negroni/1 .
 
 The measure is now addressable: every quantity can be queried or compared, and
 the prose form of the source is preserved next to the parsed numeric value.
-Section~5 describes how the numeric value is extracted.
+Section~\ref{sec:transformation} describes how the numeric value is extracted.
 
 Finally, the ontology declares an OWL~2 property chain so that
 \texttt{hasIngredient} does not have to be stored at all:

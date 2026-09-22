@@ -119,7 +119,7 @@ The project plan initially identified distilleries by \texttt{Q18979992}. Before
 implementing the collector, the identifier was checked against Wikidata and
 turned out to denote \emph{a street in the Netherlands}. The correct class is
 \texttt{Q1251750}. This episode shaped a habit that appears again in
-Section~6: external identifiers are verified against the source, never trusted
+Section~\ref{sec:interlinking}: external identifiers are verified against the source, never trusted
 from documentation alone.
 
 \subsection{Characteristics of the raw data}
@@ -130,7 +130,7 @@ items with several values (for example multiple coordinates) produce multiple
 bindings; the transformation step therefore groups rows by QID first. Optional
 fields are frequently missing: some cocktails have no measure for an
 ingredient, and measures are free text such as ``Juice of 1/2'' rather than
-numbers, which is why Section~5 keeps the original text while parsing a numeric
+numbers, which is why Section~\ref{sec:transformation} keeps the original text while parsing a numeric
 value only when possible. Finally, only 12 spirit brands are returned, because
 the requirement that the manufacturer be recorded as a distillery is rarely
-satisfied in Wikidata --- a limitation revisited in Section~8.
+satisfied in Wikidata --- a limitation revisited in Section~\ref{sec:evaluation}.

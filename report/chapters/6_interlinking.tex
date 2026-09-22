@@ -8,7 +8,7 @@ DBpedia resources, implemented in \texttt{etl/reconcile.py}.
 \subsection{Two kinds of links}
 
 Distilleries and brands arrive with a Wikidata QID that was collected directly
-from the source (Section~3), so no matching is needed: the QID is simply copied
+from the source (Section~\ref{sec:data}), so no matching is needed: the QID is simply copied
 as an \texttt{owl:sameAs} target and marked with high confidence. Cocktails and
 ingredients, by contrast, have no external identifier in the source data, so
 they must be \emph{reconciled} against Wikidata.

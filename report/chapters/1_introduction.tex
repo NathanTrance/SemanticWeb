@@ -3,10 +3,10 @@
 
 \subsection{Motivation}
 
-The classic World Wide Web links \emph{documents}: a page about an entity
+The classic World Wide Web links documents: a page about an entity
 points to another page, and a reader follows the links. Machines can follow
 them too, but they cannot interpret them. The Semantic Web addresses this gap
-by publishing data as \emph{entities and relations} rather than pages: facts
+by publishing data as entities and relations rather than pages: facts
 are expressed as RDF triples, so a computer can combine data about the same
 thing across independent sources \cite{rdf11, fivestar}. For example, our graph
 states that the Negroni has base spirit gin; Wikidata carries an item for the
@@ -16,9 +16,9 @@ same cocktail; once the two identifiers are connected with
 This project applies those ideas to the world of drinks: cocktails, the
 ingredients and measures they use, the spirits and brands behind them, and the
 distilleries that produce those brands. The domain was chosen deliberately. The
-data is available in machine-readable form --- TheCocktailDB exposes a free
+data is available in machine-readable form: TheCocktailDB exposes a free
 JSON API \cite{cocktaildb} and Wikidata covers distilleries with coordinates
-\cite{wikidata} --- the entities are already present in existing Linked Open
+\cite{wikidata}. The entities are already present in existing Linked Open
 Data (LOD) datasets, which makes five-star linking realistic \cite{dbpedia},
 and the results are easy to inspect: ingredient lists, measures and maps make
 the application demonstrable rather than abstract.
@@ -34,7 +34,7 @@ Following the five course requirements, the project delivers:
         public sources and records their provenance;
   \item a transformation that emits the collected data as RDF in a
         non-proprietary W3C format (four-star);
-  \item an interlinking step that reconciles our entities with Wikidata and
+  \item an interlinking step that links our entities with Wikidata and
         DBpedia through \texttt{owl:sameAs} (five-star);
   \item a query interface: a SPARQL endpoint with a small query UI and eleven
         curated demonstration queries.
@@ -87,12 +87,14 @@ summarises the division of responsibilities.
 \subsection{Report structure}
 
 The remainder of the report follows the order in which the application was
-built. Section~2 provides the background concepts used throughout: Linked Open
-Data and the five-star model, RDF, OWL~2 and SPARQL. Section~3 describes the
-data sources, their licences and the collection pipeline. Section~4 presents
-the ontology design, including the measure model. Section~5 explains how the
-raw data is transformed into RDF, and Section~6 how our entities are
-interlinked with Wikidata and DBpedia. Section~7 documents the query interface
-and representative results, Section~8 evaluates the result against the course
-requirements, and Section~9 concludes. The appendix lists the commands needed
-to reproduce the pipeline.
+built. Section~\ref{sec:background} provides the background concepts used
+throughout: Linked Open Data and the five-star model, RDF, OWL~2 and SPARQL.
+Section~\ref{sec:data} describes the data sources, their licences and the
+collection pipeline. Section~\ref{sec:ontology} presents the ontology design,
+including the measure model. Section~\ref{sec:transformation} explains how the
+raw data is transformed into RDF, and Section~\ref{sec:interlinking} how our
+entities are linked to Wikidata and DBpedia. Section~\ref{sec:query} documents
+the query interface and representative results,
+Section~\ref{sec:evaluation} evaluates the result against the course
+requirements, and Section~\ref{sec:conclusion} concludes. The appendix lists
+the commands needed to reproduce the pipeline.
