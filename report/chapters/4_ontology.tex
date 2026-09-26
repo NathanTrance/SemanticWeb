@@ -150,41 +150,18 @@ answers without materialising inferred triples.
 
 \subsection{The ontology at a glance}
 
-Figure~\ref{fig:ontology} summarises the design: the recipe path
-\texttt{Cocktail} $\rightarrow$ \texttt{IngredientAmount} $\rightarrow$
-\texttt{Ingredient} in the upper row, the spirit and production chain below it,
-and the inferred shortcut \texttt{hasIngredient} drawn dashed. Inverse
-properties (\texttt{produces}, \texttt{hasBrand}) are omitted to keep the
-diagram readable.
+Figure~\ref{fig:ontology} is the VOWL rendering of DrinkOnto exported from
+WebVOWL. Classes are circles. External classes, including those reused from
+schema.org and SKOS and the upper RDFS and OWL vocabulary, are the darker
+circles marked ``(external)''. Object properties are blue rectangles and
+datatype properties are green; yellow rectangles are datatypes. Dotted arrows
+are \texttt{rdfs:subClassOf}. An inverse pair shares one edge and carries both
+labels.
 
-\begin{figure}[h]
+\begin{figure}[p]
   \centering
-  \begin{tikzpicture}[
-    cls/.style={draw, rounded corners=2pt, fill=blue!8, align=center,
-                font=\small, inner sep=3.5pt, minimum height=7mm},
-    arrow/.style={-{Latex[length=1.8mm]}, thick},
-    lab/.style={font=\scriptsize\ttfamily, inner sep=1.5pt, fill=white}
-  ]
-    \node[cls] (glass) {GlassType};
-    \node[cls, right=13mm of glass] (cocktail) {Cocktail};
-    \node[cls, right=20mm of cocktail] (amount) {IngredientAmount};
-    \node[cls, right=20mm of amount] (ingredient) {Ingredient};
-    \node[cls, below=11mm of cocktail] (spirit) {Spirit (Gin, Rum, \dots)};
-    \node[cls, below=10mm of spirit] (brand) {Brand};
-    \node[cls, right=14mm of brand] (distillery) {Distillery};
-    \node[cls, right=14mm of distillery] (place) {\texttt{schema:Place}};
-
-    \draw[arrow] (cocktail) -- node[lab, above] {servedIn} (glass);
-    \draw[arrow] (cocktail) -- node[lab, above] {usesIngredient} (amount);
-    \draw[arrow] (amount) -- node[lab, above] {ofIngredient} (ingredient);
-    \draw[arrow] (cocktail) -- node[lab, right] {baseSpirit} (spirit);
-    \draw[arrow] (spirit) -- node[lab, right] {hasBrand} (brand);
-    \draw[arrow] (brand) -- node[lab, above] {producedBy} (distillery);
-    \draw[arrow] (distillery) -- node[lab, above] {countryOfOrigin} (place);
-    \draw[arrow, dashed] (cocktail) to[out=60, in=120]
-      node[lab, above] {hasIngredient (property chain)} (ingredient);
-  \end{tikzpicture}
-  \caption{Summary of \emph{DrinkOnto}. Solid arrows are asserted
-  properties, the dashed arrow is inferred through the OWL~2 property chain.}
+  \input{figures/drinkonto-extra.owl.tex}
+  \caption{VOWL rendering of \emph{DrinkOnto}. Dotted arrows are
+  \texttt{rdfs:subClassOf}.}
   \label{fig:ontology}
 \end{figure}
