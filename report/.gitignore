@@ -18,6 +18,7 @@
 *.nav
 *.out
 *.pdf
+!figures/*.pdf
 *.snm
 *.synctex.gz
 *.toc

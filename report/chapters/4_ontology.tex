@@ -150,18 +150,21 @@ answers without materialising inferred triples.
 
 \subsection{The ontology at a glance}
 
-Figure~\ref{fig:ontology} is the VOWL rendering of DrinkOnto exported from
-WebVOWL. Classes are circles. External classes, including those reused from
-schema.org and SKOS and the upper RDFS and OWL vocabulary, are the darker
-circles marked ``(external)''. Object properties are blue rectangles and
-datatype properties are green; yellow rectangles are datatypes. Dotted arrows
-are \texttt{rdfs:subClassOf}. An inverse pair shares one edge and carries both
-labels.
+Figure~\ref{fig:ontology} shows the classes and properties of
+\emph{DrinkOnto}. Ellipses are classes. A dotted arrow labelled
+\texttt{rdfs:subClassOf} runs from a class to its superclass, and the reused
+classes continue that chain through \texttt{owl:Thing} to
+\texttt{rdfs:Resource}. Blue rectangles are object properties and orange
+rectangles are datatype properties; each datatype property points at a pink
+XSD range. \texttt{drink:locatedIn} is drawn as a sub-property of
+\texttt{schema:location} and \texttt{dcterms:spatial}. The inverse pairs
+\texttt{producedBy}/\texttt{produces} and \texttt{brandOf}/\texttt{hasBrand}
+are shown in both directions.
 
 \begin{figure}[p]
   \centering
-  \input{figures/drinkonto-extra.owl.tex}
-  \caption{VOWL rendering of \emph{DrinkOnto}. Dotted arrows are
-  \texttt{rdfs:subClassOf}.}
+  \includegraphics[width=\linewidth]{{"figures/Semantic Web.drawio.png"}}
+  \caption{Classes and properties of \emph{DrinkOnto}. Dotted arrows marked
+  \texttt{rdfs:subClassOf} point toward the superclass.}
   \label{fig:ontology}
 \end{figure}
