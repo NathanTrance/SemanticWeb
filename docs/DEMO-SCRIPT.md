@@ -4,39 +4,52 @@ A shot-by-shot teleprompter for recording the project demo. Times are targets;
 total **5:00**. Say the bold lines; do the on-screen actions in between.
 
 - Project: **DrinkOnto** — a 5★ Linked Open Data app for cocktails, spirits & distilleries.
-- UI / endpoint: <http://localhost:8000>
-- Public site: <https://nathantrance.github.io/SemanticWeb/>
+- UI / endpoint (this machine): <http://localhost:8000>
+- UI / endpoint (any tailnet device): <https://invidious.tailadee73.ts.net/>
+- Public site (static): <https://nathantrance.github.io/SemanticWeb/>
 - Repo: <https://github.com/NathanTrance/SemanticWeb>
 
 ---
 
 ## 0. Pre-flight (do this BEFORE you press record)
 
-Open four things and leave them ready:
-
-1. **Terminal** at the repo root (large font, clear history: `clear`).
-2. **Browser tab A** → <http://localhost:8000>  (the query UI).
-3. **Browser tab B** → <https://nathantrance.github.io/SemanticWeb/>  (public site).
-4. **Protégé** (optional) → open `ontology/drinkonto.owl`, expand the class tree.
-
-Make sure the local server is running (leave this running for the whole video):
+### A. Start the two local processes (leave both running for the whole video)
 
 ```bash
+# 1) the app: UI + SPARQL endpoint + IRI dereferencing
 .venv/Scripts/python web/server.py
 # -> loaded 25342 triples
 # -> Query UI:        http://localhost:8000/
-# -> SPARQL endpoint: http://localhost:8000/sparql
-# -> Dereference:     http://localhost:8000/id/cocktail/negroni
+
+# 2) publish it on your tailnet as an HTTPS *.ts.net URL
+"/c/Program Files/Tailscale/tailscale.exe" serve --bg --yes 8000
+# -> Available within your tailnet:
+#    https://invidious.tailadee73.ts.net/  ->  proxy http://127.0.0.1:8000
 ```
 
-Optional (only if you want to show the standard Jena engine):
+> On **PowerShell**, quote the path:
+> `& "C:\Program Files\Tailscale\tailscale.exe" serve --bg --yes 8000`
+>
+> The `serve` proxy just forwards to `127.0.0.1:8000`, so the app can stay bound
+> to localhost — no firewall rules, no `--host 0.0.0.0`, HTTPS auto-provisioned.
+
+### B. Open these and leave them ready
+
+1. **Terminal** at the repo root (large font, clear history: `clear`).
+2. **Browser tab A** → <https://invidious.tailadee73.ts.net/>  (the query UI)
+3. **Browser tab B** → <https://nathantrance.github.io/SemanticWeb/>  (public site)
+4. **Protégé** (optional) → open `ontology/drinkonto.owl`, expand the class tree.
+
+Optional (standard engine, only if you want to show Apache Jena Fuseki):
 
 ```bash
 docker compose up -d
 .venv/Scripts/python etl/load_fuseki.py
 ```
 
-> Tip: test each command once off-camera so package caching / ports are warm.
+> Tip: run every command once off-camera so package caching / ports / the
+> Tailscale certificate are warm. The first HTTPS hit can take ~5–10 s while
+> Tailscale issues the certificate.
 
 ---
 
@@ -138,7 +151,7 @@ column.
 
 ## 6. Live SPARQL queries  (3:25 – 4:30)
 
-**On screen:** browser tab A (UI at <http://localhost:8000>).
+**On screen:** browser tab A (UI at <https://invidious.tailadee73.ts.net/>).
 
 **Action:** pick a preset from the dropdown, press **Run query** (Ctrl+Enter).
 Do these four, narrating each briefly:
@@ -151,8 +164,10 @@ Do these four, narrating each briefly:
 | `08-cocktails-per-spirit-type` | "Aggregation: cocktails grouped by spirit type — rum, gin, vodka." |
 
 **Say:**
-> "The same queries run unchanged on our Python endpoint and on Apache Jena
-> Fuseki; we verified all eleven pass on both."
+> "This UI is talking to the SPARQL endpoint over the tailnet — the same
+> queries run unchanged on our Python endpoint, on Apache Jena Fuseki, and
+> from any device on the tailnet at the `ts.net` address; we verified all
+> eleven pass on both engines."
 
 ---
 
@@ -168,11 +183,14 @@ couple of entity links.
 > locally, the server does HTTP content negotiation — the same IRI returns
 > RDF to a machine and an HTML page to a browser."
 
-**Action (optional, strong closer):** in the terminal:
+**Action (optional, strong closer):** in the terminal, fetch an IRI as a
+machine over the tailnet:
 ```bash
-curl -H "Accept: text/turtle" http://localhost:8000/id/cocktail/negroni
+# from THIS machine, or any other device on your tailnet
+curl -H "Accept: text/turtle" https://invidious.tailadee73.ts.net/id/cocktail/negroni
 ```
-Show it returns Turtle with `owl:sameAs` to Wikidata and DBpedia.
+Show it returns Turtle with `owl:sameAs` to Wikidata and DBpedia. (Swap the URL
+for `http://localhost:8000/...` if you prefer to keep it fully local.)
 
 **Say:**
 > "That's DrinkOnto: an OWL ontology, reproducible data collection, 4-star RDF,
@@ -186,6 +204,11 @@ Show it returns Turtle with `owl:sameAs` to Wikidata and DBpedia.
 # run the app
 .venv/Scripts/python web/server.py            # UI + /sparql + dereferencing
 
+# expose it on the tailnet (ts.net URL, HTTPS handled by Tailscale)
+"/c/Program Files/Tailscale/tailscale.exe" serve --bg --yes 8000   # start
+"/c/Program Files/Tailscale/tailscale.exe" serve status            # check
+"/c/Program Files/Tailscale/tailscale.exe" serve --https=443 off   # stop
+
 # full pipeline (cached, safe to re-run)
 .venv/Scripts/python etl/bootstrap.py
 .venv/Scripts/python etl/map.py
@@ -193,8 +216,9 @@ Show it returns Turtle with `owl:sameAs` to Wikidata and DBpedia.
 .venv/Scripts/python etl/validate_rdf.py
 .venv/Scripts/python etl/run_queries.py
 
-# dereferencing proof
+# dereferencing proof (local or over the tailnet)
 curl -H "Accept: text/turtle" http://localhost:8000/id/cocktail/negroni
+curl -H "Accept: text/turtle" https://invidious.tailadee73.ts.net/id/cocktail/negroni
 
 # optional standard endpoint
 docker compose up -d
@@ -212,10 +236,16 @@ docker compose down
   (`/sparql`), or reload Fuseki with `etl/load_fuseki.py`.
 - **Fuseki slow/errors** → use `127.0.0.1`, never `localhost` (IPv6 adds ~20 s).
 - **Pages looks stale** → re-run the **Deploy** workflow in GitHub → Actions.
+- **ts.net URL won't load from another device** → confirm the app is running,
+  then `"/c/Program Files/Tailscale/tailscale.exe" serve status` shows the
+  mapping, and the other device is on your tailnet (`tailscale status`). The
+  first HTTPS hit may take ~5–10 s while Tailscale provisions the certificate.
 
 ## After recording
 
 ```bash
+# stop publishing the ts.net URL
+"/c/Program Files/Tailscale/tailscale.exe" serve --https=443 off
 # stop the local server: close its terminal, or Ctrl+C
 docker compose down        # only if you started Fuseki
 ```
