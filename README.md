@@ -72,6 +72,29 @@ docker compose down              # stop when done
 # for a Jena-only precise-distance query.
 ```
 
+## Share the endpoint (Tailscale)
+
+By default the server is localhost-only. To reach it from other machines on the
+same Wi-Fi, bind all interfaces:
+
+```bash
+python web/server.py --host 0.0.0.0     # http://<lan-ip>:8000
+```
+
+For a secure URL reachable from any device on your Tailscale network — no
+firewall or NAT changes, HTTPS certificate auto-provisioned — use
+`tailscale serve`, which proxies to the localhost port:
+
+```bash
+tailscale serve --bg --yes 8000
+# -> https://<host>.<tailnet>.ts.net/   proxies to http://127.0.0.1:8000
+tailscale serve status
+tailscale serve --https=443 off        # stop serving
+```
+
+Serve is tailnet-only; use `tailscale funnel` instead to expose it to the open
+internet (not done here, for safety).
+
 ## Repo layout
 
 ```

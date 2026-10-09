@@ -147,3 +147,29 @@ haversine version is kept separately for Fuseki using the XPath
 \texttt{math:} namespace. Third, on Windows the endpoint must be addressed as
 \texttt{127.0.0.1} rather than \texttt{localhost}, because the latter resolves
 to IPv6 first while Docker publishes IPv4.
+
+\subsection{Deployment and remote access}
+
+By default the endpoint binds to \texttt{127.0.0.1} and is therefore reachable
+only from the machine running it. Two mechanisms open it up. For other machines
+on the same local network, the server accepts \texttt{--host 0.0.0.0}, after
+which it answers at \texttt{http://<lan-ip>:8000/sparql}. For access from any
+device without opening firewall ports or configuring NAT, we publish the
+endpoint on a private overlay network using \emph{Tailscale Serve}:
+
+\begin{verbatim}
+tailscale serve --bg --yes 8000
+# https://<host>.<tailnet>.ts.net/   ->   proxy http://127.0.0.1:8000
+\end{verbatim}
+
+This maps the local port to an HTTPS URL with a valid, automatically provisioned
+certificate and a MagicDNS name (in our setup,
+\texttt{https://invidious.tailadee73.ts.net/}). Every device on the tailnet --- a
+phone, a teammate's laptop --- can then use the query UI, call the SPARQL
+endpoint, or dereference a URI such as
+\texttt{https://invidious.tailadee73.ts.net/id/cocktail/negroni}, while the
+service itself stays bound to localhost and nothing is exposed to the public
+internet. Serve is tailnet-only; publishing to the open internet would use the
+related \texttt{funnel} mode, which we deliberately avoided. The GitHub Pages
+site complements this by serving the same RDF descriptions as static, read-only
+files at the stable entity IRIs.
