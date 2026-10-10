@@ -5,7 +5,7 @@ total **5:00**. Say the bold lines; do the on-screen actions in between.
 
 - Project: **DrinkOnto** — a 5★ Linked Open Data app for cocktails, spirits & distilleries.
 - UI / endpoint (this machine): <http://localhost:8000>
-- UI / endpoint (any tailnet device): <https://invidious.tailadee73.ts.net/>
+- UI / endpoint (any device, public via Tailscale Funnel): <https://invidious.tailadee73.ts.net/>
 - Public site (static): <https://nathantrance.github.io/SemanticWeb/>
 - Repo: <https://github.com/NathanTrance/SemanticWeb>
 
@@ -32,6 +32,11 @@ total **5:00**. Say the bold lines; do the on-screen actions in between.
 >
 > The `serve` proxy just forwards to `127.0.0.1:8000`, so the app can stay bound
 > to localhost — no firewall rules, no `--host 0.0.0.0`, HTTPS auto-provisioned.
+>
+> **Public URL (no Tailscale needed):** swap `serve` for `funnel`:
+> `"/c/Program Files/Tailscale/tailscale.exe" funnel --bg --yes 8000` — then
+> <https://invidious.tailadee73.ts.net/> is reachable from any browser.
+> Funnel is unauthenticated; turn it off (`... funnel --https=443 off`) after.
 
 ### B. Open these and leave them ready
 
@@ -246,6 +251,7 @@ docker compose down
 ```bash
 # stop publishing the ts.net URL
 "/c/Program Files/Tailscale/tailscale.exe" serve --https=443 off
+"/c/Program Files/Tailscale/tailscale.exe" funnel --https=443 off   # if you used Funnel
 # stop the local server: close its terminal, or Ctrl+C
 docker compose down        # only if you started Fuseki
 ```

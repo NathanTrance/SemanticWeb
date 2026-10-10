@@ -92,8 +92,17 @@ tailscale serve status
 tailscale serve --https=443 off        # stop serving
 ```
 
-Serve is tailnet-only; use `tailscale funnel` instead to expose it to the open
-internet (not done here, for safety).
+`serve` is tailnet-only. To expose the same endpoint to the **open internet**
+(any browser, no Tailscale login), use Funnel — allowed on ports 443/8443/10000:
+
+```bash
+tailscale funnel --bg --yes 8000       # -> https://<host>.<tailnet>.ts.net/  (public)
+tailscale funnel --https=443 off       # turn the public URL off
+```
+
+Funnel is unauthenticated and fully public: enable it only for the demo and turn
+it off afterwards. As a quick check from anywhere, `bash demo-api.sh` exercises
+the endpoint (defaults to the ts.net URL).
 
 ## Repo layout
 
