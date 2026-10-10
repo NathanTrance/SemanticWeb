@@ -152,19 +152,24 @@ answers without materialising inferred triples.
 
 Figure~\ref{fig:ontology} shows the classes and properties of
 \emph{DrinkOnto}. Ellipses are classes. A dotted arrow labelled
-\texttt{rdfs:subClassOf} runs from a class to its superclass, and the reused
-classes continue that chain through \texttt{owl:Thing} to
-\texttt{rdfs:Resource}. Blue rectangles are object properties and orange
-rectangles are datatype properties; each datatype property points at a pink
-XSD range. \texttt{drink:locatedIn} is drawn as a sub-property of
-\texttt{schema:location} and \texttt{dcterms:spatial}. The inverse pairs
-\texttt{producedBy}/\texttt{produces} and \texttt{brandOf}/\texttt{hasBrand}
-are shown in both directions.
+\texttt{rdfs:subClassOf} runs from a class to its superclass. The reused
+classes are drawn on up through \texttt{owl:Thing} to \texttt{rdfs:Resource};
+those two nodes are the OWL and RDFS tops, and the file does not assert those
+edges. Blue rectangles are object properties and orange rectangles are
+datatype properties; each datatype property points at a pink XSD range.
+\texttt{drink:locatedIn} is a sub-property of \texttt{schema:location} and
+\texttt{dcterms:spatial}. The pairs \texttt{producedBy}/\texttt{produces} and
+\texttt{brandOf}/\texttt{hasBrand} are marked \texttt{owl:inverseOf}. The
+dashed arrow \texttt{drink:hasIngredient}, from \texttt{Cocktail} to
+\texttt{Ingredient}, is the property chain
+\texttt{usesIngredient} then \texttt{ofIngredient}; the two solid arrows are
+the edges stored in the data.
 
 \begin{figure}[p]
   \centering
   \includegraphics[width=\linewidth]{{"figures/Semantic Web.drawio.png"}}
   \caption{Classes and properties of \emph{DrinkOnto}. Dotted arrows marked
-  \texttt{rdfs:subClassOf} point toward the superclass.}
+  \texttt{rdfs:subClassOf} point toward the superclass. The dashed
+  \texttt{hasIngredient} arrow is the OWL~2 property chain.}
   \label{fig:ontology}
 \end{figure}
